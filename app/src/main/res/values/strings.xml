@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Peng Chau Ferry</string>
+    <string name="now">now %s</string>
+    <string name="main_title">Ferries from %s</string>
+    <string name="ferry_info">%s - %s to %s</string>
+    <string name="flip">Flip</string>
+    <string name="refresh">Refresh</string>
+    <string name="holiday">Holiday</string>
+    <string name="wrong_location">You appear to be in %s</string>
+    <string name="nextTime">in %d min</string>
+    <string name="updated">Updated.</string>
+</resources>
