@@ -8,25 +8,11 @@ import org.joda.time.LocalTime
 class FerryDao(private val db: DbOpenHelper) {
 
     fun save(result: List<Ferry>, vararg piers: FerryPier) {
-        val parameters = piers.mapIndexed { i, _ -> i+1 }.joinToString { "?$it" }
-        val whereArgs = piers.map { it.toString() }.toTypedArray()
         db.writableDatabase.beginTransaction()
         try {
-            db.writableDatabase.delete(
-                DbOpenHelper.TIMES,
-                "`from` in ($parameters) and `to` in ($parameters)",
-                whereArgs
-            )
+            delete(*piers)
             result.forEach {
-                val values = ContentValues()
-                values.put("time", it.time.toString())
-                values.put("`from`", it.from.name)
-                values.put("`to`", it.to.name)
-                values.put("durationMin", it.dur.standardMinutes)
-                values.put("days", FerryDay.daysToInt(it.days))
-                db.writableDatabase.insertWithOnConflict(DbOpenHelper.TIMES, null, values,
-                    SQLiteDatabase.CONFLICT_REPLACE
-                )
+                insert(it)
             }
             db.writableDatabase.setTransactionSuccessful()
         } finally {
@@ -34,12 +20,35 @@ class FerryDao(private val db: DbOpenHelper) {
         }
     }
 
+    fun delete(vararg piers: FerryPier) {
+        val parameters = piers.mapIndexed { i, _ -> i+1 }.joinToString { "?$it" }
+        val whereArgs = piers.map { it.name }.toTypedArray()
+        db.writableDatabase.delete(
+            DbOpenHelper.TIMES,
+            "`from` in ($parameters) and `to` in ($parameters)",
+            whereArgs
+        )
+    }
+
+    fun insert(ferry: Ferry) {
+        val values = ContentValues()
+        values.put("time", ferry.time.toString())
+        values.put("`from`", ferry.from.name)
+        values.put("`to`", ferry.to.name)
+        values.put("durationMin", ferry.dur.standardMinutes)
+        values.put("days", FerryDay.daysToInt(ferry.days))
+        db.writableDatabase.insertWithOnConflict(
+            DbOpenHelper.TIMES, null, values,
+            SQLiteDatabase.CONFLICT_REPLACE
+        )
+    }
+
     fun query(from: FerryPier, dow: FerryDay): List<Ferry> {
         return db.readableDatabase.query(
             DbOpenHelper.TIMES,
             arrayOf("time", "`to`", "durationMin", "days"),
-            "`from`=?",
-            arrayOf(from.toString()),
+            "`from`=? and (days & ?)",
+            arrayOf(from.name, dow.flag.toString()),
             null,
             null,
             "time"
@@ -60,7 +69,7 @@ class FerryDao(private val db: DbOpenHelper) {
                 list.add(ferryTime)
             }
             list
-        }.filter { it.days.contains(dow) }
+        }//.filter { it.days.contains(dow) }
     }
 
 }

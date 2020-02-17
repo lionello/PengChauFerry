@@ -20,12 +20,15 @@ enum class FerryDay(val flag: Int) {
 
         fun today() = fromDate(LocalDate.now())
 
-        fun tomorrow() = ENUMS[LocalDate.now().dayOfWeek % 7]
+        val MondayToSaturday: FerryDays = EnumSet.of(Monday, Tuesday, Wednesday, Thursday, Friday, Saturday)
+        val SundayAndHolidays: FerryDays = EnumSet.of(Sunday, Holiday)
+        val EVERYDAY: FerryDays = EnumSet.allOf(FerryDay::class.java)
 
-        fun intToDays(int: Int): EnumSet<FerryDay> =
-            EnumSet.copyOf(ENUMS.mapIndexedNotNull { it, day -> if ((int and (1 shl it)) != 0) day else null })
+        fun intToDays(int: Int): FerryDays =
+            EnumSet.copyOf(ENUMS.mapNotNull { if ((int and it.flag) != 0) it else null })
 
-        fun daysToInt(days: EnumSet<FerryDay>) =
-            days.map { it.ordinal }.sumBy { 1 shl it }
+        fun daysToInt(days: FerryDays) = days.sumBy { it.flag }
    }
 }
+
+typealias FerryDays = EnumSet<FerryDay>

@@ -4,19 +4,16 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import android.os.Build
 import android.os.CountDownTimer
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.joda.time.LocalDate
 import org.joda.time.LocalTime
 
 class FerryViewModel(application: Application) : AndroidViewModel(application) {
 
     companion object {
-        fun now() = if (BuildConfig.DEBUG && Utils.isEmulator) LocalTime(23,40) else LocalTime.now()
+        fun now(): LocalTime = if (BuildConfig.DEBUG && Utils.isEmulator) LocalTime(23,40) else LocalTime.now()
     }
 
     private val countDownTimer = object: CountDownTimer(Long.MAX_VALUE, 1000) {
@@ -27,42 +24,53 @@ class FerryViewModel(application: Application) : AndroidViewModel(application) {
         override fun onFinish() {}
     }
 
+    data class State(val ferries: List<Ferry>, val from: FerryPier, val isHoliday: Boolean)
+
     private val db = DbOpenHelper(application)
     private val ferryRepository = FerryRepository(db)
     private val holidaysRepository = HolidaysRepository(db)
 
-    private val _ferries = MutableLiveData<List<Ferry>>()
+    private val _state = MutableLiveData<State>() // TODO: could be lazyMap
     private val _time = MutableLiveData<LocalTime>()
 
-    val ferries : LiveData<List<Ferry>> = _ferries
+    val state : LiveData<State> = _state
     val time : LiveData<LocalTime> = _time
-    val from = MutableLiveData<FerryPier>()
-    val isHoliday = MutableLiveData<Boolean>()
-
     val today = LocalDate.now()
-    val dow : FerryDay get() = if (isHoliday.value!!) FerryDay.Holiday else FerryDay.fromDate(today)
 
-    init {
-        from.value = FerryPier.PengChau // TODO: from GPS or last saved
-        _time.value = now()
-        isHoliday.value = holidaysRepository.getHoliday(today)
-        _ferries.value = ferryRepository.getFerries(from.value!!, dow)
-        countDownTimer.start()
-
-        from.observeForever {
-            _ferries.value = ferryRepository.getFerries(it!!, dow)
-        }
-        isHoliday.observeForever {
-            holidaysRepository.setHoliday(today, it)
-            _ferries.value = ferryRepository.getFerries(from.value!!, dow)
-        }
+    private fun updateState(from: FerryPier, dow: FerryDay) {
+        val ferries = ferryRepository.getFerries(from, dow)
+        _state.value = State(ferries, from, dow == FerryDay.Holiday)
     }
 
-    fun refresh() = viewModelScope.launch(Dispatchers.IO) {
-        holidaysRepository.refresh()
-        isHoliday.postValue(holidaysRepository.getHoliday(today))
-        ferryRepository.refresh()
-        _ferries.postValue(ferryRepository.getFerries(from.value!!, dow))
+    private fun getDay() : FerryDay = if (holidaysRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
+
+    init {
+        _time.value = now()
+        countDownTimer.start()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        countDownTimer.cancel()
+    }
+
+    fun toggleHoliday(): Boolean {
+        val isHoliday = getDay() == FerryDay.Holiday
+        holidaysRepository.setHoliday(today, !isHoliday)
+        updateState(_state.value!!.from, getDay())
+        return !isHoliday
+    }
+
+    fun switchPier(pier: FerryPier) {
+        updateState(pier, getDay())
+    }
+
+    fun refresh() = viewModelScope.launch {
+        awaitAll(
+            async { holidaysRepository.refresh() },
+            async { ferryRepository.refresh() }
+        )
+        updateState(_state.value!!.from, getDay())
     }
 
 }

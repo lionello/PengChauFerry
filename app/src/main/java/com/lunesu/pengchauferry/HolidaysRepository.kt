@@ -3,22 +3,22 @@ package com.lunesu.pengchauferry
 import org.joda.time.LocalDate
 
 class HolidaysRepository(db: DbOpenHelper) {
-    private val holidays = HolidaysDao(db)
+    private val holidaysDao = HolidaysDao(db)
 
     fun getHoliday(day: LocalDate): Boolean {
-        return holidays.query(day)
+        return holidaysDao.query(day)
     }
 
     fun setHoliday(day: LocalDate, isHoliday: Boolean) {
         if (isHoliday) {
-            holidays.insert(day)
+            holidaysDao.insert(day)
         } else {
-            holidays.delete(day)
+            holidaysDao.delete(day)
         }
     }
 
     suspend fun refresh() {
-        holidays.save(HongKongHolidaysFetcher.fetch())
+        holidaysDao.save(HongKongHolidaysFetcher.fetch())
     }
 
 }

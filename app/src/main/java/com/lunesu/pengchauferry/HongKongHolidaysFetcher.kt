@@ -7,7 +7,8 @@ import org.joda.time.format.DateTimeFormatterBuilder
 import org.jsoup.Jsoup
 
 object HongKongHolidaysFetcher: Fetcher<LocalDate> {
-    private const val url = "https://www.gov.hk/en/about/abouthk/holiday/2020.htm"
+    private const val YEAR = 2020
+    private const val url = "https://www.gov.hk/en/about/abouthk/holiday/$YEAR.htm"
 
     private val formatter = DateTimeFormatterBuilder().appendPattern("dd MMMM").toFormatter()
 
@@ -19,7 +20,7 @@ object HongKongHolidaysFetcher: Fetcher<LocalDate> {
             .mapNotNull {
                 try {
                     // Replace &nbsp; with space
-                    LocalDate.parse(it.text().replace('\u00a0', ' '), formatter).withYear(2020)
+                    LocalDate.parse(it.text().replace('\u00a0', ' '), formatter).withYear(YEAR)
                 } catch (e: IllegalArgumentException) { null }
             }
     }

@@ -10,7 +10,7 @@ object InterIslandsFetcher : Fetcher<Ferry> {
     private const val url = "http://www.nwff.com.hk/route/get_route.php?id=2e2c0154-902a-4c11-9405-f7743f6e6d2e&route_id=0&submenu_num=3"
 
     private val durPengChauMuiWo: Duration = Duration.standardMinutes(20)
-//        val durMuiWoChiMaWan = Duration.standardMinutes(15)
+//        val durMuiWoChiMaWan = Duration.standardMinutes(15) TODO: support other piers too
 //        val durChiMaWanCheungChau = Duration.standardMinutes(20)
 //        val durMuiWoCheungChau = Duration.standardMinutes(35)
 
@@ -25,12 +25,12 @@ object InterIslandsFetcher : Fetcher<Ferry> {
                     val from = FerryPier.PengChau
                     val to = FerryPier.MuiWo
                     val td = tr.child(0)
-                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, Fetcher.everyday)
+                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY)
                 } else {
                     val from = FerryPier.MuiWo
                     val to = FerryPier.PengChau
                     val td = tr.child(2)
-                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, Fetcher.everyday)
+                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY)
                 }
             }
     }

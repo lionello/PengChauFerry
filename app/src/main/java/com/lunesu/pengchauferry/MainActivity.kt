@@ -3,6 +3,7 @@ package com.lunesu.pengchauferry
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -32,10 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val MY_PERMISSION_REQUEST_CODE = 123
-
-        // TODO: add other piers
-        private fun pierFromLocation(location: Location) =
-            if (location.longitude > 114.082) FerryPier.Central else FerryPier.PengChau
+        private const val PALM = "\uD83C\uDF34"
     }
 
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
@@ -48,31 +46,31 @@ class MainActivity : AppCompatActivity() {
         override fun getVerticalSnapPreference() = snap
     }
 
-    private val isHoliday: Boolean get() = viewModel.isHoliday.value == true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerView = findViewById(R.id.times)
-        recyclerView.layoutManager =
-            androidx.recyclerview.widget.StaggeredGridLayoutManager(3, VERTICAL)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(3, VERTICAL)
         //recyclerView.setHasFixedSize(true)
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        viewModel.from.observe(this) {
-            this.title = getString(R.string.main_title, it) + (if (isHoliday) "x" else "")
+        viewModel.state.observe(this) {
+            this.title = getString(R.string.main_title, it.from) + (if (it.isHoliday) PALM else "")
+            recyclerView.adapter = MyAdapter(it.ferries)
+            scrollToNow()
         }
         viewModel.time.observe(this) {
             recyclerView.adapter?.notifyItemChanged(0)
         }
-        viewModel.isHoliday.observe(this) {
-            this.title = getString(R.string.main_title, viewModel.from.value!!) + (if (isHoliday) "x" else "")
-        }
-        viewModel.ferries.observe(this) {
-            recyclerView.adapter = MyAdapter(it)
-            scrollToNow()
-        }
+
+        val from = savedInstanceState?.getString("from") ?: "PengChau"
+        viewModel.switchPier(FerryPier.valueOf(from))
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("from", viewModel.state.value?.from.toString())
+        super.onSaveInstanceState(outState)
     }
 
     override fun onStart() {
@@ -93,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, permission) == PERMISSION_GRANTED) {
             val lastLocation = locationManager.getLastKnownLocation(provider)
             if (lastLocation != null) {
-                viewModel.from.value = pierFromLocation(lastLocation)
+                viewModel.switchPier(FerryPier.findNearest(lastLocation.longitude, lastLocation.latitude))
             }
 
             requestLocationUpdate()
@@ -118,8 +116,8 @@ class MainActivity : AppCompatActivity() {
         locationManager.requestSingleUpdate(provider, object: LocationListener {
             override fun onLocationChanged(location: Location?) {
                 if (location != null) {
-                    val nowPier = pierFromLocation(location)
-                    if (nowPier != viewModel.from.value) {
+                    val nowPier = FerryPier.findNearest(location.longitude, location.latitude)
+                    if (nowPier != viewModel.state.value?.from) {
                         val text = getString(R.string.wrong_location, nowPier.toString())
                         Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
                     }
@@ -152,22 +150,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
-        menu?.findItem(R.id.app_bar_switch)?.isChecked = isHoliday
-        return true
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.findItem(R.id.app_bar_switch)?.isChecked = viewModel.state.value?.isHoliday == true
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        // Handle item selection
         return when (item?.itemId) {
             R.id.app_bar_flip -> {
-                val fromPier = viewModel.from.value
-                viewModel.from.value = if (fromPier == FerryPier.Central) FerryPier.PengChau else FerryPier.Central
+                val fromPier = viewModel.state.value?.from
+                viewModel.switchPier(if (fromPier == FerryPier.Central) FerryPier.PengChau else FerryPier.Central)
                 true
             }
             R.id.app_bar_switch -> {
-                val h = !isHoliday
-                item.isChecked = h
-                viewModel.isHoliday.value = h
+                item.isChecked = viewModel.toggleHoliday()
                 true
             }
             R.id.app_bar_refresh -> {

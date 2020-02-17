@@ -33,7 +33,7 @@ object PengChauToCentralFetcher : Fetcher<Ferry> {
                 val to = if (from == FerryPier.Central) FerryPier.PengChau else FerryPier.Central
 
                 // FIXME: when the time is after MIDNIGHT (00:30) we need to fix-up the days as well
-                val days = if ((i and 4) == 0) Fetcher.mondayToSaturday else Fetcher.sundayAndHolidays
+                val days = if ((i and 4) == 0) FerryDay.MondayToSaturday else FerryDay.SundayAndHolidays
 
                 modifiers.zip(times).forEach { pair ->
                     ferryTimes.add(

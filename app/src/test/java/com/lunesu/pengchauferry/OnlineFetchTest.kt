@@ -8,12 +8,12 @@ import java.security.SecureRandom
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 
-class UpdateTest {
+class OnlineFetchTest {
     companion object {
         @BeforeClass
         @JvmStatic
         fun setup() {
-            // SSL verification fails; ignore
+            // SSL verification fails: ignore the certs.
             val sc = SSLContext.getInstance("SSL")
             sc.init(null, arrayOf(TrustAllCertificates()), SecureRandom())
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)

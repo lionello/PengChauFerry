@@ -5,6 +5,6 @@ import org.joda.time.LocalTime
 import java.util.*
 
 
-data class Ferry(val time: LocalTime, val from: FerryPier, val to: FerryPier, val dur: Duration, val days: EnumSet<FerryDay>) {
+data class Ferry(val time: LocalTime, val from: FerryPier, val to: FerryPier, val dur: Duration, val days: FerryDays) {
     val endTime : LocalTime get() = time.plus(dur.toPeriod())
 }
