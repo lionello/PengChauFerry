@@ -1,9 +1,10 @@
 package com.lunesu.pengchauferry
 
 import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase.CONFLICT_IGNORE
 import org.joda.time.LocalDate
 
-class HolidaysDao(private val db: DbOpenHelper) {
+class HolidayDao(private val db: DbOpenHelper) {
 
     fun query(today: LocalDate): Boolean {
         return db.readableDatabase.query(
@@ -29,7 +30,7 @@ class HolidaysDao(private val db: DbOpenHelper) {
         val day = date.toString()
         val contentValues = ContentValues()
         contentValues.put("date", day)
-        db.writableDatabase.insert(DbOpenHelper.HOLIDAYS, null, contentValues)
+        db.writableDatabase.insertWithOnConflict(DbOpenHelper.HOLIDAYS, null, contentValues, CONFLICT_IGNORE)
     }
 
     fun delete(date: LocalDate) {

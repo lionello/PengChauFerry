@@ -39,7 +39,7 @@ class OnlineFetchTest {
     @Test
     fun testHongKongHolidays() {
         runBlocking {
-            assertNotEquals(0, HongKongHolidaysFetcher.fetch().size)
+            assertNotEquals(0, HongKongHolidayFetcher.fetch().size)
         }
     }
 }

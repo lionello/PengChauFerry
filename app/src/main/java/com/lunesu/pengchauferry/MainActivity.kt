@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.state.observe(this) {
             this.title = getString(R.string.main_title, it.from) + (if (it.isHoliday) PALM else "")
             recyclerView.adapter = MyAdapter(it.ferries)
-            scrollToNow()
+            scrollToNow(viewModel.time.value!!.toLocalTime()    )
         }
         viewModel.time.observe(this) {
             recyclerView.adapter?.notifyItemChanged(0)
@@ -137,8 +137,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun scrollToNow() {
-        val now = FerryViewModel.now()
+    private fun scrollToNow(now: LocalTime) {
         val myAdapter = recyclerView.adapter as MyAdapter
         val index = myAdapter.list.indexOfFirst { it.time > now }
         val position = index + 1

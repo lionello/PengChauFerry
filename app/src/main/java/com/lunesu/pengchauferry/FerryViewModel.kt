@@ -12,10 +12,13 @@ import kotlinx.coroutines.launch
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 
-class FerryViewModel(application: Application, private val ferryRepository: FerryRepository, private val holidaysRepository: HolidaysRepository) : AndroidViewModel(application) {
+class FerryViewModel(application: Application, private val ferryRepository: FerryRepository, private val holidayRepository: HolidayRepository) : AndroidViewModel(application) {
 
-    constructor(application: Application, db : DbOpenHelper = DbOpenHelper(application)) :
-            this(application, FerryRepository(db), HolidaysRepository(db))
+    constructor(application: Application, db : DbOpenHelper) :
+        this(application, FerryRepository(db), HolidayRepository(db))
+
+    // Invoked by lazy viewModels()
+    constructor(application: Application) : this(application, DbOpenHelper(application))
 
     companion object {
         fun now(): LocalDateTime =
@@ -44,10 +47,13 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     private fun updateState(from: FerryPier, dow: FerryDay) {
         val ferries = ferryRepository.getFerries(from, dow)
         _state.value = State(ferries, from, dow == FerryDay.Holiday)
+        if (ferries.isEmpty() || holidayRepository.shouldRefresh()) {
+            refresh()
+        }
     }
 
     private val today : LocalDate get() = _time.value!!.toLocalDate()
-    private fun getDay() : FerryDay = if (holidaysRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
+    private fun getDay() : FerryDay = if (holidayRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
 
     init {
         if (!Utils.isEmulator) {
@@ -64,7 +70,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
 
     fun toggleHoliday(): Boolean {
         val isHoliday = getDay() == FerryDay.Holiday
-        holidaysRepository.setHoliday(today, !isHoliday)
+        holidayRepository.setHoliday(today, !isHoliday)
         _state.value?.let {
             updateState(it.from, getDay())
         }
@@ -77,7 +83,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
 
     fun refresh() = viewModelScope.launch {
         awaitAll(
-            async { holidaysRepository.refresh() },
+            async { holidayRepository.refresh() },
             async { ferryRepository.refresh() }
         )
         _state.value?.let {

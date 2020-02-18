@@ -12,17 +12,15 @@ class FerryRepositoryTest {
     private val db = DbOpenHelper(null)
 
     @Test
-    fun testFerriesClean() {
+    fun testClean() {
         val repo = FerryRepository(db)
         assertEquals(0, repo.getFerries(FerryPier.PengChau, FerryDay.Monday).size)
     }
 
     @Test
-    fun testFerriesRefresh() {
+    fun testRefresh() = runBlocking{
         val repo = FerryRepository(db)
-        runBlocking {
-            repo.refresh()
-        }
+        repo.refresh()
         assertNotEquals(0, repo.getFerries(FerryPier.PengChau, FerryDay.Monday).size)
     }
 

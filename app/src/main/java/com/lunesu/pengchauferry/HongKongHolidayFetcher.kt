@@ -6,7 +6,7 @@ import org.joda.time.LocalDate
 import org.joda.time.format.DateTimeFormatterBuilder
 import org.jsoup.Jsoup
 
-object HongKongHolidaysFetcher: Fetcher<LocalDate> {
+object HongKongHolidayFetcher: Fetcher<LocalDate> {
     private const val YEAR = 2020
     private const val url = "https://www.gov.hk/en/about/abouthk/holiday/$YEAR.htm"
 
