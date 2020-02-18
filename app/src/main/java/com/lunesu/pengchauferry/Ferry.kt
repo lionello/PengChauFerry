@@ -2,7 +2,6 @@ package com.lunesu.pengchauferry
 
 import org.joda.time.Duration
 import org.joda.time.LocalTime
-import java.util.*
 
 
 data class Ferry(val time: LocalTime, val from: FerryPier, val to: FerryPier, val dur: Duration, val days: FerryDays) {

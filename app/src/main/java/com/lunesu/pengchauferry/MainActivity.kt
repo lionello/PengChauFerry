@@ -3,30 +3,30 @@ package com.lunesu.pengchauferry
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearSmoothScroller
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.location.Criteria
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.location.LocationManager.NETWORK_PROVIDER
+import android.os.Bundle
 import android.view.*
 import android.widget.RelativeLayout
 import android.widget.TextView
-import org.joda.time.*
-import org.joda.time.format.DateTimeFormat
-import org.joda.time.format.DateTimeFormatter
-import java.lang.IllegalArgumentException
-import kotlin.math.roundToInt
-import android.content.pm.PackageManager.PERMISSION_GRANTED
-import android.location.*
-import android.location.LocationManager.NETWORK_PROVIDER
-import android.os.*
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearSmoothScroller.SNAP_TO_END
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearSmoothScroller.SNAP_TO_END
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+import org.joda.time.LocalTime
+import org.joda.time.Seconds
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity() {
 
     class MyAdapter(val list: List<Ferry>) : androidx.recyclerview.widget.RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-        private fun now() = FerryViewModel.now()
+        private fun now() = FerryViewModel.now().toLocalTime()
         private val startTime: LocalTime = if (!list.isEmpty() && list[0].time.isBefore(now())) list[0].time else now()
 
         companion object {
@@ -197,7 +197,7 @@ class MainActivity : AppCompatActivity() {
 
             if (pos == 0) {
                 val now = now()
-                val secondsBefore = Seconds.secondsBetween(this.startTime, now()).seconds
+                val secondsBefore = Seconds.secondsBetween(this.startTime, now).seconds
                 val nextFerry = this.list.find { it.time > now }?: this.list[0]
                 val seconds = Seconds.secondsBetween(now, nextFerry.time).seconds
                 val nextTimeView = holder.itemView.findViewById<TextView>(R.id.nextTime)
