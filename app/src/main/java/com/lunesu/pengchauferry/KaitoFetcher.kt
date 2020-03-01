@@ -12,7 +12,8 @@ object KaitoFetcher : Fetcher<Ferry> {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/kaito_services_map/service_details/index.html"
 
     private const val fare = "6.5"
-    private val duration = Duration.standardMinutes(10)
+    private val durationSlow = Duration.standardMinutes(15)
+    private val durationFast = Duration.standardMinutes(10)
     private val saturday = EnumSet.of(FerryDay.Saturday)
     private val formatter = DateTimeFormatterBuilder().appendPattern("h.mm a").toFormatter()
 
@@ -32,6 +33,7 @@ object KaitoFetcher : Fetcher<Ferry> {
                 }
 
                 // Trips to/from Trappist Monastery are derived from the '*' so we know the direction of travel
+                // TODO: support TrappistMonastery origin
                 if (from != FerryPier.TrappistMonastery) {
                     val to = when (from) {
                         FerryPier.DiscoveryBay -> FerryPier.PengChau
@@ -51,10 +53,11 @@ object KaitoFetcher : Fetcher<Ferry> {
                             Ferry(
                                 time,
                                 from,
-                                if (viaTrappistMonastery) FerryPier.TrappistMonastery else to,
-                                duration,
+                                to,
+                                if (viaTrappistMonastery) durationSlow else durationFast,
                                 if (saturdaysOnly) saturday else days,
-                                fare
+                                fare,
+                                if (viaTrappistMonastery) FerryPier.TrappistMonastery else null
                             )
                         )
                     }

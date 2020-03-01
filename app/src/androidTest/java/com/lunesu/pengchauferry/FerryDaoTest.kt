@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class FerryDaoTest {
     private val db = DbOpenHelper(null)
-    private val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.MuiWo, FerryPier.PengChau, Duration.ZERO, FerryDay.MondayToSaturday, "1.2")
+    private val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.MuiWo, FerryPier.PengChau, Duration.ZERO, FerryDay.MondayToSaturday, "1.2", FerryPier.HeiLingChau)
 
     @After
     fun tearDown() {

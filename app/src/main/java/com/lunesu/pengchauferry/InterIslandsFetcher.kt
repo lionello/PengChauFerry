@@ -26,12 +26,12 @@ object InterIslandsFetcher : Fetcher<Ferry> {
                     val from = FerryPier.PengChau
                     val to = FerryPier.MuiWo
                     val td = tr.child(0)
-                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY, fare)
+                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY, fare, null)
                 } else {
                     val from = FerryPier.MuiWo
                     val to = FerryPier.PengChau
                     val td = tr.child(2)
-                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY, fare)
+                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY, fare, null)
                 }
             }
     }

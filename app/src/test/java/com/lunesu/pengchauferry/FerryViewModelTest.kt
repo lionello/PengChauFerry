@@ -31,7 +31,7 @@ class FerryViewModelTest {
     private val db = DbOpenHelper(null)
 
     private val ferryRepository = object : FerryRepository(db) {
-        val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.Central, FerryPier.PengChau, Duration.standardMinutes(1), FerryDay.MondayToSaturday, "1.2")
+        val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.Central, FerryPier.PengChau, Duration.standardMinutes(1), FerryDay.MondayToSaturday, "1.2", null)
         var ferries = mutableListOf<Ferry>()
         override fun getFerries(from: FerryPier, dow: FerryDay): List<Ferry> = ferries.filter { it.from == from && it.days.contains(dow) }
         override suspend fun refresh() { ferries.add(ferry) }

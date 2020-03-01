@@ -98,10 +98,10 @@ class FerryScheduleFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             val backgrounds = mapOf(
                 FerryPier.Central to R.color.colorCentral,
-                FerryPier.PengChau to R.color.colorPengChau,
-                FerryPier.TrappistMonastery to R.color.colorTrappistMonastery,
+                FerryPier.PengChau to R.color.colorHKKF,
+                FerryPier.TrappistMonastery to R.color.colorKaito,
                 FerryPier.DiscoveryBay to R.color.colorDiscoveryBay,
-                FerryPier.MuiWo to R.color.colorMuiWo
+                FerryPier.MuiWo to R.color.colorNWFF
 //                FerryPier.CheungChau to R.color.colorCheungChau,
 //                FerryPier.ChiMaWan to R.color.colorChiMaWan,
 //                FerryPier.HeiLingChau to R.color.colorHeiLingChau

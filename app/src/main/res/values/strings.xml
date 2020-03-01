@@ -27,4 +27,5 @@
     <string name="title">Peng Chau Ferries (%s)</string>
     <string name="ferry_fare">$%s</string>
     <string name="my_location">My Location</string>
+    <string name="ferry_to_via">to %s via %s</string>
 </resources>

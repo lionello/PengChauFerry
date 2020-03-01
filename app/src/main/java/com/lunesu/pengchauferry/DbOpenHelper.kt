@@ -11,10 +11,10 @@ class DbOpenHelper(context: Context?): SQLiteOpenHelper(context, if (context == 
         const val HOLIDAYS = "holidays"
 
         private const val DB_NAME = "ferry2"
-        private const val DB_VERSION = 9
+        private const val DB_VERSION = 10
 
         private const val CREATE_TABLE_TIMES =
-            "CREATE TABLE $TIMES (time TEXT NOT NULL, `from` TEXT NOT NULL, `to` TEXT NOT NULL, durationMin INTEGER NOT NULL, days INTEGER NOT NULL, fare TEXT);"
+            "CREATE TABLE $TIMES (time TEXT NOT NULL, `from` TEXT NOT NULL, `to` TEXT NOT NULL, durationMin INTEGER NOT NULL, days INTEGER NOT NULL, fare TEXT, via TEXT);"
         private const val CREATE_INDEX_TIMES = "CREATE INDEX times_from_time ON $TIMES (`from`,time);"
         private const val CREATE_UNIQUE_INDEX_TIMES = "CREATE UNIQUE INDEX times_unique ON $TIMES (time,`from`,`to`,days);"
 
@@ -41,6 +41,7 @@ class DbOpenHelper(context: Context?): SQLiteOpenHelper(context, if (context == 
                 db?.execSQL(CREATE_INDEX_TIMES)
             }
             8 -> db?.execSQL("ALTER TABLE $TIMES ADD COLUMN fare TEXT;")
+            9 -> db?.execSQL("ALTER TABLE $TIMES ADD COLUMN via TEXT;")
         }
     }
 

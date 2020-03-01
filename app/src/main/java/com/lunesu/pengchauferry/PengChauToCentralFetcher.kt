@@ -44,14 +44,16 @@ object PengChauToCentralFetcher : Fetcher<Ferry> {
 
                 modifiers.zip(times).forEach { pair ->
                     val slow = pair.first.contains("*")
+                    val hlc = pair.first.contains("#")
                     ferryTimes.add(
                         Ferry(
                             LocalTime.parse(pair.second),
                             from,
-                            to,
+                            if (hlc) FerryPier.HeiLingChau else to,
                             if (slow) durationSlow else durationFast,
                             days,
-                            if (slow) fareSlow else fareFast
+                            if (slow) fareSlow else fareFast,
+                            if (hlc) to else null
                         )
                     )
                 }

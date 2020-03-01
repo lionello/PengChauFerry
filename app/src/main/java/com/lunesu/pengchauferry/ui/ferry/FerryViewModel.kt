@@ -63,8 +63,9 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     }
 
     private val today : LocalDate get() = _time.value!!.toLocalDate()
-    private fun getDay() : FerryDay =
-        if (holidayRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
+
+    fun getDay(date: LocalDate) =
+        if (holidayRepository.getHoliday(date)) FerryDay.Holiday else FerryDay.fromDate(date)
 
     init {
         if (!Utils.isEmulator) {
@@ -81,16 +82,17 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     }
 
     fun toggleHoliday(): Boolean {
-        val isHoliday = getDay() == FerryDay.Holiday
+        val today = today
+        val isHoliday = getDay(today) == FerryDay.Holiday
         holidayRepository.setHoliday(today, !isHoliday)
         _state.value?.let {
-            updateState(it.from, getDay())
+            updateState(it.from, getDay(today))
         }
         return !isHoliday
     }
 
     fun switchPier(pier: FerryPier) {
-        updateState(pier, getDay())
+        updateState(pier, getDay(today))
     }
 
     fun refresh() = viewModelScope.launch {
@@ -99,7 +101,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
             async { ferryRepository.refresh() }
         )
         _state.value?.let {
-            updateState(it.from, getDay())
+            updateState(it.from, getDay(today))
         }
     }
 

@@ -39,6 +39,7 @@ class FerryDao(private val db: DbOpenHelper) {
         values.put("durationMin", ferry.dur.standardMinutes)
         values.put("days", FerryDay.daysToInt(ferry.days))
         values.put("fare", ferry.fare)
+        values.put("via", ferry.via?.name)
         db.writableDatabase.insertWithOnConflict(
             DbOpenHelper.TIMES, null, values,
             SQLiteDatabase.CONFLICT_REPLACE
@@ -48,7 +49,7 @@ class FerryDao(private val db: DbOpenHelper) {
     fun query(from: FerryPier, dow: FerryDay): List<Ferry> {
         return db.readableDatabase.query(
             DbOpenHelper.TIMES,
-            arrayOf("time", "`to`", "durationMin", "days", "fare"),
+            arrayOf("time", "`to`", "durationMin", "days", "fare", "via"),
             "`from`=? and (days & ?)",
             arrayOf(from.name, dow.flag.toString()),
             null,
@@ -62,18 +63,20 @@ class FerryDao(private val db: DbOpenHelper) {
                 val dur = it.getLong(2)
                 val days = it.getInt(3)
                 val fare = it.getString(4) ?: ""
+                val via = it.getStringOrNull(5)
                 val ferryTime = Ferry(
                     LocalTime.parse(time),
                     from,
                     FerryPier.valueOf(to),
                     Duration.standardMinutes(dur),
                     FerryDay.intToDays(days),
-                    fare
+                    fare,
+                    if (via != null) FerryPier.valueOf(via) else null
                 )
                 list.add(ferryTime)
             }
             list
-        }//.filter { it.days.contains(dow) }
+        }
     }
 
 }

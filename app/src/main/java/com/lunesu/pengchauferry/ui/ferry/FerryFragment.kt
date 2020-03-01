@@ -14,11 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.lunesu.pengchauferry.*
-import org.joda.time.LocalTime
 import org.joda.time.Seconds
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
-import kotlin.math.roundToInt
 
 class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
 
@@ -75,6 +73,10 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 var pos = ferries.indexOfFirst { it.time > now }
                 if (pos == -1) pos = ferries.lastIndex
                 adapter?.selected = pos
+
+//                val today = it.toLocalDate()
+//                if (viewModel.getDay(today) != viewModel.state.value?.day) {
+//                }
             }
         })
 
@@ -114,14 +116,14 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
             private val uiFormatter: DateTimeFormatter = DateTimeFormat.shortTime()
 
             val COLORS = mapOf(
-                FerryPier.Central to R.color.colorCentral,
-                FerryPier.PengChau to R.color.colorPengChau,
-                FerryPier.TrappistMonastery to R.color.colorTrappistMonastery,
-                FerryPier.DiscoveryBay to R.color.colorDiscoveryBay,
-                FerryPier.MuiWo to R.color.colorMuiWo
-//                FerryPier.CheungChau to R.color.colorCheungChau,
-//                FerryPier.ChiMaWan to R.color.colorChiMaWan,
-//                FerryPier.HeiLingChau to R.color.colorHeiLingChau
+                FerryPier.Central to R.color.colorHKKF,
+                FerryPier.PengChau to R.color.colorHKKF,
+                FerryPier.TrappistMonastery to R.color.colorKaito,
+                FerryPier.DiscoveryBay to R.color.colorKaito,
+                FerryPier.MuiWo to R.color.colorNWFF,
+//                FerryPier.CheungChau to R.color.colorMuiWo,
+//                FerryPier.ChiMaWan to R.color.colorMuiWo,
+                FerryPier.HeiLingChau to R.color.colorHKKF
             )
         }
 
@@ -181,7 +183,12 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 ferry.time.toString(uiFormatter),
                 ferry.endTime.toString(uiFormatter))
             val ferryTo = holder.context.getString(STRINGS.getValue(ferry.to))
-            holder.textViewDest.text = holder.context.getString(R.string.ferry_to, ferryTo)
+            if (ferry.via != null) {
+                val ferryVia = holder.context.getString(STRINGS.getValue(ferry.via))
+                holder.textViewDest.text = holder.context.getString(R.string.ferry_to_via, ferryTo, ferryVia)
+            } else {
+                holder.textViewDest.text = holder.context.getString(R.string.ferry_to, ferryTo)
+            }
             holder.textViewDest.setTextColor(ContextCompat.getColor(holder.context, COLORS.getValue(ferry.to)))
         }
     }

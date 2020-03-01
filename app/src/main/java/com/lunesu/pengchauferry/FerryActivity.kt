@@ -47,10 +47,10 @@ class FerryActivity : AppCompatActivity() {
             if (nowPier != viewModel.state.value?.from) {
                 val text = getString(R.string.wrong_location, nowPier.toString())
                 Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-                if (shouldSwitchPier) {
-                    shouldSwitchPier = false
-                    viewModel.switchPier(nowPier)
-                }
+            }
+            if (shouldSwitchPier) {
+                shouldSwitchPier = false
+                viewModel.switchPier(nowPier)
             }
 //            val distToPier = nowPier.distance(it.latitude, it.longitude)
         })
@@ -117,7 +117,6 @@ class FerryActivity : AppCompatActivity() {
                 true
             }
             R.id.app_bar_refresh -> {
-                shouldSwitchPier = true
                 viewModel.refresh()
                 true
             }
