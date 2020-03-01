@@ -11,6 +11,7 @@ import java.util.*
 object KaitoFetcher : Fetcher<Ferry> {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/kaito_services_map/service_details/index.html"
 
+    private const val fare = "6.5"
     private val duration = Duration.standardMinutes(10)
     private val saturday = EnumSet.of(FerryDay.Saturday)
     private val formatter = DateTimeFormatterBuilder().appendPattern("h.mm a").toFormatter()
@@ -52,7 +53,8 @@ object KaitoFetcher : Fetcher<Ferry> {
                                 from,
                                 if (viaTrappistMonastery) FerryPier.TrappistMonastery else to,
                                 duration,
-                                if (saturdaysOnly) saturday else days
+                                if (saturdaysOnly) saturday else days,
+                                fare
                             )
                         )
                     }

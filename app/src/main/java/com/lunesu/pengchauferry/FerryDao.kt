@@ -2,6 +2,7 @@ package com.lunesu.pengchauferry
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import androidx.core.database.getStringOrNull
 import org.joda.time.Duration
 import org.joda.time.LocalTime
 
@@ -37,6 +38,7 @@ class FerryDao(private val db: DbOpenHelper) {
         values.put("`to`", ferry.to.name)
         values.put("durationMin", ferry.dur.standardMinutes)
         values.put("days", FerryDay.daysToInt(ferry.days))
+        values.put("fare", ferry.fare)
         db.writableDatabase.insertWithOnConflict(
             DbOpenHelper.TIMES, null, values,
             SQLiteDatabase.CONFLICT_REPLACE
@@ -46,7 +48,7 @@ class FerryDao(private val db: DbOpenHelper) {
     fun query(from: FerryPier, dow: FerryDay): List<Ferry> {
         return db.readableDatabase.query(
             DbOpenHelper.TIMES,
-            arrayOf("time", "`to`", "durationMin", "days"),
+            arrayOf("time", "`to`", "durationMin", "days", "fare"),
             "`from`=? and (days & ?)",
             arrayOf(from.name, dow.flag.toString()),
             null,
@@ -59,12 +61,14 @@ class FerryDao(private val db: DbOpenHelper) {
                 val to = it.getString(1)
                 val dur = it.getLong(2)
                 val days = it.getInt(3)
+                val fare = it.getString(4) ?: ""
                 val ferryTime = Ferry(
                     LocalTime.parse(time),
                     from,
                     FerryPier.valueOf(to),
                     Duration.standardMinutes(dur),
-                    FerryDay.intToDays(days)
+                    FerryDay.intToDays(days),
+                    fare
                 )
                 list.add(ferryTime)
             }

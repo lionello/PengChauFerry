@@ -66,4 +66,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="in 5 minutes" />
 
+    <TextView
+        android:id="@+id/textView_fare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_walk"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="$12.3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

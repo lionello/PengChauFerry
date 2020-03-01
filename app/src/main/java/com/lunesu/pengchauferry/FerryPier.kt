@@ -1,5 +1,6 @@
 package com.lunesu.pengchauferry
 
+import android.location.Location
 import java.lang.Math.toRadians
 import kotlin.math.*
 
@@ -37,9 +38,11 @@ enum class FerryPier(val latitude: Double, val longitude: Double) {
     }
 
     fun distance(lat: Double, long: Double): Float {
-//        val result = floatArrayOf(0.0F)
-//        Location.distanceBetween(lat, long, latitude, longitude, result)
-//        return result[0]
+//        if (!Utils.isEmulator) {
+//            val result = floatArrayOf(0.0F)
+//            Location.distanceBetween(lat, long, latitude, longitude, result) // not mocked
+//            return result[0]
+//        }
         return haversine(lat, long, latitude, longitude)
     }
 

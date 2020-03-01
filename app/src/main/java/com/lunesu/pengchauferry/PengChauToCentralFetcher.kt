@@ -9,6 +9,10 @@ import org.jsoup.Jsoup
 object PengChauToCentralFetcher : Fetcher<Ferry> {
     private const val url = "http://hkkf.com.hk/index.php?op=timetable&page=pengchau&style=en"
 
+    private const val fareSlowWD = "15.9"
+    private const val fareSlowPH = "22.8"
+    private const val fareFastWD = "29.6"
+    private const val fareFastPH = "43.5"
     private val durationFast = Duration.standardMinutes(27)
     private val durationSlow = Duration.standardMinutes(40)
 
@@ -33,16 +37,21 @@ object PengChauToCentralFetcher : Fetcher<Ferry> {
                 val to = if (from == FerryPier.Central) FerryPier.PengChau else FerryPier.Central
 
                 // FIXME: when the time is after MIDNIGHT (00:30) we need to fix-up the days as well
-                val days = if ((i and 4) == 0) FerryDay.MondayToSaturday else FerryDay.SundayAndHolidays
+                val monToSat = (i and 4) == 0
+                val days = if (monToSat) FerryDay.MondayToSaturday else FerryDay.SundayAndHolidays
+                val fareSlow = if (monToSat) fareSlowWD else fareSlowPH
+                val fareFast = if (monToSat) fareFastWD else fareFastPH
 
                 modifiers.zip(times).forEach { pair ->
+                    val slow = pair.first.contains("*")
                     ferryTimes.add(
                         Ferry(
                             LocalTime.parse(pair.second),
                             from,
                             to,
-                            if (pair.first.contains("*")) durationSlow else durationFast,
-                            days
+                            if (slow) durationSlow else durationFast,
+                            days,
+                            if (slow) fareSlow else fareFast
                         )
                     )
                 }

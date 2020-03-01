@@ -160,11 +160,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            R.id.app_bar_flip -> {
-                val fromPier = viewModel.state.value?.from
-                viewModel.switchPier(if (fromPier == FerryPier.Central) FerryPier.PengChau else FerryPier.Central)
-                true
-            }
+//            R.id.app_bar_flip -> {
+//                val fromPier = viewModel.state.value?.from
+//                viewModel.switchPier(if (fromPier == FerryPier.Central) FerryPier.PengChau else FerryPier.Central)
+//                true
+//            }
             R.id.app_bar_switch -> {
                 item.isChecked = viewModel.toggleHoliday()
                 true

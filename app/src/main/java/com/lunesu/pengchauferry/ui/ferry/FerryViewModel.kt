@@ -13,16 +13,18 @@ import org.joda.time.LocalDateTime
 
 class FerryViewModel(application: Application, private val ferryRepository: FerryRepository, private val holidayRepository: HolidayRepository) : AndroidViewModel(application) {
 
-    constructor(application: Application, db : DbOpenHelper) :
+    private var db: DbOpenHelper? = null
+
+    constructor(application: Application, db: DbOpenHelper) :
         this(application,
             FerryRepository(db),
             HolidayRepository(db)
-        )
+        ) {
+        this.db = db
+    }
 
     // Invoked by lazy viewModels()
-    constructor(application: Application) : this(application,
-        DbOpenHelper(application)
-    )
+    constructor(application: Application) : this(application, DbOpenHelper(application))
 
     companion object {
         fun now(): LocalDateTime =
@@ -65,11 +67,16 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         if (holidayRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
 
     init {
-        countDownTimer.start()
+        if (!Utils.isEmulator) {
+            countDownTimer.start() // not mocked
+        }
     }
 
     override fun onCleared() {
-        countDownTimer.cancel()
+        if (!Utils.isEmulator) {
+            countDownTimer.cancel() // not mocked
+        }
+        db?.close()
         super.onCleared()
     }
 

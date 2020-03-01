@@ -2,6 +2,7 @@ package com.lunesu.pengchauferry
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.joda.time.LocalDate
+import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -11,6 +12,11 @@ import org.junit.runner.RunWith
 class HolidayDaoTest {
     private val db = DbOpenHelper(null)
     private val today = LocalDate.now()
+
+    @After
+    fun tearDown() {
+        db.close()
+    }
 
     @Test
     fun testQuery() {

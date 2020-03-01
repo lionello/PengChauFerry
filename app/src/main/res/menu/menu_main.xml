@@ -2,9 +2,9 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/app_bar_flip"
-        android:icon="@android:drawable/ic_menu_revert"
-        android:title="@string/flip"
+        android:id="@+id/app_bar_location"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="@string/my_location"
         app:showAsAction="always" />
     <item
         android:id="@+id/app_bar_switch"

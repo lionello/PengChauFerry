@@ -3,6 +3,7 @@ package com.lunesu.pengchauferry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.joda.time.Duration
 import org.joda.time.LocalTime
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -10,7 +11,12 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class FerryDaoTest {
     private val db = DbOpenHelper(null)
-    private val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.MuiWo, FerryPier.PengChau, Duration.ZERO, FerryDay.MondayToSaturday)
+    private val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.MuiWo, FerryPier.PengChau, Duration.ZERO, FerryDay.MondayToSaturday, "1.2")
+
+    @After
+    fun tearDown() {
+        db.close()
+    }
 
     @Test
     fun testQuery() {

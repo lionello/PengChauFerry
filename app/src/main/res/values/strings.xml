@@ -24,4 +24,7 @@
     <string name="walking_time">Walking time</string>
     <string name="ferry_time">%s - %s</string>
     <string name="ferry_to">to %s</string>
+    <string name="title">Peng Chau Ferries (%s)</string>
+    <string name="ferry_fare">$%s</string>
+    <string name="my_location">My Location</string>
 </resources>

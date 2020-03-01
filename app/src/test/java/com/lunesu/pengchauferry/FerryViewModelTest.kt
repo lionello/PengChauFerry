@@ -2,6 +2,9 @@ package com.lunesu.pengchauferry
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewModelScope
 import com.lunesu.pengchauferry.ui.ferry.FerryViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,7 +31,7 @@ class FerryViewModelTest {
     private val db = DbOpenHelper(null)
 
     private val ferryRepository = object : FerryRepository(db) {
-        val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.Central, FerryPier.PengChau, Duration.standardMinutes(1), FerryDay.MondayToSaturday)
+        val ferry = Ferry(LocalTime.MIDNIGHT, FerryPier.Central, FerryPier.PengChau, Duration.standardMinutes(1), FerryDay.MondayToSaturday, "1.2")
         var ferries = mutableListOf<Ferry>()
         override fun getFerries(from: FerryPier, dow: FerryDay): List<Ferry> = ferries.filter { it.from == from && it.days.contains(dow) }
         override suspend fun refresh() { ferries.add(ferry) }
@@ -119,4 +122,5 @@ class FerryViewModelTest {
         vm.switchPier(ferryRepository.ferry.from)
 //        vm.refresh()
     }
+
 }
