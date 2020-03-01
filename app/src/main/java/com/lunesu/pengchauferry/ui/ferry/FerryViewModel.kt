@@ -1,4 +1,4 @@
-package com.lunesu.pengchauferry
+package com.lunesu.pengchauferry.ui.ferry
 
 import android.app.Application
 import android.os.CountDownTimer
@@ -6,25 +6,29 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
+import com.lunesu.pengchauferry.*
+import kotlinx.coroutines.*
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 
 class FerryViewModel(application: Application, private val ferryRepository: FerryRepository, private val holidayRepository: HolidayRepository) : AndroidViewModel(application) {
 
     constructor(application: Application, db : DbOpenHelper) :
-        this(application, FerryRepository(db), HolidayRepository(db))
+        this(application,
+            FerryRepository(db),
+            HolidayRepository(db)
+        )
 
     // Invoked by lazy viewModels()
-    constructor(application: Application) : this(application, DbOpenHelper(application))
+    constructor(application: Application) : this(application,
+        DbOpenHelper(application)
+    )
 
     companion object {
         fun now(): LocalDateTime =
-            if (BuildConfig.DEBUG && Utils.isEmulator)
-                LocalDateTime.now().withTime(23,40, 0, 0)
-            else
+//            if (BuildConfig.DEBUG && Utils.isEmulator)
+//                LocalDateTime.now().withTime(23,40, 0, 0)
+//            else
                 LocalDateTime.now()
     }
 
@@ -36,7 +40,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         override fun onFinish() {}
     }
 
-    data class State(val ferries: List<Ferry>, val from: FerryPier, val isHoliday: Boolean)
+    data class State(val ferries: List<Ferry>, val from: FerryPier, val day: FerryDay)
 
     private val _state = MutableLiveData<State>() // TODO: could be lazyMap
     private val _time = MutableLiveData<LocalDateTime>(now())
@@ -46,25 +50,26 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
 
     private fun updateState(from: FerryPier, dow: FerryDay) {
         val ferries = ferryRepository.getFerries(from, dow)
-        _state.value = State(ferries, from, dow == FerryDay.Holiday)
+        _state.value = State(
+            ferries,
+            from,
+            dow
+        )
         if (ferries.isEmpty() || holidayRepository.shouldRefresh()) {
             refresh()
         }
     }
 
     private val today : LocalDate get() = _time.value!!.toLocalDate()
-    private fun getDay() : FerryDay = if (holidayRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
+    private fun getDay() : FerryDay =
+        if (holidayRepository.getHoliday(today)) FerryDay.Holiday else FerryDay.fromDate(today)
 
     init {
-        if (!Utils.isEmulator) {
-            countDownTimer.start()
-        }
+        countDownTimer.start()
     }
 
     override fun onCleared() {
-        if (!Utils.isEmulator) {
-            countDownTimer.cancel()
-        }
+        countDownTimer.cancel()
         super.onCleared()
     }
 

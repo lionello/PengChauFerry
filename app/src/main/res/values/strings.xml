@@ -2,11 +2,26 @@
     <string name="app_name">Peng Chau Ferry</string>
     <string name="now">now %s</string>
     <string name="main_title">Ferries from %s</string>
-    <string name="ferry_info">%s - %s to %s</string>
+    <string name="ferry_info">%s\nto %s</string>
     <string name="flip">Flip</string>
     <string name="refresh">Refresh</string>
     <string name="holiday">Holiday</string>
     <string name="wrong_location">You appear to be in %s</string>
     <string name="nextTime">in %d min</string>
     <string name="updated">Updated.</string>
+    <string name="ferries_from">Ferries from:</string>
+
+    <string name="Central">中環 Central</string>
+    <string name="PengChau">坪洲 Peng Chau</string>
+    <string name="TrappistMonastery">聖母神樂院 Trappist Monastery</string>
+    <string name="DiscoveryBay">愉景灣稔樹灣 Discovery Bay</string>
+    <string name="MuiWo">梅窩 Mui Wo</string>
+    <string name="CheungChau">長洲 Cheung Chau</string>
+    <string name="ChiMaWan">芝麻灣 Chi Ma Wan</string>
+    <string name="HeiLingChau">喜靈洲 Hei Ling Chau</string>
+
+    <string name="scheduled_time">Scheduled time</string>
+    <string name="walking_time">Walking time</string>
+    <string name="ferry_time">%s - %s</string>
+    <string name="ferry_to">to %s</string>
 </resources>

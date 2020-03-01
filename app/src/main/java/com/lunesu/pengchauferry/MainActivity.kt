@@ -22,6 +22,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearSmoothScroller.SNAP_TO_END
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+import com.lunesu.pengchauferry.ui.ferry.FerryViewModel
 import org.joda.time.LocalTime
 import org.joda.time.Seconds
 import org.joda.time.format.DateTimeFormat
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         viewModel.state.observe(this) {
-            this.title = getString(R.string.main_title, it.from) + (if (it.isHoliday) PALM else "")
+            this.title = getString(R.string.main_title, it.from) + (if (it.day == FerryDay.Holiday) PALM else "")
             recyclerView.adapter = MyAdapter(it.ferries)
             scrollToNow(viewModel.time.value!!.toLocalTime()    )
         }
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         locationManager.requestSingleUpdate(provider, object: LocationListener {
             override fun onLocationChanged(location: Location?) {
                 if (location != null) {
-                    val nowPier = FerryPier.findNearest(location.longitude, location.latitude)
+                    val nowPier = FerryPier.findNearest(location.latitude, location.longitude)
                     if (nowPier != viewModel.state.value?.from) {
                         val text = getString(R.string.wrong_location, nowPier.toString())
                         Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
@@ -153,7 +154,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu?.findItem(R.id.app_bar_switch)?.isChecked = viewModel.state.value?.isHoliday == true
+        menu?.findItem(R.id.app_bar_switch)?.isChecked = viewModel.state.value?.day == FerryDay.Holiday
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -184,11 +185,11 @@ class MainActivity : AppCompatActivity() {
         companion object {
             val uiFormatter: DateTimeFormatter = DateTimeFormat.shortTime()
             const val SECONDS_IN_DAY = 60*60*24
+            const val scaling = 0.1 // FIXME: react to pinch/zoom gestures
         }
 
         class MyViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view)
 
-        var scaling = 0.1 // FIXME: react to pinch/zoom gestures
 
         override fun onBindViewHolder(holder: MyViewHolder, pos: Int) {
             val textView = holder.itemView.findViewById<TextView>(R.id.textView)
@@ -222,7 +223,7 @@ class MainActivity : AppCompatActivity() {
                 holder.itemView.setPadding(0, (secondsBefore*scaling).roundToInt(), 0, (secondsAfter*scaling).roundToInt())
                 textView.text = textView.context.getString(R.string.ferry_info,
                     thisFerry.time.toString(uiFormatter),
-                    endTime.toString(uiFormatter),
+//                    endTime.toString(uiFormatter),
                     thisFerry.to)
                 textView.height = (seconds*scaling).roundToInt()
                 relView.layoutParams.height = ((secondsBefore+seconds+secondsAfter)*scaling).roundToInt()

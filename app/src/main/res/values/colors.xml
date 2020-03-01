@@ -7,4 +7,14 @@
     <color name="colorFaster">#c590b7</color>
     <color name="colorFast">#c5b790</color>
     <color name="colorSlow">#90c5b7</color>
+
+    <color name="colorCentral">#016AA9</color>
+    <color name="colorPengChau">#016AA9</color>
+    <color name="colorTrappistMonastery">#ED1C23</color>
+    <color name="colorDiscoveryBay">#198EC5</color>
+    <color name="colorMuiWo">#EA771D</color>
+<!--    <color name="colorCheungChau">#c590b7</color>-->
+<!--    <color name="colorChiMaWan">#c590b7</color>-->
+<!--    <color name="colorHeiLingChau">#c590b7</color>-->
+
 </resources>

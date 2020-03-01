@@ -2,7 +2,12 @@ package com.lunesu.pengchauferry
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.viewModelScope
+import com.lunesu.pengchauferry.ui.ferry.FerryViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.joda.time.Duration
 import org.joda.time.LocalDate
@@ -41,20 +46,28 @@ class FerryViewModelTest {
     }
 
     @Test
-    fun testSwitchPier() {
-        val vm = FerryViewModel(Application(), ferryRepository, holidayRepository)
+    fun testSwitchPier() = runBlockingTest {
+        val vm = FerryViewModel(
+            Application(),
+            ferryRepository,
+            holidayRepository
+        )
         var state : FerryViewModel.State? = null
         vm.state.observeForever {
             state = it
         }
         vm.switchPier(FerryPier.Central)
         assertNotNull(state)
-        assertFalse(state!!.isHoliday)
+        assertNotEquals(FerryDay.Holiday, state!!.day)
     }
 
     @Test
     fun testToggleHoliday() {
-        val vm = FerryViewModel(Application(), ferryRepository, holidayRepository)
+        val vm = FerryViewModel(
+            Application(),
+            ferryRepository,
+            holidayRepository
+        )
         var state : FerryViewModel.State? = null
         vm.state.observeForever {
             state = it
@@ -68,7 +81,11 @@ class FerryViewModelTest {
 
     @Test
     fun testTime() {
-        val vm = FerryViewModel(Application(), ferryRepository, holidayRepository)
+        val vm = FerryViewModel(
+            Application(),
+            ferryRepository,
+            holidayRepository
+        )
         var time : LocalDateTime? = null
         vm.time.observeForever {
             time = it
@@ -78,7 +95,11 @@ class FerryViewModelTest {
 
     @Test
     fun testRefresh() = runBlockingTest {
-        val vm = FerryViewModel(Application(), ferryRepository, holidayRepository)
+        val vm = FerryViewModel(
+            Application(),
+            ferryRepository,
+            holidayRepository
+        )
         vm.refresh()
         assertEquals(1, ferryRepository.ferries.size)
         assertEquals(1, holidayRepository.holidays.size)
@@ -86,12 +107,16 @@ class FerryViewModelTest {
 
     @Test
     fun testUpdateTriggersRefresh() = runBlockingTest {
-        val vm = FerryViewModel(Application(), ferryRepository, holidayRepository)
+        val vm = FerryViewModel(
+            Application(),
+            ferryRepository,
+            holidayRepository
+        )
         var state : FerryViewModel.State? = null
         vm.state.observeForever {
             state = it
         }
         vm.switchPier(ferryRepository.ferry.from)
-        vm.refresh()
+//        vm.refresh()
     }
 }

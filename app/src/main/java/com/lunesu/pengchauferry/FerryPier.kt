@@ -14,7 +14,7 @@ enum class FerryPier(val latitude: Double, val longitude: Double) {
     HeiLingChau(22.2566, 114.0203);
 
     companion object {
-        private val ENUMS = values()
+        internal val ENUMS = values()
 
         fun findNearest(latitude: Double, longitude: Double): FerryPier {
             return ENUMS.minBy { it.distance(latitude, longitude) }!!
