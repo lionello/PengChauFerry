@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/abc_spinner_mtrl_am_alpha"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/text1"
+        style="?attr/spinnerDropDownItemStyle"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        tools:text="坪洲 Peng Chau"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_walk"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_walk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/walking_time"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/textView_walk"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_directions_walk_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView_walk"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"
+        tools:text="11 min" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

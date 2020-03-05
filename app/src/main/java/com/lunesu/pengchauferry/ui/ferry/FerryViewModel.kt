@@ -50,15 +50,17 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     val state : LiveData<State> get() = _state
     val time : LiveData<LocalDateTime> get() = _time
 
-    private fun updateState(from: FerryPier, dow: FerryDay) {
-        val ferries = ferryRepository.getFerries(from, dow)
-        _state.value = State(
-            ferries,
-            from,
-            dow
-        )
-        if (ferries.isEmpty() || holidayRepository.shouldRefresh()) {
+    private fun updateState(from: FerryPier, dow: FerryDay, autoRefresh: Boolean, filtered: Boolean) {
+        var ferries = ferryRepository.getFerries(from, dow)
+        if (autoRefresh && (ferries.isEmpty() || holidayRepository.shouldRefresh())) {
             refresh()
+        } else {
+            if (filtered) ferries = ferries.filter { it.time >= _time.value!!.toLocalTime() }
+            _state.value = State(
+                ferries,
+                from,
+                dow
+            )
         }
     }
 
@@ -86,13 +88,13 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         val isHoliday = getDay(today) == FerryDay.Holiday
         holidayRepository.setHoliday(today, !isHoliday)
         _state.value?.let {
-            updateState(it.from, getDay(today))
+            updateState(it.from, getDay(today), true, true)
         }
         return !isHoliday
     }
 
     fun switchPier(pier: FerryPier) {
-        updateState(pier, getDay(today))
+        updateState(pier, getDay(today), true, true)
     }
 
     fun refresh() = viewModelScope.launch {
@@ -101,7 +103,13 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
             async { ferryRepository.refresh() }
         )
         _state.value?.let {
-            updateState(it.from, getDay(today))
+            updateState(it.from, getDay(today), false, true)
+        }
+    }
+
+    fun fetchAll() {
+        _state.value?.let {
+            updateState(it.from, getDay(today), true, false)
         }
     }
 

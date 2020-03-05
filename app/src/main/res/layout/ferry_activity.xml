@@ -2,16 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FerryActivity">
-
-<!--    <fragment-->
-<!--        android:name="com.lunesu.pengchauferry.ui.ferry.FerryFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:layout="@layout/ferry_fragment"-->
-<!--        android:id="@+id/ferry_fragment">-->
-<!--    </fragment>-->
-
+<!--
+    <fragment
+        android:name="com.lunesu.pengchauferry.ui.ferry.FerryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/ferry_fragment"
+        android:id="@+id/ferry_fragment">
+    </fragment>
+-->
 </FrameLayout>

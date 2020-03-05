@@ -1,6 +1,7 @@
 package com.lunesu.pengchauferry.ui.ferry
 
 import android.content.Context
+import android.location.Location
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,19 +13,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.tabs.TabLayout
 import com.lunesu.pengchauferry.*
 import org.joda.time.Seconds
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import org.joda.time.Minutes
+import kotlin.math.ceil
 
-class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
+class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
         fun newInstance() = FerryFragment()
 
         const val ARG_OBJECT = "object"
-        val PIERS = setOf(
+        val PIERS = arrayOf(
             FerryPier.Central,
             FerryPier.PengChau,
             FerryPier.DiscoveryBay,
@@ -33,12 +36,14 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private val viewModel by viewModels<FerryViewModel>({activity!!})
+    private val locationViewModel by viewModels<LocationViewModel>({activity!!})
     private var adapter: FerryRecyclerViewAdapter? = null
-    private val tabs = hashMapOf<FerryPier, TabLayout.Tab>()
+    private var walkingTime = 0
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var tabLayoutFrom: TabLayout
+    private lateinit var spinnerFrom: Spinner
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,12 +56,17 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.state.observe(this, Observer {
-            tabLayoutFrom.selectTab(tabs[it.from])
+            spinnerFrom.setSelection(PIERS.indexOf(it.from))
             adapter = FerryRecyclerViewAdapter(it.ferries)
             recyclerView.adapter = adapter
 //            it.ferries.groupBy { it.to }.mapValues { it.value.find { it.time > now } }
 
-            val now = viewModel.time.value?.toLocalTime()
+            val loc = locationViewModel.location.value
+            if (loc != null) {
+                updateWalkingTime(loc, it.from)
+            }
+
+            val now = viewModel.time.value?.toLocalTime()?.plusMinutes(walkingTime)
             if (now != null) {
                 var pos = it.ferries.indexOfFirst { it.time > now }
                 if (pos == -1) pos = it.ferries.lastIndex
@@ -64,12 +74,13 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
                 val itemHeightPx = 50
                 linearLayoutManager.scrollToPositionWithOffset(pos, itemHeightPx)
             }
+
         })
 
         viewModel.time.observe(this, Observer {
             val ferries = viewModel.state.value?.ferries
             if (ferries != null) {
-                val now = it.toLocalTime()
+                val now = it.toLocalTime().plusMinutes(walkingTime)
                 var pos = ferries.indexOfFirst { it.time > now }
                 if (pos == -1) pos = ferries.lastIndex
                 adapter?.selected = pos
@@ -77,6 +88,13 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
 //                val today = it.toLocalDate()
 //                if (viewModel.getDay(today) != viewModel.state.value?.day) {
 //                }
+            }
+        })
+
+        locationViewModel.location.observe(this, Observer {
+            val from = viewModel.state.value?.from
+            if (from != null) {
+                updateWalkingTime(it, from)
             }
         })
 
@@ -89,23 +107,39 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
         outState.putString("from", viewModel.state.value?.from.toString())
     }
 
+    private fun updateWalkingTime(to: Location, from: FerryPier) {
+        val minutes = ceil(from.distance(to.latitude, to.longitude) * 0.018).toInt()
+        val tv = spinnerFrom.findViewById<TextView>(R.id.textView_walk)
+        val iv = spinnerFrom.findViewById<ImageView>(R.id.imageView_walk)
+        if (tv != null && minutes < 60) {
+            tv.text = getString(R.string.x_min, minutes)
+            iv?.visibility = View.VISIBLE
+            tv.visibility = View.VISIBLE
+            walkingTime = minutes
+        } else {
+            iv?.visibility = View.INVISIBLE
+            tv?.visibility = View.INVISIBLE
+            walkingTime = 0
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        swipeRefreshLayout = view.findViewById(R.id.swipeContainer)
+        swipeRefreshLayout.setOnRefreshListener {
+            viewModel.fetchAll()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         recyclerView = view.findViewById(R.id.departures)
         linearLayoutManager = LinearLayoutManager(view.context)
         recyclerView.layoutManager = linearLayoutManager
-        tabLayoutFrom = view.findViewById(R.id.tab_layout_from)
-        PIERS.forEach {
-            val tab = tabLayoutFrom.newTab().setText(STRINGS.getValue(it)).setTag(it)
-            tabs[it] = tab
-            tabLayoutFrom.addTab(tab)
+        spinnerFrom = view.findViewById(R.id.spinner_from)
+        val items = PIERS.map { getString(STRINGS.getValue(it)) }
+        ArrayAdapter(activity!!, R.layout.spinner_item_selected, R.id.text1, items).let {
+//            it.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            spinnerFrom.adapter = it
         }
-        tabLayoutFrom.addOnTabSelectedListener(this)
-//        viewModel.switchPier(FerryPier.Central)
-
-//        val tabLayoutTo = view.findViewById<TabLayout>(R.id.tab_layout_to)
-//        STRINGS.forEach {
-//            tabLayoutTo.addTab(tabLayoutTo.newTab().setText(it.value).setTag(it.key))
-//        }
+        spinnerFrom.onItemSelectedListener = this
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -132,8 +166,8 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
             val textViewTime: TextView = itemView.findViewById(R.id.textView_time)
             val textViewDest: TextView = itemView.findViewById(R.id.textView_dest)
             val textViewWarn: TextView = itemView.findViewById(R.id.textView_warn)
-            val imageViewWalk: ImageView = itemView.findViewById(R.id.imageView_walk)
-            val textViewWalk: TextView = itemView.findViewById(R.id.textView_walk)
+//            val imageViewWalk: ImageView = itemView.findViewById(R.id.imageView_walk)
+//            val textViewWalk: TextView = itemView.findViewById(R.id.textView_walk)
             val textViewFare: TextView = itemView.findViewById(R.id.textView_fare)
         }
 
@@ -161,22 +195,18 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
             val ferry = ferries[position]
             val now = now()
 
-            if (position == selected) {
-                val seconds = Seconds.secondsBetween(now, ferry.time).seconds
-                holder.textViewWarn.text = holder.context.getString(R.string.nextTime, seconds/60)
-                holder.itemView.setBackgroundColor(0x11223344)
-
-                holder.imageViewWalk.visibility = View.VISIBLE
-                holder.textViewWalk.text = "11 min" // TODO calc dist to pier
+            val minutes = Minutes.minutesBetween(now, ferry.time).minutes
+            if (minutes in 0..119) {
+                holder.textViewWarn.text = holder.context.getString(R.string.nextTime, minutes)
             } else {
                 holder.textViewWarn.text = null
-                holder.itemView.setBackgroundColor(0)
-                holder.imageViewWalk.visibility = View.GONE
-                holder.textViewWalk.text = null
             }
 
-//            val start = millisToPx(ferry.time.millisOfDay)
-//            val len = millisToPx(ferry.dur.millis.toInt())
+            if (position == selected) {
+                holder.itemView.setBackgroundColor(0x11223344)
+            } else {
+                holder.itemView.setBackgroundColor(0)
+            }
 
             holder.textViewFare.text = holder.context.getString(R.string.ferry_fare, ferry.fare)
             holder.textViewTime.text = holder.context.getString(R.string.ferry_time,
@@ -193,14 +223,12 @@ class FerryFragment : Fragment(), TabLayout.OnTabSelectedListener {
         }
     }
 
-    override fun onTabReselected(tab: TabLayout.Tab?) {
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        // NOP
     }
 
-    override fun onTabUnselected(tab: TabLayout.Tab?) {
-    }
-
-    override fun onTabSelected(tab: TabLayout.Tab?) {
-        viewModel.switchPier(tab?.tag as FerryPier)
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        viewModel.switchPier(PIERS[position])
     }
 
 }

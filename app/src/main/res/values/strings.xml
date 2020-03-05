@@ -4,7 +4,7 @@
     <string name="main_title">Ferries from %s</string>
     <string name="ferry_info">%s\nto %s</string>
     <string name="flip">Flip</string>
-    <string name="refresh">Refresh</string>
+    <string name="refresh">Refresh Data</string>
     <string name="holiday">Holiday</string>
     <string name="wrong_location">You appear to be in %s</string>
     <string name="nextTime">in %d min</string>
@@ -28,4 +28,6 @@
     <string name="ferry_fare">$%s</string>
     <string name="my_location">My Location</string>
     <string name="ferry_to_via">to %s via %s</string>
+    <string name="depart_from">起點 Depart from</string>
+    <string name="x_min">%d min</string>
 </resources>
