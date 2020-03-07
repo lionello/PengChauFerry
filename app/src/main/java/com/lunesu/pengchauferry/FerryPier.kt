@@ -4,14 +4,14 @@ import java.lang.Math.toRadians
 import kotlin.math.*
 
 enum class FerryPier(val latitude: Double, val longitude: Double) {
-    Central(22.2866, 114.1604),
-    PengChau(22.2845, 114.0376),
-    TrappistMonastery(22.2834, 114.0236),
-    DiscoveryBay(22.2853, 114.0214),
-    MuiWo(22.2648, 114.0026),
-    CheungChau(22.2086, 114.0257),
-    ChiMaWan(22.2375, 114.0017),
-    HeiLingChau(22.2566, 114.0203);
+    Central(22.2871, 114.1602),
+    PengChau(22.2846, 114.0379),
+    TrappistMonastery(22.2819, 114.0225),
+    DiscoveryBay(22.2937, 114.0210),
+    MuiWo(22.2647, 114.0019),
+    CheungChau(22.2084, 114.0287),
+    ChiMaWan(22.2393, 113.9995),
+    HeiLingChau(22.2579, 114.0280);
 
     companion object {
         internal val ENUMS = values()

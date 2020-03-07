@@ -36,8 +36,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
     }
 
-    private val viewModel by viewModels<FerryViewModel>({activity!!})
-    private val locationViewModel by viewModels<LocationViewModel>({activity!!})
+    private val viewModel by viewModels<FerryViewModel>({requireActivity()})
+    private val locationViewModel by viewModels<LocationViewModel>({requireActivity()})
     private var adapter: FerryRecyclerViewAdapter? = null
     private var walkingTime = 0
 
@@ -136,7 +136,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         recyclerView.layoutManager = linearLayoutManager
         spinnerFrom = view.findViewById(R.id.spinner_from)
         val items = PIERS.map { getString(STRINGS.getValue(it)) }
-        ArrayAdapter(activity!!, R.layout.spinner_item_selected, R.id.text1, items).let {
+        ArrayAdapter(requireActivity(), R.layout.spinner_item_selected, R.id.text1, items).let {
 //            it.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
             spinnerFrom.adapter = it
         }
@@ -152,12 +152,12 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             val COLORS = mapOf(
                 FerryPier.Central to R.color.colorHKKF,
-                FerryPier.PengChau to R.color.colorHKKF,
+//                FerryPier.PengChau to R.color.colorHKKF,
                 FerryPier.TrappistMonastery to R.color.colorKaito,
                 FerryPier.DiscoveryBay to R.color.colorKaito,
                 FerryPier.MuiWo to R.color.colorNWFF,
-//                FerryPier.CheungChau to R.color.colorMuiWo,
-//                FerryPier.ChiMaWan to R.color.colorMuiWo,
+                FerryPier.CheungChau to R.color.colorNWFF,
+                FerryPier.ChiMaWan to R.color.colorNWFF,
                 FerryPier.HeiLingChau to R.color.colorHKKF
             )
         }
@@ -220,7 +220,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             } else {
                 holder.textViewDest.text = holder.context.getString(R.string.ferry_to, ferryTo)
             }
-            holder.textViewDest.setTextColor(ContextCompat.getColor(holder.context, COLORS.getValue(ferry.to)))
+            val company = if (ferry.to != FerryPier.PengChau) ferry.to else ferry.from
+            holder.textViewDest.setTextColor(ContextCompat.getColor(holder.context, COLORS.getValue(company)))
         }
     }
 

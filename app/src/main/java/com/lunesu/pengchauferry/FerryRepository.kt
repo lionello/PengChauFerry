@@ -13,10 +13,37 @@ open class FerryRepository(db: DbOpenHelper) {
 
     open suspend fun refresh() = coroutineScope {
         awaitAll(
-            async { ferryDao.save(PengChauToCentralFetcher.fetch(), FerryPier.Central, FerryPier.PengChau, FerryPier.HeiLingChau) },
-            async { ferryDao.save(KaitoFetcher.fetch(), FerryPier.PengChau, FerryPier.DiscoveryBay, FerryPier.TrappistMonastery) },
-            async { ferryDao.save(InterIslandsFetcher.fetch(), FerryPier.PengChau, FerryPier.MuiWo, FerryPier.CheungChau, FerryPier.ChiMaWan) }
-//            async { ferry.save(KaitoFetcher2.fetch(), FerryPier.MuiWo, FerryPier.DiscoveryBay) },
+            async {
+                runCatching {
+                    ferryDao.save(
+                        Utils.atLeast(PengChauToCentralFetcher.fetch(), 80),
+                        FerryPier.Central,
+                        FerryPier.PengChau,
+                        FerryPier.HeiLingChau
+                    )
+                }
+            },
+            async {
+                runCatching {
+                    ferryDao.save(
+                        Utils.atLeast(KaitoFetcher.fetch(), 50),
+                        FerryPier.PengChau,
+                        FerryPier.DiscoveryBay,
+                        FerryPier.TrappistMonastery
+                    )
+                }
+            },
+            async {
+                runCatching {
+                    ferryDao.save(
+                        Utils.atLeast(InterIslandsFetcher.fetch(), 10),
+                        FerryPier.PengChau,
+                        FerryPier.MuiWo,
+                        FerryPier.CheungChau,
+                        FerryPier.ChiMaWan
+                    )
+                }
+            }
         )
         Unit
     }

@@ -18,14 +18,13 @@ object KaitoFetcher : Fetcher<Ferry> {
     private val formatter = DateTimeFormatterBuilder().appendPattern("h.mm a").toFormatter()
 
     override suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
-        val document = Jsoup.connect(url).get()
+        val document = Utils.retryJsoupGet(url)
 
         val ferryTimes = mutableListOf<Ferry>()
         document
             .select("table.content_table1:contains(Peng Chau) > tbody > tr > td > p:contains(From)")
             .forEachIndexed { i, p ->
-                val fromText = p.child(0).text().trim()
-                val from = when (fromText) {
+                val from = when (val fromText = p.child(0).text().trim()) {
                     "From Peng Chau" -> FerryPier.PengChau
                     "From Trappist Monastery" -> FerryPier.TrappistMonastery
                     "From Discovery Bay" -> FerryPier.DiscoveryBay

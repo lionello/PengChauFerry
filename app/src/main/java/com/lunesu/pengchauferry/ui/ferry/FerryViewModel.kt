@@ -55,7 +55,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     private fun updateState(from: FerryPier, dow: FerryDay, autoRefresh: Boolean, filtered: Boolean) {
         var ferries = ferryRepository.getFerries(from, dow)
         if (autoRefresh && (ferries.isEmpty() || holidayRepository.shouldRefresh())) {
-            refresh()
+            refreshAndUpdate(from)
         } else {
             if (filtered) ferries = ferries.filter { it.time >= _time.value!!.toLocalTime() }
             _state.value = State(
@@ -72,15 +72,11 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         if (holidayRepository.getHoliday(date)) FerryDay.Holiday else FerryDay.fromDate(date)
 
     init {
-        if (!Utils.isEmulator) {
-            countDownTimer.start() // not mocked
-        }
+        countDownTimer.start() // not mocked
     }
 
     override fun onCleared() {
-        if (!Utils.isEmulator) {
-            countDownTimer.cancel() // not mocked
-        }
+        countDownTimer.cancel() // not mocked
         db?.close()
         super.onCleared()
     }
@@ -99,14 +95,18 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         updateState(pier, getDay(today), true, true)
     }
 
-    fun refresh() = viewModelScope.launch {
+    private fun refreshAndUpdate(from: FerryPier?) = viewModelScope.launch {
         awaitAll(
             async { holidayRepository.refresh() },
             async { ferryRepository.refresh() }
         )
-        _state.value?.let {
-            updateState(it.from, getDay(today), false, true)
+        from?.let {
+            updateState(it, getDay(today), false, true)
         }
+    }
+
+    fun refresh() = viewModelScope.launch {
+        refreshAndUpdate(state.value?.from)
     }
 
     fun fetchAll() {

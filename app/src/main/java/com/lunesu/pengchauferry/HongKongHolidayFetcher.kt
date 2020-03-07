@@ -7,16 +7,16 @@ import org.joda.time.format.DateTimeFormatterBuilder
 import org.jsoup.Jsoup
 
 object HongKongHolidayFetcher: Fetcher<LocalDate> {
-    private const val YEAR = 2020
+    const val YEAR = 2020
     private const val url = "https://www.gov.hk/en/about/abouthk/holiday/$YEAR.htm"
 
     private val formatter = DateTimeFormatterBuilder().appendPattern("dd MMMM").toFormatter()
 
     override suspend fun fetch(): List<LocalDate> = withContext(Dispatchers.IO) {
-        val document = Jsoup.connect(url).get()
+        val document = Utils.retryJsoupGet(url)
 
         document
-            .select("article section table tbody tr td.date")
+            .select("article section table tbody tr td ~ td")
             .mapNotNull {
                 try {
                     // Replace &nbsp; with space

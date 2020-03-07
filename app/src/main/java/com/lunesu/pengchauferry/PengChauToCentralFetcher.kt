@@ -17,7 +17,7 @@ object PengChauToCentralFetcher : Fetcher<Ferry> {
     private val durationSlow = Duration.standardMinutes(40)
 
     override suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
-        val document = Jsoup.connect(url).get()
+        val document = Utils.retryJsoupGet(url)
 
         val ferryTimes = mutableListOf<Ferry>()
         document

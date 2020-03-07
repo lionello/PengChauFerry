@@ -4,7 +4,7 @@ import org.joda.time.LocalDate
 
 open class HolidayRepository(db: DbOpenHelper) {
     companion object {
-        private val REFRESHED = LocalDate(1918, 5, 11)
+        private val BUDDHA = LocalDate(HongKongHolidayFetcher.YEAR, 4, 30)
     }
 
     private val holidaysDao = HolidayDao(db)
@@ -22,11 +22,13 @@ open class HolidayRepository(db: DbOpenHelper) {
     }
 
     open fun shouldRefresh(): Boolean {
-        return !getHoliday(REFRESHED)
+        return !getHoliday(BUDDHA)
     }
 
     open suspend fun refresh() {
-        holidaysDao.save(HongKongHolidayFetcher.fetch() + REFRESHED)
+        runCatching {
+            holidaysDao.save(Utils.atLeast(HongKongHolidayFetcher.fetch(), 15) + BUDDHA)
+        }
     }
 
 }

@@ -16,7 +16,7 @@ object InterIslandsFetcher : Fetcher<Ferry> {
 //        val durMuiWoCheungChau = Duration.standardMinutes(35)
 
     override suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
-        val document = Jsoup.connect(url).get()
+        val document = Utils.retryJsoupGet(url)
 
         document
             .select("table.calresult > tbody > tr")
@@ -24,9 +24,10 @@ object InterIslandsFetcher : Fetcher<Ferry> {
                 val th = tr.parent().firstElementSibling().child(0).child(0)
                 if (th.text() == "Peng Chau") {
                     val from = FerryPier.PengChau
-                    val to = FerryPier.MuiWo
+                    val via = FerryPier.MuiWo
+                    val to = FerryPier.CheungChau
                     val td = tr.child(0)
-                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY, fare, null)
+                    Ferry(LocalTime.parse(td.text()), from, to, durPengChauMuiWo, FerryDay.EVERYDAY, fare, via)
                 } else {
                     val from = FerryPier.MuiWo
                     val to = FerryPier.PengChau
