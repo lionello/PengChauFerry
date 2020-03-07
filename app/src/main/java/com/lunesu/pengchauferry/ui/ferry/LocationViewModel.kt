@@ -36,6 +36,10 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
 
     override fun onCleared() {
         super.onCleared()
+        stop()
+    }
+
+    private fun stop() {
         locationManager?.removeUpdates(this)
     }
 
@@ -47,13 +51,20 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
                 _location.value = lastLocation
             }
 
-            locationManager?.requestSingleUpdate(provider, this, getApplication<Application>().mainLooper)
+            stop()
+//            locationManager?.requestSingleUpdate(provider, this, null)//getApplication<Application>().mainLooper)
+            locationManager?.requestLocationUpdates(provider, 500, 0.0f, this)
         }
     }
 
     override fun onLocationChanged(location: Location?) {
         if (location != null) {
-            _location.value = location
+            _location.value?.let {
+                if (location.accuracy >= it.accuracy) {
+                    stop()
+                }
+            }
+            _location.postValue(location)
         }
     }
 
