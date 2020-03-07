@@ -1,6 +1,5 @@
 package com.lunesu.pengchauferry
 
-import android.location.Location
 import java.lang.Math.toRadians
 import kotlin.math.*
 

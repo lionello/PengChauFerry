@@ -3,22 +3,23 @@ package com.lunesu.pengchauferry.ui.ferry
 import android.content.Context
 import android.location.Location
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.lunesu.pengchauferry.*
-import org.joda.time.Seconds
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.lunesu.pengchauferry.Ferry
+import com.lunesu.pengchauferry.FerryPier
+import com.lunesu.pengchauferry.R
+import org.joda.time.Minutes
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import org.joda.time.Minutes
 import kotlin.math.ceil
 
 class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -71,8 +72,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 var pos = it.ferries.indexOfFirst { it.time > now }
                 if (pos == -1) pos = it.ferries.lastIndex
                 adapter?.selected = pos
-                val itemHeightPx = 50
-                linearLayoutManager.scrollToPositionWithOffset(pos, itemHeightPx)
+//                val itemHeightPx = 150
+//                linearLayoutManager.scrollToPositionWithOffset(pos, itemHeightPx)
             }
 
         })

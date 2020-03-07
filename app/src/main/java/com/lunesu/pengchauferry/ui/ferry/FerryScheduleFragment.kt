@@ -1,16 +1,18 @@
 package com.lunesu.pengchauferry.ui.ferry
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.lunesu.pengchauferry.*
+import com.lunesu.pengchauferry.Ferry
+import com.lunesu.pengchauferry.FerryPier
+import com.lunesu.pengchauferry.R
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter

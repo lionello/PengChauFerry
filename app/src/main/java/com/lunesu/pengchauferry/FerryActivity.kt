@@ -2,22 +2,21 @@ package com.lunesu.pengchauferry
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Criteria
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.lunesu.pengchauferry.ui.ferry.FerryFragment
 import com.lunesu.pengchauferry.ui.ferry.FerryViewModel
 import com.lunesu.pengchauferry.ui.ferry.LocationViewModel
-import com.lunesu.pengchauferry.ui.ferry.PagerFragment
 
 class FerryActivity : AppCompatActivity() {
 
@@ -118,6 +117,15 @@ class FerryActivity : AppCompatActivity() {
             }
             R.id.app_bar_refresh -> {
                 viewModel.refresh()
+                true
+            }
+            R.id.app_bar_store -> {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse(
+                        "https://play.google.com/store/apps/details?id=com.lunesu.pengchauferry")
+                    setPackage("com.android.vending")
+                }
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

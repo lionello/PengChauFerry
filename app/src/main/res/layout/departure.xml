@@ -31,12 +31,15 @@
 
     <TextView
         android:id="@+id/textView_dest"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView_time"
         app:layout_constraintTop_toBottomOf="@+id/imageView_time"
-        tools:text="目的地 Destination" />
+        tools:text="to 目的地 Destination via 目的地 Destination" />
 
     <TextView
         android:id="@+id/textView_warn"

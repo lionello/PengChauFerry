@@ -29,5 +29,6 @@
     <string name="my_location">My Location</string>
     <string name="ferry_to_via">to %s via %s</string>
     <string name="depart_from">起點 Depart from</string>
-    <string name="x_min">%d min</string>
+    <string name="x_min">~%d min</string>
+    <string name="rate_the_app">Rate the app...</string>
 </resources>
