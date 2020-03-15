@@ -4,9 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.joda.time.Duration
 import org.joda.time.LocalTime
-import org.jsoup.Jsoup
 
-object PengChauToCentralFetcher : Fetcher<Ferry> {
+object PengChauToCentralFetcher {
     private const val url = "http://hkkf.com.hk/index.php?op=timetable&page=pengchau&style=en"
 
     private const val fareSlowWD = "15.9"
@@ -16,7 +15,7 @@ object PengChauToCentralFetcher : Fetcher<Ferry> {
     private val durationFast = Duration.standardMinutes(27)
     private val durationSlow = Duration.standardMinutes(40)
 
-    override suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
+    suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
         val document = Utils.retryJsoupGet(url)
 
         val ferryTimes = mutableListOf<Ferry>()

@@ -4,9 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.joda.time.Duration
 import org.joda.time.LocalTime
-import org.jsoup.Jsoup
 
-object InterIslandsFetcher : Fetcher<Ferry> {
+object InterIslandsFetcher {
     private const val url = "http://www.nwff.com.hk/route/get_route.php?id=2e2c0154-902a-4c11-9405-f7743f6e6d2e&route_id=0&submenu_num=3"
 
     private const val fare = "13.4"
@@ -15,7 +14,7 @@ object InterIslandsFetcher : Fetcher<Ferry> {
 //        val durChiMaWanCheungChau = Duration.standardMinutes(20)
 //        val durMuiWoCheungChau = Duration.standardMinutes(35)
 
-    override suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
+    suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
         val document = Utils.retryJsoupGet(url)
 
         document

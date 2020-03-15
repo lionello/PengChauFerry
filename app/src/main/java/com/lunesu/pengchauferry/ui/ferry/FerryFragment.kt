@@ -1,6 +1,5 @@
 package com.lunesu.pengchauferry.ui.ferry
 
-import android.content.Context
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.lunesu.pengchauferry.Ferry
 import com.lunesu.pengchauferry.FerryPier
 import com.lunesu.pengchauferry.R
+import org.joda.time.LocalTime
 import org.joda.time.Minutes
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
@@ -27,7 +27,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     companion object {
         fun newInstance() = FerryFragment()
 
-        const val ARG_OBJECT = "object"
+        const val WALKING_SPEED = 0.018
+
         val PIERS = arrayOf(
             FerryPier.Central,
             FerryPier.PengChau,
@@ -53,10 +54,19 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return inflater.inflate(R.layout.ferry_fragment, container, false)
     }
 
+    private fun updateSelected(ferries: List<Ferry>?, now: LocalTime) {
+        if (ferries != null) {
+            val now = now.plusMinutes(walkingTime)
+            var pos = ferries.indexOfFirst { it.time > now }
+            if (pos == -1) pos = ferries.lastIndex
+            adapter?.selected = pos
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.state.observe(this, Observer {
+        viewModel.state.observe(viewLifecycleOwner, Observer {
             spinnerFrom.setSelection(PIERS.indexOf(it.from))
             adapter = FerryRecyclerViewAdapter(it.ferries)
             recyclerView.adapter = adapter
@@ -64,38 +74,29 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             val loc = locationViewModel.location.value
             if (loc != null) {
-                updateWalkingTime(loc, it.from)
+                this.updateWalkingTime(loc, it.from)
             }
 
-            val now = viewModel.time.value?.toLocalTime()?.plusMinutes(walkingTime)
+            val now = viewModel.time.value
             if (now != null) {
-                var pos = it.ferries.indexOfFirst { it.time > now }
-                if (pos == -1) pos = it.ferries.lastIndex
-                adapter?.selected = pos
+                this.updateSelected(it.ferries, now.toLocalTime())
 //                val itemHeightPx = 150
 //                linearLayoutManager.scrollToPositionWithOffset(pos, itemHeightPx)
             }
 
         })
 
-        viewModel.time.observe(this, Observer {
-            val ferries = viewModel.state.value?.ferries
-            if (ferries != null) {
-                val now = it.toLocalTime().plusMinutes(walkingTime)
-                var pos = ferries.indexOfFirst { it.time > now }
-                if (pos == -1) pos = ferries.lastIndex
-                adapter?.selected = pos
-
+        viewModel.time.observe(viewLifecycleOwner, Observer {
+            this.updateSelected(viewModel.state.value?.ferries, it.toLocalTime())
 //                val today = it.toLocalDate()
 //                if (viewModel.getDay(today) != viewModel.state.value?.day) {
 //                }
-            }
         })
 
-        locationViewModel.location.observe(this, Observer {
-            val from = viewModel.state.value?.from
+        locationViewModel.location.observe(viewLifecycleOwner, Observer {
+            val from = this.viewModel.state.value?.from
             if (from != null) {
-                updateWalkingTime(it, from)
+                this.updateWalkingTime(it, from)
             }
         })
 
@@ -108,8 +109,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         outState.putString("from", viewModel.state.value?.from.toString())
     }
 
-    private fun updateWalkingTime(to: Location, from: FerryPier) {
-        val minutes = ceil(from.distance(to.latitude, to.longitude) * 0.018).toInt()
+    private fun updateWalkingTime(from: Location, to: FerryPier) {
+        val minutes = ceil(to.distance(from.latitude, from.longitude) * WALKING_SPEED).toInt()
         val tv = spinnerFrom.findViewById<TextView>(R.id.textView_walk)
         val iv = spinnerFrom.findViewById<ImageView>(R.id.imageView_walk)
         if (tv != null && minutes < 60) {
@@ -145,7 +146,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    class FerryRecyclerViewAdapter(private val ferries: List<Ferry>) : RecyclerView.Adapter<FerryRecyclerViewAdapter.ViewHolder>() {
+    class FerryRecyclerViewAdapter(private val ferries: List<Ferry>) : RecyclerView.Adapter<FerryRow>() {
         companion object {
             private fun now() = FerryViewModel.now().toLocalTime()
             private val uiFormatter: DateTimeFormatter = DateTimeFormat.shortTime()
@@ -162,16 +163,6 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             )
         }
 
-        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val context: Context get() = itemView.context
-            val textViewTime: TextView = itemView.findViewById(R.id.textView_time)
-            val textViewDest: TextView = itemView.findViewById(R.id.textView_dest)
-            val textViewWarn: TextView = itemView.findViewById(R.id.textView_warn)
-//            val imageViewWalk: ImageView = itemView.findViewById(R.id.imageView_walk)
-//            val textViewWalk: TextView = itemView.findViewById(R.id.textView_walk)
-            val textViewFare: TextView = itemView.findViewById(R.id.textView_fare)
-        }
-
         var selected: Int = -1
             set(value) {
                 if (field != value) {
@@ -181,18 +172,18 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 }
             }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FerryRow {
             val view = LayoutInflater
                 .from(parent.context)
                 .inflate(viewType, parent, false)
-            return ViewHolder(view)
+            return FerryRow(view)
         }
 
-        override fun getItemViewType(position: Int): Int = R.layout.departure
+        override fun getItemViewType(position: Int): Int = R.layout.ferry_row
 
         override fun getItemCount(): Int = ferries.size
 
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: FerryRow, position: Int) {
             val ferry = ferries[position]
             val now = now()
 

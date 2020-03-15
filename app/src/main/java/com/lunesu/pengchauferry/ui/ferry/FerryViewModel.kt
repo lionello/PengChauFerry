@@ -2,6 +2,7 @@ package com.lunesu.pengchauferry.ui.ferry
 
 import android.app.Application
 import android.os.CountDownTimer
+import androidx.annotation.Keep
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,12 +27,13 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     }
 
     // Invoked by lazy viewModels()
+    @Keep
     constructor(application: Application) : this(application, DbOpenHelper(application))
 
     companion object {
         fun now(): LocalDateTime =
 //            if (BuildConfig.DEBUG && Utils.isEmulator)
-//                LocalDateTime.now().withTime(23,40, 0, 0)
+//                LocalDateTime.now().withTime(23, 40, 0, 0)
 //            else
                 LocalDateTime.now()
     }
@@ -47,7 +49,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     data class State(val ferries: List<Ferry>, val from: FerryPier, val day: FerryDay)
 
     private val _state = MutableLiveData<State>() // TODO: could be lazyMap
-    private val _time = MutableLiveData<LocalDateTime>(now())
+    private val _time = MutableLiveData(now())
 
     val state : LiveData<State> get() = _state
     val time : LiveData<LocalDateTime> get() = _time
@@ -57,7 +59,10 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         if (autoRefresh && (ferries.isEmpty() || holidayRepository.shouldRefresh())) {
             refreshAndUpdate(from)
         } else {
-            if (filtered) ferries = ferries.filter { it.time >= _time.value!!.toLocalTime() }
+            if (filtered) {
+                val now = _time.value?.toLocalTime()
+                ferries = ferries.filter { it.time >= now }
+            }
             _state.value = State(
                 ferries,
                 from,
@@ -105,13 +110,13 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         }
     }
 
-    fun refresh() = viewModelScope.launch {
+    fun refresh() {
         refreshAndUpdate(state.value?.from)
     }
 
     fun fetchAll() {
         _state.value?.let {
-            updateState(it.from, getDay(today), true, false)
+            updateState(it.from, it.day, true, false)
         }
     }
 

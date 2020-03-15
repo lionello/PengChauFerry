@@ -5,8 +5,6 @@ import android.util.Log
 import kotlinx.coroutines.delay
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
-import java.io.IOException
-import java.lang.Exception
 
 object Utils {
     private const val TAG = "Utils"

@@ -7,17 +7,17 @@ open class HolidayRepository(db: DbOpenHelper) {
         private val BUDDHA = LocalDate(HongKongHolidayFetcher.YEAR, 4, 30)
     }
 
-    private val holidaysDao = HolidayDao(db)
+    private val holidayDao = HolidayDao(db)
 
     open fun getHoliday(day: LocalDate): Boolean {
-        return holidaysDao.query(day)
+        return holidayDao.query(day)
     }
 
     open fun setHoliday(day: LocalDate, isHoliday: Boolean) {
         if (isHoliday) {
-            holidaysDao.insert(day)
+            holidayDao.insert(day)
         } else {
-            holidaysDao.delete(day)
+            holidayDao.delete(day)
         }
     }
 
@@ -27,7 +27,7 @@ open class HolidayRepository(db: DbOpenHelper) {
 
     open suspend fun refresh() {
         runCatching {
-            holidaysDao.save(Utils.atLeast(HongKongHolidayFetcher.fetch(), 15) + BUDDHA)
+            holidayDao.save(Utils.atLeast(HongKongHolidayFetcher.fetch(), 15) + BUDDHA)
         }
     }
 

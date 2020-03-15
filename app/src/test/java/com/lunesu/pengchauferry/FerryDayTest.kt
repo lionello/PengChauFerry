@@ -21,4 +21,16 @@ class FerryDayTest {
             assertEquals(i, FerryDay.daysToInt(FerryDay.intToDays(i)))
         }
     }
+
+    @Test
+    fun testToString() {
+        assertEquals("Monday", FerryDay.Monday.toString())
+        assertEquals("Tuesday", FerryDay.Tuesday.toString())
+        assertEquals("Wednesday", FerryDay.Wednesday.toString())
+        assertEquals("Thursday", FerryDay.Thursday.toString())
+        assertEquals("Friday", FerryDay.Friday.toString())
+        assertEquals("Saturday", FerryDay.Saturday.toString())
+        assertEquals("Sunday", FerryDay.Sunday.toString())
+        assertEquals("Holiday", FerryDay.Holiday.toString())
+    }
 }

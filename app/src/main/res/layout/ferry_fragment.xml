@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             tools:itemCount="9"
-            tools:listitem="@layout/departure" />
+            tools:listitem="@layout/ferry_row" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

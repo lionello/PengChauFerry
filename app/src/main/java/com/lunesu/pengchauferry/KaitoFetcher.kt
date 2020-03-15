@@ -5,10 +5,9 @@ import kotlinx.coroutines.withContext
 import org.joda.time.Duration
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormatterBuilder
-import org.jsoup.Jsoup
 import java.util.*
 
-object KaitoFetcher : Fetcher<Ferry> {
+object KaitoFetcher {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/kaito_services_map/service_details/index.html"
 
     private const val fare = "6.5"
@@ -17,7 +16,7 @@ object KaitoFetcher : Fetcher<Ferry> {
     private val saturday = EnumSet.of(FerryDay.Saturday)
     private val formatter = DateTimeFormatterBuilder().appendPattern("h.mm a").toFormatter()
 
-    override suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
+    suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
         val document = Utils.retryJsoupGet(url)
 
         val ferryTimes = mutableListOf<Ferry>()

@@ -22,7 +22,7 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
 
     private val criteria = Criteria().apply {
         powerRequirement = Criteria.POWER_LOW // avoid GPS
-        accuracy = Criteria.ACCURACY_MEDIUM
+//        accuracy = Criteria.ACCURACY_MEDIUM
     }
     private val locationManager = getSystemService(application, LocationManager::class.java)
     private val provider get() = locationManager?.getBestProvider(criteria, true)
@@ -53,7 +53,7 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
 
             stop()
 //            locationManager?.requestSingleUpdate(provider, this, null)//getApplication<Application>().mainLooper)
-            locationManager?.requestLocationUpdates(provider, 500, 0.0f, this)
+            locationManager?.requestLocationUpdates(provider, 200, 10.0f, this)
         }
     }
 
