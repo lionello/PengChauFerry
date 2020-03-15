@@ -195,7 +195,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
 
             if (position == selected) {
-                holder.itemView.setBackgroundColor(0x11223344)
+                holder.itemView.setBackgroundResource(R.color.colorAccent)
             } else {
                 holder.itemView.setBackgroundColor(0)
             }

@@ -99,14 +99,14 @@ class FerryScheduleFragment : Fragment(), AdapterView.OnItemSelectedListener {
             private const val scaling = 0.0002 // FIXME: react to pinch/zoom gestures
 
             val backgrounds = mapOf(
-                FerryPier.Central to R.color.colorCentral,
+                FerryPier.Central to R.color.colorHKKF,
                 FerryPier.PengChau to R.color.colorHKKF,
+                FerryPier.HeiLingChau to R.color.colorHKKF,
                 FerryPier.TrappistMonastery to R.color.colorKaito,
                 FerryPier.DiscoveryBay to R.color.colorDiscoveryBay,
-                FerryPier.MuiWo to R.color.colorNWFF
-//                FerryPier.CheungChau to R.color.colorCheungChau,
-//                FerryPier.ChiMaWan to R.color.colorChiMaWan,
-//                FerryPier.HeiLingChau to R.color.colorHeiLingChau
+                FerryPier.MuiWo to R.color.colorNWFF,
+                FerryPier.CheungChau to R.color.colorNWFF,
+                FerryPier.ChiMaWan to R.color.colorNWFF
             )
 
             fun millisToPx(millis: Int) = (millis * scaling).roundToInt()
