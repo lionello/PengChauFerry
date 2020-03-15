@@ -100,7 +100,7 @@ struct FerryView: View {
                     .cornerRadius(7)
                 }//VStack
                     .padding()
-                    .background(Color(rgb:0x008577))
+                    .background(Color("colorPrimary"))
                     .clipped()
                     .shadow(color: .black, radius: 10, x: 0, y: 1)
                 List{
@@ -118,7 +118,7 @@ struct FerryView: View {
                     self.updateSelected(ferries: self.viewModel.state?.ferries)
                 }
             }//VStack
-            .background(Color(rgb:0x008577))
+            .background(Color("colorPrimary"))
             .overlay(self.showPicker ? Color.black.opacity(0.2) : nil)
             .onTapGesture {
                 self.showPicker = false

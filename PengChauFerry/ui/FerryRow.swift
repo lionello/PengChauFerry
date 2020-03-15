@@ -33,13 +33,13 @@ struct FerryRow: View {
     }()
 
     static let COLORS: [FerryPier:Color] = [
-        .Central: Color(rgb:0x016AA9),
-        .TrappistMonastery: Color(rgb:0xED1C23),
-        .DiscoveryBay: Color(rgb:0xED1C23),
-        .MuiWo: Color(rgb:0xEA771D),
-        .CheungChau: Color(rgb:0xEA771D),
-        .ChiMaWan: Color(rgb:0xEA771D),
-        .HeiLingChau: Color(rgb:0x016AA9)
+        .Central: Color("colorHKKF"),
+        .TrappistMonastery: Color("colorKaito"),
+        .DiscoveryBay: Color("colorKaito"),
+        .MuiWo: Color("colorNWFF"),
+        .CheungChau: Color("colorNWFF"),
+        .ChiMaWan: Color("colorNWFF"),
+        .HeiLingChau: Color("colorHKKF")
     ]
 
     var body: some View {
@@ -69,7 +69,7 @@ struct FerryRow: View {
             }
         }
         .padding([.top, .bottom], 4)
-        .listRowBackground(selected ? Color(rgb:0x223344).opacity(0x11/255.0) : nil)
+        .listRowBackground(selected ? Color("colorAccent") : nil)
     }
 }
 
