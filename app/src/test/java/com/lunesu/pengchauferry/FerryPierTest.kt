@@ -24,4 +24,9 @@ class FerryPierTest {
         assertEquals(FerryPier.PengChau, FerryPier.findNearest(22.279, 114.046))
         assertEquals(FerryPier.Central, FerryPier.findNearest(22.286, 114.161))
     }
+
+    @Test
+    fun testNearestCustom() {
+        assertEquals(FerryPier.MuiWo, FerryPier.findNearest(22.279, 114.046, arrayOf(FerryPier.MuiWo)))
+    }
 }
