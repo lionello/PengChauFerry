@@ -1,5 +1,6 @@
 package com.lunesu.pengchauferry
 
+import android.location.Location
 import java.lang.Math.toRadians
 import kotlin.math.*
 
@@ -16,8 +17,8 @@ enum class FerryPier(val latitude: Double, val longitude: Double) {
     companion object {
         internal val ENUMS = values()
 
-        fun findNearest(latitude: Double, longitude: Double): FerryPier {
-            return ENUMS.minBy { it.distance(latitude, longitude) }!!
+        fun findNearest(latitude: Double, longitude: Double, piers: Array<FerryPier> = ENUMS): FerryPier? {
+            return piers.minBy { it.distance(latitude, longitude) }
         }
 
         private const val RADIUS = 6372.8e3F

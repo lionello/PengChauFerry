@@ -42,16 +42,17 @@ class FerryActivity : AppCompatActivity() {
         })
 
         locationViewModel.location.observe(this, Observer {
-            val nowPier = FerryPier.findNearest(it.latitude, it.longitude)
-            if (nowPier != viewModel.state.value?.from) {
-                val text = getString(R.string.wrong_location, nowPier.toString())
-                Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+            val nowPier = FerryPier.findNearest(it.latitude, it.longitude, FerryFragment.PIERS)
+            if (nowPier != null) {
+                if (nowPier != viewModel.state.value?.from) {
+                    val text = getString(R.string.wrong_location, nowPier.toString())
+                    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+                }
+                if (shouldSwitchPier) {
+                    shouldSwitchPier = false
+                    viewModel.switchPier(nowPier)
+                }
             }
-            if (shouldSwitchPier) {
-                shouldSwitchPier = false
-                viewModel.switchPier(nowPier)
-            }
-//            val distToPier = nowPier.distance(it.latitude, it.longitude)
         })
     }
 
