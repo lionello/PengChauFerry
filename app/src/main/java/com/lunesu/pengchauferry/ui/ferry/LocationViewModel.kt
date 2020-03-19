@@ -1,6 +1,5 @@
 package com.lunesu.pengchauferry.ui.ferry
 
-import android.Manifest.permission
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.pm.PackageManager
@@ -20,12 +19,7 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
     private fun hasPermission(permission: String) =
         ContextCompat.checkSelfPermission(getApplication(), permission) == PackageManager.PERMISSION_GRANTED
 
-    private val criteria = Criteria().apply {
-        powerRequirement = Criteria.POWER_LOW // avoid GPS
-//        accuracy = Criteria.ACCURACY_MEDIUM
-    }
     private val locationManager = getSystemService(application, LocationManager::class.java)
-    private val provider get() = locationManager?.getBestProvider(criteria, true)
     private val _location = MutableLiveData<Location>()
 
     val location : LiveData<Location> get() = _location
@@ -43,26 +37,33 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
         locationManager?.removeUpdates(this)
     }
 
+    private val _accuracy : Float get() = _location.value?.accuracy ?: Float.MAX_VALUE
+
     @SuppressLint("MissingPermission")
     fun refresh() {
-        if (hasPermission(permission.ACCESS_COARSE_LOCATION) || hasPermission(permission.ACCESS_FINE_LOCATION)) {
-            val lastLocation = locationManager?.getLastKnownLocation(provider)
-            if (lastLocation != null) {
+        stop()
+
+        val oneMinuteAgo = System.currentTimeMillis() / 1000L - 60
+        locationManager?.getProviders(true)?.forEach {
+            val lastLocation = locationManager.getLastKnownLocation(it)
+            if (lastLocation != null && lastLocation.time >= oneMinuteAgo && lastLocation.accuracy <= _accuracy) {
                 _location.value = lastLocation
             }
+        }
 
-            stop()
-//            locationManager?.requestSingleUpdate(provider, this, null)//getApplication<Application>().mainLooper)
-            locationManager?.requestLocationUpdates(provider, 200, 10.0f, this)
+        val criteria = Criteria()
+        criteria.accuracy = Criteria.ACCURACY_FINE
+        val bestProvider = locationManager?.getBestProvider(criteria, true)
+        if (bestProvider != null) {
+            locationManager?.requestLocationUpdates(bestProvider, 1000, 0.0f, this)
         }
     }
 
     override fun onLocationChanged(location: Location?) {
         if (location != null) {
-            _location.value?.let {
-                if (location.accuracy >= it.accuracy) {
-                    stop()
-                }
+            // Stop the periodic updates if the new accuracy is the same or worse
+            if (_accuracy <= location.accuracy) {
+                stop()
             }
             _location.postValue(location)
         }
