@@ -27,4 +27,8 @@ class FerryPierTest: XCTestCase {
         XCTAssertEqual(FerryPier.PengChau, FerryPier.findNearest(latitude: 22.279, longitude: 114.046))
         XCTAssertEqual(FerryPier.Central, FerryPier.findNearest(latitude: 22.286, longitude: 114.161))
     }
+
+    func testNearestCustom() {
+        XCTAssertEqual(FerryPier.MuiWo, FerryPier.findNearest(latitude: 22.279, longitude: 114.046, piers: [.MuiWo]))
+    }
 }

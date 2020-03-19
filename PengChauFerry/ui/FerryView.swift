@@ -138,9 +138,10 @@ struct FerryView: View {
                     self.updateWalkingTime(from: it, to: from)
                 }
 
-                let nowPier = FerryPier.findNearest(latitude: it.coordinate.latitude, longitude: it.coordinate.longitude)
-                if nowPier != self.viewModel.state?.from {
-                    // Toast
+                if let nowPier = FerryPier.findNearest(latitude: it.coordinate.latitude, longitude: it.coordinate.longitude, piers: FerryView.PIERS) {
+                    if nowPier != self.viewModel.state?.from {
+                        // TODO: Toast
+                    }
                     if self.shouldSwitchPier {
                         self.shouldSwitchPier = false
                         self.viewModel.switchPier(nowPier)

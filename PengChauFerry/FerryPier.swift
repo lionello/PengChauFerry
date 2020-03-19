@@ -39,9 +39,9 @@ enum FerryPier: String, Codable {
         get { FerryPier.COORDS[self]!.longitude }
     }
 
-    static func findNearest(latitude: Double, longitude: Double) -> FerryPier {
-        let dists = COORDS.mapValues { $0.distance(lat: latitude, long: longitude) }
-        return dists.min { $0.value < $1.value }!.key
+    static func findNearest(latitude: Double, longitude: Double, piers: [FerryPier] = ENUMS) -> FerryPier? {
+        let dists = piers.map { (key: $0, value: COORDS[$0]!.distance(lat: latitude, long: longitude)) }
+        return dists.min { $0.value < $1.value }?.key
     }
 
     static func valueOf(_ s: String) -> FerryPier? {
