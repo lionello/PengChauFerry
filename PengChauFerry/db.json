@@ -1066,7 +1066,7 @@
       "to": "DiscoveryBay"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "PengChau",
@@ -1075,7 +1075,7 @@
       "via": "TrappistMonastery"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "PengChau",
@@ -1108,7 +1108,7 @@
       "to": "DiscoveryBay"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "PengChau",
@@ -1117,7 +1117,7 @@
       "via": "TrappistMonastery"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "PengChau",
@@ -1190,7 +1190,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "DiscoveryBay",
@@ -1207,7 +1207,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "DiscoveryBay",
@@ -1216,7 +1216,7 @@
       "via": "TrappistMonastery"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "DiscoveryBay",
@@ -1249,7 +1249,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 63,
       "from": "DiscoveryBay",
@@ -1258,7 +1258,7 @@
       "via": "TrappistMonastery"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 32,
       "from": "DiscoveryBay",
@@ -1371,7 +1371,7 @@
       "to": "DiscoveryBay"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "PengChau",
@@ -1388,7 +1388,7 @@
       "to": "DiscoveryBay"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "PengChau",
@@ -1429,7 +1429,7 @@
       "to": "DiscoveryBay"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "PengChau",
@@ -1438,7 +1438,7 @@
       "via": "TrappistMonastery"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "PengChau",
@@ -1511,7 +1511,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "DiscoveryBay",
@@ -1528,7 +1528,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "DiscoveryBay",
@@ -1545,7 +1545,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "DiscoveryBay",
@@ -1578,7 +1578,7 @@
       "to": "PengChau"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "DiscoveryBay",
@@ -1587,7 +1587,7 @@
       "via": "TrappistMonastery"
     },
     {
-      "dur": 15,
+      "dur": 20,
       "fare": "6.5",
       "days": 192,
       "from": "DiscoveryBay",
