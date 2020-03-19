@@ -11,7 +11,7 @@ object KaitoFetcher {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/kaito_services_map/service_details/index.html"
 
     private const val fare = "6.5"
-    private val durationSlow = Duration.standardMinutes(15)
+    private val durationSlow = Duration.standardMinutes(20)
     private val durationFast = Duration.standardMinutes(10)
     private val saturday = EnumSet.of(FerryDay.Saturday)
     private val formatter = DateTimeFormatterBuilder().appendPattern("h.mm a").toFormatter()
