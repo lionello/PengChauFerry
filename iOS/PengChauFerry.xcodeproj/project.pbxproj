@@ -1,0 +1,748 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DD358B0F241CCA31003C8A42 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */; };
+		DD41A8DE2414BDC100F38991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8DD2414BDC100F38991 /* AppDelegate.swift */; };
+		DD41A8E02414BDC100F38991 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8DF2414BDC100F38991 /* SceneDelegate.swift */; };
+		DD41A8E42414BDC300F38991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41A8E32414BDC300F38991 /* Assets.xcassets */; };
+		DD41A8E72414BDC300F38991 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41A8E62414BDC300F38991 /* Preview Assets.xcassets */; };
+		DD41A8EA2414BDC300F38991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD41A8E82414BDC300F38991 /* LaunchScreen.storyboard */; };
+		DD41A8F52414BDC300F38991 /* PengChauFerryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */; };
+		DD41A9002414BDC300F38991 /* PengChauFerryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8FF2414BDC300F38991 /* PengChauFerryUITests.swift */; };
+		DD41A91F2414BE0E00F38991 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A90E2414BE0D00F38991 /* Strings.swift */; };
+		DD41A9202414BE0E00F38991 /* FerryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A90F2414BE0D00F38991 /* FerryRow.swift */; };
+		DD41A9212414BE0E00F38991 /* FerryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9102414BE0D00F38991 /* FerryView.swift */; };
+		DD41A9222414BE0E00F38991 /* FerryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9112414BE0D00F38991 /* FerryViewModel.swift */; };
+		DD41A9232414BE0E00F38991 /* FerryDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9122414BE0D00F38991 /* FerryDay.swift */; };
+		DD41A9242414BE0E00F38991 /* Ferry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9132414BE0D00F38991 /* Ferry.swift */; };
+		DD41A9252414BE0E00F38991 /* SQLiteOpenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9142414BE0D00F38991 /* SQLiteOpenHelper.swift */; };
+		DD41A9262414BE0E00F38991 /* DbOpenHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9152414BE0D00F38991 /* DbOpenHelper.swift */; };
+		DD41A9272414BE0E00F38991 /* HongKongHolidayFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */; };
+		DD41A9282414BE0E00F38991 /* HolidayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9172414BE0D00F38991 /* HolidayRepository.swift */; };
+		DD41A9292414BE0E00F38991 /* LocalDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9182414BE0D00F38991 /* LocalDateTime.swift */; };
+		DD41A92A2414BE0E00F38991 /* DummyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9192414BE0D00F38991 /* DummyFetcher.swift */; };
+		DD41A92B2414BE0E00F38991 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91A2414BE0E00F38991 /* SQLiteDatabase.swift */; };
+		DD41A92C2414BE0E00F38991 /* FerryPier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91B2414BE0E00F38991 /* FerryPier.swift */; };
+		DD41A92D2414BE0E00F38991 /* HolidayDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91C2414BE0E00F38991 /* HolidayDao.swift */; };
+		DD41A92E2414BE0E00F38991 /* FerryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91D2414BE0E00F38991 /* FerryRepository.swift */; };
+		DD41A92F2414BE0E00F38991 /* FerryDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91E2414BE0E00F38991 /* FerryDao.swift */; };
+		DD41A93A2414C16200F38991 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9392414C16200F38991 /* Coordinate.swift */; };
+		DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A93B2414C63B00F38991 /* FerryDayTest.swift */; };
+		DD41A93D2414C67000F38991 /* FerryDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9122414BE0D00F38991 /* FerryDay.swift */; };
+		DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A93E2414C75900F38991 /* FerryPierTest.swift */; };
+		DDBE86E92415235900BA2C8E /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = DDBE86E82415235900BA2C8E /* db.json */; };
+		DDBE86EB2415250300BA2C8E /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE86EA2415250300BA2C8E /* JsonData.swift */; };
+		DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */; };
+		DDBE86F024159C7900BA2C8E /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = DDBE86E82415235900BA2C8E /* db.json */; };
+		DDD60CB3241DD72F003F5E84 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD60CB2241DD72F003F5E84 /* LocationViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD41A8F12414BDC300F38991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD41A8D22414BDC000F38991 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD41A8D92414BDC100F38991;
+			remoteInfo = PengChauFerry;
+		};
+		DD41A8FC2414BDC300F38991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD41A8D22414BDC000F38991 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD41A8D92414BDC100F38991;
+			remoteInfo = PengChauFerry;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
+		DD41A8DA2414BDC100F38991 /* PengChauFerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PengChauFerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD41A8DD2414BDC100F38991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DD41A8DF2414BDC100F38991 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DD41A8E32414BDC300F38991 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD41A8E62414BDC300F38991 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DD41A8E92414BDC300F38991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DD41A8EB2414BDC300F38991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD41A8F02414BDC300F38991 /* PengChauFerryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PengChauFerryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengChauFerryTests.swift; sourceTree = "<group>"; };
+		DD41A8F62414BDC300F38991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD41A8FB2414BDC300F38991 /* PengChauFerryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PengChauFerryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD41A8FF2414BDC300F38991 /* PengChauFerryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengChauFerryUITests.swift; sourceTree = "<group>"; };
+		DD41A9012414BDC300F38991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD41A90E2414BE0D00F38991 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		DD41A90F2414BE0D00F38991 /* FerryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRow.swift; sourceTree = "<group>"; };
+		DD41A9102414BE0D00F38991 /* FerryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryView.swift; sourceTree = "<group>"; };
+		DD41A9112414BE0D00F38991 /* FerryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryViewModel.swift; sourceTree = "<group>"; };
+		DD41A9122414BE0D00F38991 /* FerryDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryDay.swift; sourceTree = "<group>"; };
+		DD41A9132414BE0D00F38991 /* Ferry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ferry.swift; sourceTree = "<group>"; };
+		DD41A9142414BE0D00F38991 /* SQLiteOpenHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteOpenHelper.swift; sourceTree = "<group>"; };
+		DD41A9152414BE0D00F38991 /* DbOpenHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbOpenHelper.swift; sourceTree = "<group>"; };
+		DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HongKongHolidayFetcher.swift; sourceTree = "<group>"; };
+		DD41A9172414BE0D00F38991 /* HolidayRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolidayRepository.swift; sourceTree = "<group>"; };
+		DD41A9182414BE0D00F38991 /* LocalDateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDateTime.swift; sourceTree = "<group>"; };
+		DD41A9192414BE0D00F38991 /* DummyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyFetcher.swift; sourceTree = "<group>"; };
+		DD41A91A2414BE0E00F38991 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		DD41A91B2414BE0E00F38991 /* FerryPier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryPier.swift; sourceTree = "<group>"; };
+		DD41A91C2414BE0E00F38991 /* HolidayDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolidayDao.swift; sourceTree = "<group>"; };
+		DD41A91D2414BE0E00F38991 /* FerryRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryRepository.swift; sourceTree = "<group>"; };
+		DD41A91E2414BE0E00F38991 /* FerryDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryDao.swift; sourceTree = "<group>"; };
+		DD41A9322414BF2400F38991 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/iOS/SQLite.framework; sourceTree = "<group>"; };
+		DD41A9332414BF2400F38991 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
+		DD41A9392414C16200F38991 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		DD41A93B2414C63B00F38991 /* FerryDayTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryDayTest.swift; sourceTree = "<group>"; };
+		DD41A93E2414C75900F38991 /* FerryPierTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryPierTest.swift; sourceTree = "<group>"; };
+		DDBE86E82415235900BA2C8E /* db.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
+		DDBE86EA2415250300BA2C8E /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
+		DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDataTest.swift; sourceTree = "<group>"; };
+		DDD60CB2241DD72F003F5E84 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD41A8D72414BDC100F38991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD41A8ED2414BDC300F38991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD41A8F82414BDC300F38991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD41A8D12414BDC000F38991 = {
+			isa = PBXGroup;
+			children = (
+				DD41A8DC2414BDC100F38991 /* PengChauFerry */,
+				DD41A8F32414BDC300F38991 /* PengChauFerryTests */,
+				DD41A8FE2414BDC300F38991 /* PengChauFerryUITests */,
+				DD41A8DB2414BDC100F38991 /* Products */,
+				DD41A9312414BF2400F38991 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DD41A8DB2414BDC100F38991 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD41A8DA2414BDC100F38991 /* PengChauFerry.app */,
+				DD41A8F02414BDC300F38991 /* PengChauFerryTests.xctest */,
+				DD41A8FB2414BDC300F38991 /* PengChauFerryUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD41A8DC2414BDC100F38991 /* PengChauFerry */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE86E82415235900BA2C8E /* db.json */,
+				DD41A8EB2414BDC300F38991 /* Info.plist */,
+				DD41A8DD2414BDC100F38991 /* AppDelegate.swift */,
+				DD41A9392414C16200F38991 /* Coordinate.swift */,
+				DD41A9152414BE0D00F38991 /* DbOpenHelper.swift */,
+				DD41A9192414BE0D00F38991 /* DummyFetcher.swift */,
+				DD41A9132414BE0D00F38991 /* Ferry.swift */,
+				DD41A91E2414BE0E00F38991 /* FerryDao.swift */,
+				DD41A9122414BE0D00F38991 /* FerryDay.swift */,
+				DD41A91B2414BE0E00F38991 /* FerryPier.swift */,
+				DD41A91D2414BE0E00F38991 /* FerryRepository.swift */,
+				DD41A91C2414BE0E00F38991 /* HolidayDao.swift */,
+				DD41A9172414BE0D00F38991 /* HolidayRepository.swift */,
+				DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */,
+				DDBE86EA2415250300BA2C8E /* JsonData.swift */,
+				DD41A9182414BE0D00F38991 /* LocalDateTime.swift */,
+				DD41A8DF2414BDC100F38991 /* SceneDelegate.swift */,
+				DD41A91A2414BE0E00F38991 /* SQLiteDatabase.swift */,
+				DD41A9142414BE0D00F38991 /* SQLiteOpenHelper.swift */,
+				DD41A8E32414BDC300F38991 /* Assets.xcassets */,
+				DD41A8E82414BDC300F38991 /* LaunchScreen.storyboard */,
+				DD41A8E52414BDC300F38991 /* Preview Content */,
+				DD41A90D2414BE0D00F38991 /* ui */,
+			);
+			path = PengChauFerry;
+			sourceTree = "<group>";
+		};
+		DD41A8E52414BDC300F38991 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DD41A8E62414BDC300F38991 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DD41A8F32414BDC300F38991 /* PengChauFerryTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */,
+				DD41A8F62414BDC300F38991 /* Info.plist */,
+				DD41A93B2414C63B00F38991 /* FerryDayTest.swift */,
+				DD41A93E2414C75900F38991 /* FerryPierTest.swift */,
+				DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */,
+			);
+			path = PengChauFerryTests;
+			sourceTree = "<group>";
+		};
+		DD41A8FE2414BDC300F38991 /* PengChauFerryUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DD41A8FF2414BDC300F38991 /* PengChauFerryUITests.swift */,
+				DD41A9012414BDC300F38991 /* Info.plist */,
+			);
+			path = PengChauFerryUITests;
+			sourceTree = "<group>";
+		};
+		DD41A90D2414BE0D00F38991 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				DD41A90F2414BE0D00F38991 /* FerryRow.swift */,
+				DD41A9102414BE0D00F38991 /* FerryView.swift */,
+				DD41A9112414BE0D00F38991 /* FerryViewModel.swift */,
+				DDD60CB2241DD72F003F5E84 /* LocationViewModel.swift */,
+				DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */,
+				DD41A90E2414BE0D00F38991 /* Strings.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		DD41A9312414BF2400F38991 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD41A9322414BF2400F38991 /* SQLite.framework */,
+				DD41A9332414BF2400F38991 /* SwiftSoup.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD41A8D92414BDC100F38991 /* PengChauFerry */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD41A9042414BDC300F38991 /* Build configuration list for PBXNativeTarget "PengChauFerry" */;
+			buildPhases = (
+				DD41A8D62414BDC100F38991 /* Sources */,
+				DD41A8D72414BDC100F38991 /* Frameworks */,
+				DD41A8D82414BDC100F38991 /* Resources */,
+				DD41A9302414BECB00F38991 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PengChauFerry;
+			productName = PengChauFerry;
+			productReference = DD41A8DA2414BDC100F38991 /* PengChauFerry.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD41A8EF2414BDC300F38991 /* PengChauFerryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD41A9072414BDC300F38991 /* Build configuration list for PBXNativeTarget "PengChauFerryTests" */;
+			buildPhases = (
+				DD41A8EC2414BDC300F38991 /* Sources */,
+				DD41A8ED2414BDC300F38991 /* Frameworks */,
+				DD41A8EE2414BDC300F38991 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD41A8F22414BDC300F38991 /* PBXTargetDependency */,
+			);
+			name = PengChauFerryTests;
+			productName = PengChauFerryTests;
+			productReference = DD41A8F02414BDC300F38991 /* PengChauFerryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DD41A8FA2414BDC300F38991 /* PengChauFerryUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD41A90A2414BDC300F38991 /* Build configuration list for PBXNativeTarget "PengChauFerryUITests" */;
+			buildPhases = (
+				DD41A8F72414BDC300F38991 /* Sources */,
+				DD41A8F82414BDC300F38991 /* Frameworks */,
+				DD41A8F92414BDC300F38991 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD41A8FD2414BDC300F38991 /* PBXTargetDependency */,
+			);
+			name = PengChauFerryUITests;
+			productName = PengChauFerryUITests;
+			productReference = DD41A8FB2414BDC300F38991 /* PengChauFerryUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD41A8D22414BDC000F38991 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Lionello Lunesu";
+				TargetAttributes = {
+					DD41A8D92414BDC100F38991 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					DD41A8EF2414BDC300F38991 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = DD41A8D92414BDC100F38991;
+					};
+					DD41A8FA2414BDC300F38991 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = DD41A8D92414BDC100F38991;
+					};
+				};
+			};
+			buildConfigurationList = DD41A8D52414BDC000F38991 /* Build configuration list for PBXProject "PengChauFerry" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD41A8D12414BDC000F38991;
+			productRefGroup = DD41A8DB2414BDC100F38991 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD41A8D92414BDC100F38991 /* PengChauFerry */,
+				DD41A8EF2414BDC300F38991 /* PengChauFerryTests */,
+				DD41A8FA2414BDC300F38991 /* PengChauFerryUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD41A8D82414BDC100F38991 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD41A8EA2414BDC300F38991 /* LaunchScreen.storyboard in Resources */,
+				DD41A8E72414BDC300F38991 /* Preview Assets.xcassets in Resources */,
+				DD41A8E42414BDC300F38991 /* Assets.xcassets in Resources */,
+				DDBE86E92415235900BA2C8E /* db.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD41A8EE2414BDC300F38991 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDBE86F024159C7900BA2C8E /* db.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD41A8F92414BDC300F38991 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD41A9302414BECB00F38991 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD41A8D62414BDC100F38991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD41A9262414BE0E00F38991 /* DbOpenHelper.swift in Sources */,
+				DD41A9272414BE0E00F38991 /* HongKongHolidayFetcher.swift in Sources */,
+				DD41A9242414BE0E00F38991 /* Ferry.swift in Sources */,
+				DD41A8DE2414BDC100F38991 /* AppDelegate.swift in Sources */,
+				DD41A9212414BE0E00F38991 /* FerryView.swift in Sources */,
+				DD41A92F2414BE0E00F38991 /* FerryDao.swift in Sources */,
+				DDD60CB3241DD72F003F5E84 /* LocationViewModel.swift in Sources */,
+				DD41A9282414BE0E00F38991 /* HolidayRepository.swift in Sources */,
+				DD41A92B2414BE0E00F38991 /* SQLiteDatabase.swift in Sources */,
+				DD41A92D2414BE0E00F38991 /* HolidayDao.swift in Sources */,
+				DD41A92C2414BE0E00F38991 /* FerryPier.swift in Sources */,
+				DD41A9252414BE0E00F38991 /* SQLiteOpenHelper.swift in Sources */,
+				DD41A8E02414BDC100F38991 /* SceneDelegate.swift in Sources */,
+				DD358B0F241CCA31003C8A42 /* PullToRefresh.swift in Sources */,
+				DD41A91F2414BE0E00F38991 /* Strings.swift in Sources */,
+				DD41A9222414BE0E00F38991 /* FerryViewModel.swift in Sources */,
+				DD41A92E2414BE0E00F38991 /* FerryRepository.swift in Sources */,
+				DD41A92A2414BE0E00F38991 /* DummyFetcher.swift in Sources */,
+				DDBE86EB2415250300BA2C8E /* JsonData.swift in Sources */,
+				DD41A9202414BE0E00F38991 /* FerryRow.swift in Sources */,
+				DD41A9292414BE0E00F38991 /* LocalDateTime.swift in Sources */,
+				DD41A9232414BE0E00F38991 /* FerryDay.swift in Sources */,
+				DD41A93A2414C16200F38991 /* Coordinate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD41A8EC2414BDC300F38991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD41A8F52414BDC300F38991 /* PengChauFerryTests.swift in Sources */,
+				DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */,
+				DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */,
+				DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */,
+				DD41A93D2414C67000F38991 /* FerryDay.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD41A8F72414BDC300F38991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD41A9002414BDC300F38991 /* PengChauFerryUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD41A8F22414BDC300F38991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD41A8D92414BDC100F38991 /* PengChauFerry */;
+			targetProxy = DD41A8F12414BDC300F38991 /* PBXContainerItemProxy */;
+		};
+		DD41A8FD2414BDC300F38991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD41A8D92414BDC100F38991 /* PengChauFerry */;
+			targetProxy = DD41A8FC2414BDC300F38991 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DD41A8E82414BDC300F38991 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD41A8E92414BDC300F38991 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DD41A9022414BDC300F38991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD41A9032414BDC300F38991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DD41A9052414BDC300F38991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PengChauFerry/Preview Content\"";
+				DEVELOPMENT_TEAM = FE3JVHBHV2;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = PengChauFerry/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerry;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD41A9062414BDC300F38991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PengChauFerry/Preview Content\"";
+				DEVELOPMENT_TEAM = FE3JVHBHV2;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = PengChauFerry/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerry;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DD41A9082414BDC300F38991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FE3JVHBHV2;
+				INFOPLIST_FILE = PengChauFerryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PengChauFerry.app/PengChauFerry";
+			};
+			name = Debug;
+		};
+		DD41A9092414BDC300F38991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FE3JVHBHV2;
+				INFOPLIST_FILE = PengChauFerryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PengChauFerry.app/PengChauFerry";
+			};
+			name = Release;
+		};
+		DD41A90B2414BDC300F38991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FE3JVHBHV2;
+				INFOPLIST_FILE = PengChauFerryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PengChauFerry;
+			};
+			name = Debug;
+		};
+		DD41A90C2414BDC300F38991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FE3JVHBHV2;
+				INFOPLIST_FILE = PengChauFerryUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerryUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PengChauFerry;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD41A8D52414BDC000F38991 /* Build configuration list for PBXProject "PengChauFerry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD41A9022414BDC300F38991 /* Debug */,
+				DD41A9032414BDC300F38991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD41A9042414BDC300F38991 /* Build configuration list for PBXNativeTarget "PengChauFerry" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD41A9052414BDC300F38991 /* Debug */,
+				DD41A9062414BDC300F38991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD41A9072414BDC300F38991 /* Build configuration list for PBXNativeTarget "PengChauFerryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD41A9082414BDC300F38991 /* Debug */,
+				DD41A9092414BDC300F38991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD41A90A2414BDC300F38991 /* Build configuration list for PBXNativeTarget "PengChauFerryUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD41A90B2414BDC300F38991 /* Debug */,
+				DD41A90C2414BDC300F38991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DD41A8D22414BDC000F38991 /* Project object */;
+}
