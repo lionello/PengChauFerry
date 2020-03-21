@@ -1,0 +1,3 @@
+github "scinfu/SwiftSoup"
+github "stephencelis/SQLite.swift" ~> 0.11.5
+
