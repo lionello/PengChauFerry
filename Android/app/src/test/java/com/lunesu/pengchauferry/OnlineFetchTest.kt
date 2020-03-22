@@ -40,6 +40,13 @@ class OnlineFetchTest {
     }
 
     @Test
+    fun testKaitoMuiWo() {
+        runBlocking {
+            assertNotEquals(0, KaitoMuiWoFetcher.fetch().size)
+        }
+    }
+
+    @Test
     fun testHongKongHolidays() {
         runBlocking {
             assertNotEquals(0, HongKongHolidayFetcher.fetch().size)

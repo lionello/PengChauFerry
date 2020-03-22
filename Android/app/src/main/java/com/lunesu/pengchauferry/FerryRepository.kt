@@ -36,6 +36,15 @@ open class FerryRepository(db: DbOpenHelper) {
             async {
                 runCatching {
                     ferryDao.save(
+                        Utils.atLeast(KaitoMuiWoFetcher.fetch(), 20),
+                        FerryPier.DiscoveryBay,
+                        FerryPier.MuiWo
+                    )
+                }
+            },
+            async {
+                runCatching {
+                    ferryDao.save(
                         Utils.atLeast(InterIslandsFetcher.fetch(), 10),
                         FerryPier.PengChau,
                         FerryPier.MuiWo,
