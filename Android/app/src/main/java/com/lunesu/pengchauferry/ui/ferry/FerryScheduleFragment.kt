@@ -50,11 +50,11 @@ class FerryScheduleFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private val now: LocalTime? get() = viewModel.time.value?.toLocalTime()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        viewModel.state.observe(this, Observer {
+        viewModel.state.observe(viewLifecycleOwner, Observer {
             recyclerView.adapter = FerryRecyclerViewAdapter(it.ferries)
 //            it.ferries.groupBy { it.to }.mapValues { it.value.find { it.time > now } }
         })
-        viewModel.time.observe(this, Observer {
+        viewModel.time.observe(viewLifecycleOwner, Observer {
             // TODO: show time
         })
         super.onActivityCreated(savedInstanceState)
