@@ -50,7 +50,7 @@ struct FerryRow: View {
                     Text("\(ferry.time.toString(FerryRow.uiFormatter)) - \(ferry.endTime.toString(FerryRow.uiFormatter))")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                    if mins >= 0 && mins < 120 {
+                    if (mins >= 0 && mins < 60) || selected {
                         Text("in \(mins) mins")
                             .foregroundColor(.red)
                             .font(.subheadline)

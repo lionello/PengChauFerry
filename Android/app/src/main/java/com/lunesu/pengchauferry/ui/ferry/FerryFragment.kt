@@ -188,7 +188,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val now = now()
 
             val minutes = Minutes.minutesBetween(now, ferry.time).minutes
-            if (minutes in 0..119) {
+            if (minutes in 0..59 || position == selected) {
                 holder.textViewWarn.text = holder.context.getString(R.string.nextTime, minutes)
             } else {
                 holder.textViewWarn.text = null
