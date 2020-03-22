@@ -57,7 +57,10 @@ class OnlineFetchTest {
     @Ignore("Run this manually to export JSON")
     fun testDump() {
         runBlocking {
-            val f = PengChauToCentralFetcher.fetch() + InterIslandsFetcher.fetch() + KaitoFetcher.fetch()
+            val f = PengChauToCentralFetcher.fetch() +
+                    InterIslandsFetcher.fetch() +
+                    KaitoFetcher.fetch() +
+                    KaitoMuiWoFetcher.fetch()
             val ferries = f.map {
                 val o = JSONObject()
                 o.put("time", it.time.toString())

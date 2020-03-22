@@ -63,10 +63,7 @@ struct FerryView: View {
             get: { self.viewModel.state?.from ?? .PengChau },
             set: { self.viewModel.switchPier($0) }
         )
-//        let binding = Binding<Int>(
-//            get: { return 0 },
-//            set: { self.viewModel.switchPier(FerryView.PIERS[$0]) }
-//        )
+
         return ZStack {
             VStack(spacing:0) {
                 VStack(alignment: .leading) {
@@ -119,7 +116,7 @@ struct FerryView: View {
                 }
             }//VStack
             .background(Color("colorPrimary"))
-            .overlay(self.showPicker ? Color.black.opacity(0.2) : nil)
+            .overlay(self.showPicker ? Color.black.opacity(0.5) : nil)
             .onTapGesture {
                 self.showPicker = false
             }
