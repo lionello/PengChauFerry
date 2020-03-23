@@ -120,7 +120,7 @@ class FerryViewModelTest {
             state = it
         }
         vm.switchPier(ferryRepository.ferry.from)
-//        vm.refresh()
+        assertNotNull(state)
     }
 
 }

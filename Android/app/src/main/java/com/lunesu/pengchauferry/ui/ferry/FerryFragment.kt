@@ -110,7 +110,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun updateWalkingTime(from: Location, to: FerryPier) {
-        val minutes = ceil(to.distance(from.latitude, from.longitude) * WALKING_SPEED).toInt()
+        val minutes = ceil(to.coordinate.distance(from.latitude, from.longitude) * WALKING_SPEED).toInt()
         val tv = spinnerFrom.findViewById<TextView>(R.id.textView_walk)
         val iv = spinnerFrom.findViewById<ImageView>(R.id.imageView_walk)
         if (tv != null && minutes < 60) {

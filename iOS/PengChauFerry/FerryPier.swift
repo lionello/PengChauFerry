@@ -31,12 +31,8 @@ enum FerryPier: String, Codable {
         .HeiLingChau: Coordinate(latitude: 22.2579, longitude: 114.0280)
     ]
 
-    var latitude: Double {
-        get { FerryPier.COORDS[self]!.latitude }
-    }
-
-    var longitude: Double {
-        get { FerryPier.COORDS[self]!.longitude }
+    var coordinate: Coordinate {
+        get { FerryPier.COORDS[self]! }
     }
 
     static func findNearest(latitude: Double, longitude: Double, piers: [FerryPier] = ENUMS) -> FerryPier? {

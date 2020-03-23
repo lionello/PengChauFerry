@@ -37,11 +37,6 @@ struct FerryView: View {
         }
     }
 
-//    private var firstFerry: Ferry? {
-//        let now = self.now.plus(minutes: walkingTime)
-//        return viewModel.state?.ferries.first { $0.time > now }
-//    }
-
     private func updateSelected(ferries: [Ferry]?) {
         if let ferries = ferries {
             let now = self.now.plus(minutes: self.walkingTime)
@@ -50,7 +45,7 @@ struct FerryView: View {
     }
 
     private func updateWalkingTime(from: CLLocation, to: FerryPier) {
-        let minutes = Int(ceil(from.coordinate.distance(lat: to.latitude, long: to.longitude) * FerryView.WALKING_SPEED))
+        let minutes = Int(ceil(to.coordinate.distance(lat: from.coordinate.latitude, long: from.coordinate.longitude) * FerryView.WALKING_SPEED))
         if minutes < 60 {
             self.walkingTime = minutes
         } else {
