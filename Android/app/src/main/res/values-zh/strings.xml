@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">坪洲渡輪</string>
+    <string name="refresh">更新</string>
+    <string name="monday">星期一</string>
+    <string name="tuesday">星期二</string>
+    <string name="wednesday">星期三</string>
+    <string name="thursday">星期四</string>
+    <string name="friday">星期五</string>
+    <string name="saturday">星期六</string>
+    <string name="sunday">星期日</string>
+    <string name="holiday">假日</string>
+    <string name="wrong_location">您好像在%s</string>
+    <string name="nextTime">有%d分鐘</string>
+
+    <string name="Central">中環</string>
+    <string name="PengChau">坪洲</string>
+    <string name="TrappistMonastery">聖母神樂院</string>
+    <string name="DiscoveryBay">愉景灣稔樹灣</string>
+    <string name="MuiWo">梅窩</string>
+    <string name="CheungChau">長洲</string>
+    <string name="ChiMaWan">芝麻灣</string>
+    <string name="HeiLingChau">喜靈洲</string>
+
+    <string name="scheduled_time">種</string>
+    <string name="walking_time">走</string>
+    <string name="ferry_to">往%s</string>
+    <string name="title">坪洲渡輪 (%s)</string>
+    <string name="my_location">我的位置</string>
+    <string name="ferry_to_via">往%s 經%s</string>
+    <string name="depart_from">起點</string>
+    <string name="x_min">~%d分鐘</string>
+    <string name="rate_the_app">意見…</string>
+    <string name="ferry_content">渡輪</string>
+</resources>

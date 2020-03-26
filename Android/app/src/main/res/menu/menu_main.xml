@@ -18,4 +18,12 @@
     <item
         android:id="@+id/app_bar_store"
         android:title="@string/rate_the_app" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/app_bar_zh"
+            android:title="@string/chinese" />
+        <item
+            android:id="@+id/app_bar_en"
+            android:title="@string/english" />
+    </group>
 </menu>

@@ -28,7 +28,8 @@
                 android:paddingTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_directions_boat_white_24dp"/>
+                app:srcCompat="@drawable/ic_directions_boat_white_24dp"
+                android:contentDescription="@string/ferry_content" />
 
             <TextView
                 android:layout_width="match_parent"

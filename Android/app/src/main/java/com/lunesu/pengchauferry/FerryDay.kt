@@ -14,7 +14,7 @@ enum class FerryDay(val flag: Int) {
     Holiday(128);
 
     companion object {
-        private val ENUMS = values()
+        val ENUMS = values()
 
         fun fromDate(date: LocalDate) = ENUMS[date.dayOfWeek - 1]
 

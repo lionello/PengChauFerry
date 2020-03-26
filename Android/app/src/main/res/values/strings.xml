@@ -1,34 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Peng Chau Ferry</string>
-    <string name="now">now %s</string>
-    <string name="main_title">Ferries from %s</string>
-    <string name="ferry_info">%s\nto %s</string>
-    <string name="flip">Flip</string>
+    <string name="app_name">Peng Chau Ferries</string>
     <string name="refresh">Refresh Data</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
     <string name="holiday">Holiday</string>
     <string name="wrong_location">You appear to be in %s</string>
     <string name="nextTime">in %d min</string>
-    <string name="updated">Updated.</string>
-    <string name="ferries_from">Ferries from:</string>
 
-    <string name="Central">中環 Central</string>
-    <string name="PengChau">坪洲 Peng Chau</string>
-    <string name="TrappistMonastery">聖母神樂院 Trappist Monastery</string>
-    <string name="DiscoveryBay">愉景灣稔樹灣 Discovery Bay</string>
-    <string name="MuiWo">梅窩 Mui Wo</string>
-    <string name="CheungChau">長洲 Cheung Chau</string>
-    <string name="ChiMaWan">芝麻灣 Chi Ma Wan</string>
-    <string name="HeiLingChau">喜靈洲 Hei Ling Chau</string>
+    <string name="Central">Central</string>
+    <string name="PengChau">Peng Chau</string>
+    <string name="TrappistMonastery">Trappist Monastery</string>
+    <string name="DiscoveryBay">Discovery Bay</string>
+    <string name="MuiWo">Mui Wo</string>
+    <string name="CheungChau">Cheung Chau</string>
+    <string name="ChiMaWan">Chi Ma Wan</string>
+    <string name="HeiLingChau">Hei Ling Chau</string>
 
-    <string name="scheduled_time">Scheduled time</string>
-    <string name="walking_time">Walking time</string>
-    <string name="ferry_time">%s - %s</string>
+    <string name="scheduled_time">Schedule</string>
+    <string name="walking_time">Walking</string>
+    <string name="ferry_time" translatable="false">%s - %s</string>
     <string name="ferry_to">to %s</string>
     <string name="title">Peng Chau Ferries (%s)</string>
-    <string name="ferry_fare">$%s</string>
+    <string name="ferry_fare" translatable="false">$%s</string>
     <string name="my_location">My Location</string>
     <string name="ferry_to_via">to %s via %s</string>
-    <string name="depart_from">起點 Depart from</string>
+    <string name="depart_from">Depart from</string>
     <string name="x_min">~%d min</string>
-    <string name="rate_the_app">Rate the app...</string>
+    <string name="rate_the_app">Rate the app…</string>
+    <string name="ferry_content">Ferry</string>
+    <string name="chinese" translatable="false">中文</string>
+    <string name="english" translatable="false">English</string>
 </resources>

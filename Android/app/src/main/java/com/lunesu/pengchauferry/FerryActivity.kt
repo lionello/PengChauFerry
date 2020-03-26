@@ -4,8 +4,11 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -17,19 +20,44 @@ import androidx.lifecycle.Observer
 import com.lunesu.pengchauferry.ui.ferry.FerryFragment
 import com.lunesu.pengchauferry.ui.ferry.FerryViewModel
 import com.lunesu.pengchauferry.ui.ferry.LocationViewModel
+import com.lunesu.pengchauferry.ui.ferry.Strings
+import java.util.*
 
 class FerryActivity : AppCompatActivity() {
 
     companion object {
         private const val MY_PERMISSION_REQUEST_CODE = 123
+        private const val LANGUAGE_PREF = "language"
     }
 
     private val viewModel by viewModels<FerryViewModel>()
     private val locationViewModel by viewModels<LocationViewModel>()
+    private val sharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(this)
+
     private var shouldSwitchPier = true
+    private var overrideResources: Resources? = null
+
+    override fun getResources(): Resources {
+        if (overrideResources == null) {
+            val config = super.getResources().configuration
+            config.setLocale(Locale.getDefault())
+            overrideResources =
+                createConfigurationContext(config).resources
+        }
+        return overrideResources!!
+    }
+
+    private var languagePref: String?
+        get() = sharedPreferences.getString(LANGUAGE_PREF, null)
+        set(value) = sharedPreferences.edit().putString(LANGUAGE_PREF, value).apply()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        languagePref?.let {
+            Locale.setDefault(Locale(it))
+        }
+
         setContentView(R.layout.ferry_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -38,14 +66,14 @@ class FerryActivity : AppCompatActivity() {
         }
 
         viewModel.state.observe(this, Observer {
-            this.title = getString(R.string.title, it.day.toString())
+            this.title = getString(R.string.title, getString(Strings.DAYS.getValue(it.day)))
         })
 
         locationViewModel.location.observe(this, Observer {
             val nowPier = FerryPier.findNearest(it.latitude, it.longitude, FerryFragment.PIERS)
             if (nowPier != null) {
                 if (nowPier != viewModel.state.value?.from) {
-                    val text = getString(R.string.wrong_location, nowPier.toString())
+                    val text = getString(R.string.wrong_location, getString(Strings.PIERS.getValue(nowPier)))
                     Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
                 }
                 if (shouldSwitchPier) {
@@ -56,7 +84,6 @@ class FerryActivity : AppCompatActivity() {
         })
     }
 
-    @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == MY_PERMISSION_REQUEST_CODE) {
             if (grantResults.contains(PackageManager.PERMISSION_GRANTED)) {
@@ -81,7 +108,6 @@ class FerryActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("MissingPermission")
     override fun onResume() {
         super.onResume()
         locationViewModel.refresh()
@@ -95,6 +121,12 @@ class FerryActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         menu?.findItem(R.id.app_bar_switch)?.isChecked = viewModel.state.value?.day == FerryDay.Holiday
+        when (Locale.getDefault().language) {
+            "en" ->
+                menu?.findItem(R.id.app_bar_en)?.isChecked = true
+            "zh" ->
+                menu?.findItem(R.id.app_bar_zh)?.isChecked = true
+        }
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -127,6 +159,18 @@ class FerryActivity : AppCompatActivity() {
                     setPackage("com.android.vending")
                 }
                 startActivity(intent)
+                true
+            }
+            R.id.app_bar_en -> {
+                Locale.setDefault(Locale("en"))
+                languagePref = "en"
+                recreate()
+                true
+            }
+            R.id.app_bar_zh -> {
+                Locale.setDefault(Locale("zh"))
+                languagePref = "zh"
+                recreate()
                 true
             }
             else -> super.onOptionsItemSelected(item)
