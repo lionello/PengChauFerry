@@ -1,5 +1,6 @@
 package com.lunesu.pengchauferry.ui.ferry
 
+import android.content.res.Resources
 import com.lunesu.pengchauferry.FerryDay
 import com.lunesu.pengchauferry.FerryPier
 import com.lunesu.pengchauferry.R
@@ -27,4 +28,9 @@ object Strings {
         FerryDay.Holiday to R.string.holiday
     )
 
+    fun localized(pier: FerryPier, resources: Resources) : String =
+        resources.getString(PIERS.getValue(pier))
+
+    fun localized(day: FerryDay, resources: Resources) : String =
+        resources.getString(DAYS.getValue(day))
 }

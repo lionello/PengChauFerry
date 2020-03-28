@@ -9,6 +9,13 @@
 import SwiftUI
 
 struct FerryRow: View {
+    @Environment(\.locale) var locale
+
+    private var bundle: Bundle {
+        let path = Bundle.main.path(forResource: locale.languageCode, ofType: "lproj")!
+        return Bundle(path: path) ?? Bundle.main
+    }
+
     var ferry: Ferry
     var mins: Int
     var selected: Bool
@@ -17,11 +24,13 @@ struct FerryRow: View {
         ferry.to != .PengChau ? ferry.to : ferry.from
     }
 
-    private var dest: String {
+    private var dest: LocalizedStringKey {
+        let ferryTo = Strings.localized(ferry.to, bundle)
         if let via = ferry.via {
-            return "to \(STRINGS[ferry.to]!) via \(STRINGS[via]!)"
+            let ferryVia = Strings.localized(via, bundle)
+            return "to \(ferryTo) via \(ferryVia)"
         } else {
-            return "to \(STRINGS[ferry.to]!)"
+            return "to \(ferryTo)"
         }
     }
 
@@ -79,7 +88,6 @@ struct FerryRow_Previews: PreviewProvider {
             FerryRow(ferry: Ferry.DUMMY, mins: -2, selected: false)
             FerryRow(ferry: Ferry.DUMMY, mins: 2, selected: true)
             FerryRow(ferry: Ferry.DUMMY, mins: 222, selected: false)
-//            FerryRow()
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }

@@ -66,14 +66,14 @@ class FerryActivity : AppCompatActivity() {
         }
 
         viewModel.state.observe(this, Observer {
-            this.title = getString(R.string.title, getString(Strings.DAYS.getValue(it.day)))
+            this.title = getString(R.string.title, Strings.localized(it.day, resources))
         })
 
         locationViewModel.location.observe(this, Observer {
             val nowPier = FerryPier.findNearest(it.latitude, it.longitude, FerryFragment.PIERS)
             if (nowPier != null) {
                 if (nowPier != viewModel.state.value?.from) {
-                    val text = getString(R.string.wrong_location, getString(Strings.PIERS.getValue(nowPier)))
+                    val text = getString(R.string.wrong_location, Strings.localized(nowPier, resources))
                     Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
                 }
                 if (shouldSwitchPier) {

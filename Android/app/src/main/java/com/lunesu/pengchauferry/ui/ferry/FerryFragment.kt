@@ -136,7 +136,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         linearLayoutManager = LinearLayoutManager(view.context)
         recyclerView.layoutManager = linearLayoutManager
         spinnerFrom = view.findViewById(R.id.spinner_from)
-        val items = PIERS.map { getString(Strings.PIERS.getValue(it)) }
+        val items = PIERS.map { Strings.localized(it, resources) }
         ArrayAdapter(requireActivity(), R.layout.spinner_item_selected, R.id.text1, items).let {
 //            it.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
             spinnerFrom.adapter = it
@@ -204,9 +204,9 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             holder.textViewTime.text = holder.context.getString(R.string.ferry_time,
                 ferry.time.toString(uiFormatter),
                 ferry.endTime.toString(uiFormatter))
-            val ferryTo = holder.context.getString(Strings.PIERS.getValue(ferry.to))
+            val ferryTo = Strings.localized(ferry.to, holder.context.resources)
             if (ferry.via != null) {
-                val ferryVia = holder.context.getString(Strings.PIERS.getValue(ferry.via))
+                val ferryVia = Strings.localized(ferry.via, holder.context.resources)
                 holder.textViewDest.text = holder.context.getString(R.string.ferry_to_via, ferryTo, ferryVia)
             } else {
                 holder.textViewDest.text = holder.context.getString(R.string.ferry_to, ferryTo)

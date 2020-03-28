@@ -56,4 +56,10 @@ struct FerryDay: OptionSet, Codable {
     }
 }
 
+extension FerryDay : Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
+    }
+}
+
 typealias FerryDays = FerryDay

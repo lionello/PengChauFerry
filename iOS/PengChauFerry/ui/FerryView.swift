@@ -12,6 +12,19 @@ import CoreLocation
 struct FerryView: View {
     @EnvironmentObject var viewModel: FerryViewModel
     @ObservedObject var locationViewModel = LocationViewModel()
+    @Environment(\.locale) var locale
+
+    private static let LANGUAGE_PREF = "language"
+
+    private static var languagePref: String? {
+        get { UserDefaults.standard.string(forKey: FerryView.LANGUAGE_PREF) }
+        set(value) { UserDefaults.standard.set(value, forKey: FerryView.LANGUAGE_PREF) }
+    }
+
+    private var bundle: Bundle {
+        let path = Bundle.main.path(forResource: languageCode, ofType: "lproj")!
+        return Bundle(path: path) ?? Bundle.main
+    }
 
     @State private var showPicker = false
     @State private var loading = false
@@ -19,6 +32,7 @@ struct FerryView: View {
     @State private var walkingTime = 0
     @State private var selected: Ferry?
     @State private var shouldSwitchPier = true
+    @State private var languageCode: String? = FerryView.languagePref
 
     static let WALKING_SPEED: Float = 0.018
 
@@ -29,9 +43,9 @@ struct FerryView: View {
         .MuiWo
     ]
 
-    private var title: String {
+    private var title: LocalizedStringKey {
         if let day = viewModel.state?.day {
-            return "Peng Chau Ferries (\(day.toString()))"
+            return "Peng Chau Ferries (\(Strings.localized(day, bundle)))"
         } else {
             return "Peng Chau Ferries"
         }
@@ -62,9 +76,18 @@ struct FerryView: View {
         return ZStack {
             VStack(spacing:0) {
                 VStack(alignment: .leading) {
-                    Text(self.title)
+                    HStack {
+                        Text(self.title)
+                            .foregroundColor(.white)
+                            .font(.headline)
+                        Spacer()
+                        Button(self.languageCode != "zh" ? "中" : "EN") {
+                            let lang = (self.languageCode != "zh" ? "zh" : "en")
+                            FerryView.languagePref = lang
+                            self.languageCode = lang
+                        }
                         .foregroundColor(.white)
-                        .font(.headline)
+                    }
 
                     HStack(alignment: .bottom) {
                         Image("boat_white")
@@ -77,7 +100,7 @@ struct FerryView: View {
                         self.showPicker = true
                     }) {
                         HStack {
-                            Text(STRINGS[viewModel.state?.from] ?? "Select departure pier")
+                            Text(Strings.PIERS[viewModel.state?.from] ?? "Select departure pier")
                             Spacer()
                             //Image()
                             if self.walkingTime > 0 && self.walkingTime < 60 {
@@ -142,9 +165,9 @@ struct FerryView: View {
             }
 
             if showPicker {
-                Picker("起點 FROM", selection: binding) {
+                Picker("起點 DEPART FROM", selection: binding) {
                     ForEach(FerryView.PIERS) { pier in
-                        Text(STRINGS[pier]!).tag(pier)
+                        Text(Strings.PIERS[pier]!).tag(pier)
                     }
 //                    ForEach(0..<FerryView.PIERS.count) { i in
 //                        Text(FerryView.PIERS[i].description).tag(i)
@@ -160,6 +183,7 @@ struct FerryView: View {
 //                })
             }
         }//ZStack
+        .environment(\.locale, languageCode != nil ? .init(identifier: languageCode!) : locale)
     }
 }
 
