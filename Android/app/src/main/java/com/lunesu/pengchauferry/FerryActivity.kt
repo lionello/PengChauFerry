@@ -96,8 +96,7 @@ class FerryActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        // The Android emulator only supports FINE/GPS location provider
-        val permission = if (Utils.isEmulator) Manifest.permission.ACCESS_FINE_LOCATION else Manifest.permission.ACCESS_COARSE_LOCATION
+        val permission = Manifest.permission.ACCESS_FINE_LOCATION
 
         shouldSwitchPier = true
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
