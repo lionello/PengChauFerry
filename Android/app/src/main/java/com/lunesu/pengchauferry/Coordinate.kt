@@ -16,7 +16,7 @@ data class Coordinate(val latitude: Double, val longitude: Double) {
             val φ2 = toRadians(lat2)
             val λ1 = toRadians(lon1)
             val λ2 = toRadians(lon2)
-            // From https://en.wikipedia.org/wiki/Haversine_formula; similar to Location.distanceBetween
+            // From https://en.wikipedia.org/wiki/Haversine_formula
             return 2 * RADIUS * asin(sqrt(hav(φ1 - φ2) + cos(φ1) * cos(φ2) * hav(λ1 - λ2))).toFloat()
         }
     }

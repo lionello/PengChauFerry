@@ -28,7 +28,7 @@ extension Coordinate {
         let φ2 = toRadians(lat2)
         let λ1 = toRadians(lon1)
         let λ2 = toRadians(lon2)
-        // From https://en.wikipedia.org/wiki/Haversine_formula; similar to Location.distanceBetween
+        // From https://en.wikipedia.org/wiki/Haversine_formula
         return Float(2 * RADIUS * asin(sqrt(hav(φ1 - φ2) + cos(φ1) * cos(φ2) * hav(λ1 - λ2))))
     }
 
