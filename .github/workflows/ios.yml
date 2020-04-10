@@ -2,24 +2,25 @@ name: iOS CI
 
 on:
   push:
-    branches: [ master ]
-    paths: [ 'iOS/**' ]
+    branches: [master]
+    paths:
+      - "iOS/**"
   pull_request:
-    branches: [ master ]
-    paths: [ 'iOS/**' ]
+    branches: [master]
+    paths:
+      - "iOS/**"
 
 jobs:
   build:
-
     runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
-#      - name: Force xcode 11
-#        run: sudo xcode-select -switch /Applications/Xcode_11.1.app
+      #      - name: Force xcode 11
+      #        run: sudo xcode-select -switch /Applications/Xcode_11.1.app
       - name: iPhone 8 Test
         working-directory: iOS
-        run:  xcodebuild test -scheme PengChauFerry -destination 'platform=iOS Simulator,name=iPhone 8'
+        run: xcodebuild test -scheme PengChauFerry -destination 'platform=iOS Simulator,name=iPhone 8'
 #      - name: iPad Air Test
 #        run:  xcodebuild test -scheme affirm-me-test -workspace affirm-me.xcworkspace -destination 'platform=iOS Simulator,name=iPad Air (3rd generation),OS=13.1'
 
