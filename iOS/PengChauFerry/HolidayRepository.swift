@@ -10,7 +10,7 @@ import Foundation
 
 open class HolidayRepository {
     private let holidayDao = HolidayDao()
-    private let BUDDHA = ISO8601DateFormatter().date(from: "2020-04-11T00:00:00Z")!
+    private let BUDDHA = LocalDate.parse("2020-04-11T00:00:00Z")!
 
     open func getHoliday(day: LocalDate) -> Bool {
         return holidayDao.query(today: day)

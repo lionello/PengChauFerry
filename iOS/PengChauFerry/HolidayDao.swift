@@ -9,26 +9,22 @@
 import Foundation
 
 class HolidayDao {
-    static let formatter: ISO8601DateFormatter = {
-        let df = ISO8601DateFormatter()
-        df.formatOptions = [ .withFullDate ]
-        return df
-    }()
     private var set = Set<String>()
 
     func query(today: LocalDate) -> Bool {
+        let day = today.toString()
 //        return db.readableDatabase.query(
 //            DbOpenHelper.HOLIDAYS,
 //            arrayOf("date"),
 //            "date=?",
-//            arrayOf(today.toString()),
+//            arrayOf(day),
 //            null,
 //            null,
 //            null
 //        ).use {
 //            it.moveToNext()
 //        }
-        return set.contains(HolidayDao.formatter.string(from: today))
+        return set.contains(day)
     }
 
     func save(holidays: Array<LocalDate>) {
@@ -38,16 +34,16 @@ class HolidayDao {
     }
 
     func insert(date: LocalDate) {
-        set.insert(HolidayDao.formatter.string(from: date))
-//        val day = date.toString()
+        let day = date.toString()
+        set.insert(day)
 //        val contentValues = ContentValues()
 //        contentValues.put("date", day)
 //        db.writableDatabase.insertWithOnConflict(DbOpenHelper.HOLIDAYS, null, contentValues, CONFLICT_IGNORE)
     }
 
     func delete(date: LocalDate) {
-        set.remove(HolidayDao.formatter.string(from: date))
-//        val day = date.toString()
+        let day = date.toString()
+        set.remove(day)
 //        db.writableDatabase.delete(DbOpenHelper.HOLIDAYS, "date=?", arrayOf(day))
     }
 

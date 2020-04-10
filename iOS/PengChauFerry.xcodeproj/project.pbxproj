@@ -34,9 +34,9 @@
 		DD41A92F2414BE0E00F38991 /* FerryDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91E2414BE0E00F38991 /* FerryDao.swift */; };
 		DD41A93A2414C16200F38991 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9392414C16200F38991 /* Coordinate.swift */; };
 		DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A93B2414C63B00F38991 /* FerryDayTest.swift */; };
-		DD41A93D2414C67000F38991 /* FerryDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9122414BE0D00F38991 /* FerryDay.swift */; };
 		DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A93E2414C75900F38991 /* FerryPierTest.swift */; };
 		DD560EEE242EE9680022411D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD560EF0242EE9680022411D /* Localizable.strings */; };
+		DDB8A78224403F63000D77A8 /* LocalDateTimeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */; };
 		DDBE86E92415235900BA2C8E /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = DDBE86E82415235900BA2C8E /* db.json */; };
 		DDBE86EB2415250300BA2C8E /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE86EA2415250300BA2C8E /* JsonData.swift */; };
 		DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */; };
@@ -100,6 +100,7 @@
 		DD41A93E2414C75900F38991 /* FerryPierTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryPierTest.swift; sourceTree = "<group>"; };
 		DD560EEF242EE9680022411D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DD560EF2242EED810022411D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDateTimeTest.swift; sourceTree = "<group>"; };
 		DDBE86E82415235900BA2C8E /* db.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
 		DDBE86EA2415250300BA2C8E /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
 		DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDataTest.swift; sourceTree = "<group>"; };
@@ -194,11 +195,12 @@
 		DD41A8F32414BDC300F38991 /* PengChauFerryTests */ = {
 			isa = PBXGroup;
 			children = (
-				DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */,
 				DD41A8F62414BDC300F38991 /* Info.plist */,
 				DD41A93B2414C63B00F38991 /* FerryDayTest.swift */,
 				DD41A93E2414C75900F38991 /* FerryPierTest.swift */,
 				DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */,
+				DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */,
+				DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */,
 			);
 			path = PengChauFerryTests;
 			sourceTree = "<group>";
@@ -422,9 +424,9 @@
 			files = (
 				DD41A8F52414BDC300F38991 /* PengChauFerryTests.swift in Sources */,
 				DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */,
+				DDB8A78224403F63000D77A8 /* LocalDateTimeTest.swift in Sources */,
 				DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */,
 				DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */,
-				DD41A93D2414C67000F38991 /* FerryDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,7 +595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"PengChauFerry/Preview Content\"";
 				DEVELOPMENT_TEAM = FE3JVHBHV2;
 				ENABLE_PREVIEWS = YES;
@@ -606,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -619,7 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"PengChauFerry/Preview Content\"";
 				DEVELOPMENT_TEAM = FE3JVHBHV2;
 				ENABLE_PREVIEWS = YES;
@@ -632,7 +634,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

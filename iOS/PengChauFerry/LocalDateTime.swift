@@ -23,19 +23,31 @@ struct LocalTime {
     private static let ZERO = formatter.date(from: "00:00:00")!
 
     static func parse(_ s: String) -> LocalTime? {
-        return LocalTime(secs: LocalTime.formatter.date(from: s + ":00")!.timeIntervalSince(LocalTime.ZERO))
+        guard let date = LocalTime.formatter.date(from: s + ":00") else {
+            return nil
+        }
+        return LocalTime(secs: date.timeIntervalSince(LocalTime.ZERO))
+    }
+
+    static func secondsBetween(_ t1: LocalTime, _ t2: LocalTime) -> Int {
+        Int(t2.secs - t1.secs)
     }
 
     static func minutesBetween(_ t1: LocalTime, _ t2: LocalTime) -> Int {
-        return Int((t2.secs - t1.secs + 30.0)/60.0)
+        secondsBetween(t1, t2) / 60
+    }
+
+    func plus(seconds: Int) -> LocalTime {
+        LocalTime(secs: self.secs + Double(seconds))
     }
 
     func plus(minutes: Int) -> LocalTime {
-        LocalTime(secs: self.secs + Double(minutes) * 60.0)
+        plus(seconds: minutes * 60)
     }
 
     func toString(_ df: DateFormatter) -> String {
-        df.string(from: Date(timeInterval: secs, since: Date().toLocalDate()))
+        let today = Calendar.autoupdatingCurrent.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        return df.string(from: Date(timeInterval: secs, since: today))
     }
 }
 
@@ -48,15 +60,9 @@ extension LocalTime: Decodable {
 }
 
 extension LocalTime: CustomStringConvertible, CustomDebugStringConvertible {
-    var debugDescription: String {
-        return "\(secs)"
-    }
+    var debugDescription: String { "\(secs)" }
 
-    var description: String {
-        let dtf = DateFormatter()
-        dtf.dateStyle = .none
-        return dtf.string(from: Date(timeIntervalSinceReferenceDate: secs))
-    }
+    var description: String { LocalTime.formatter.string(from: Date(timeIntervalSinceReferenceDate: secs)) }
 }
 
 extension LocalTime: Equatable {
@@ -82,33 +88,50 @@ extension LocalTime: Comparable {
     }
 }
 
-//typealias LocalTime = Date
-public typealias LocalDate = Date
+public typealias LocalDate = DateComponents
+
+extension LocalDate {
+    fileprivate static let formatter: ISO8601DateFormatter = {
+        let dtf = ISO8601DateFormatter()
+        dtf.formatOptions = [ .withFullDate ]
+        return dtf
+    }()
+
+    static func now() -> LocalDate { LocalDateTime.now().toLocalDate() }
+
+    func toString() -> String {
+        LocalDate.formatter.string(from: self.date!)
+    }
+
+    static func parse(_ s: String) -> LocalDate? {
+        LocalDate.formatter.date(from: s)?.toLocalDate()
+    }
+}
+
+extension TimeZone {
+    static let UTC = TimeZone(secondsFromGMT: 0)!
+}
+
 typealias LocalDateTime = Date
 
 extension LocalDateTime {
-    static func now() -> LocalDateTime { return LocalDateTime() }
+    static func now() -> LocalDateTime { LocalDateTime() }
 
     func toLocalDate() -> LocalDate {
-        var dc = Calendar.current.dateComponents(in: TimeZone.current, from: self)
+        var dc = Calendar.autoupdatingCurrent.dateComponents(in: .autoupdatingCurrent, from: self)
         dc.hour = nil
         dc.minute = nil
         dc.second = nil
         dc.nanosecond = nil
-        return dc.date!
+        dc.timeZone = .UTC
+        return dc
     }
 
     func toLocalTime() -> LocalTime {
-        let dc = Calendar.current.dateComponents(in: TimeZone.current, from: self)
+        let dc = Calendar.autoupdatingCurrent.dateComponents(in: .autoupdatingCurrent, from: self)
         return LocalTime(secs: Double((dc.hour! * 60 + dc.minute!) * 60 + dc.second!) + Double(dc.nanosecond!) * 1e-9)
     }
 
-//    func parse(_ s: String) -> LocalDateTime {
-//        let df = DateFormatter()
-//        df.dateStyle = .short
-//        df.timeStyle = .none
-//        return df.date(from: $0)!
-//    }
 }
 
 

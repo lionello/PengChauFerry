@@ -26,13 +26,12 @@ struct FerryDay: OptionSet, Codable {
     static let SundayAndHolidays = FerryDays(arrayLiteral: Sunday, Holiday)
     static let EVERYDAY = FerryDays(ENUMS)
 
-    static func fromDate(_ date: Date) -> FerryDay {
-        let weekday = Calendar.current.component(.weekday, from: date)
+    static func fromDate(_ date: LocalDate) -> FerryDay {
         // Sunday=1, Monday=2, etc...
-        return FerryDay(rawValue: 1<<((5+weekday)%7))
+        return FerryDay(rawValue: 1<<((5+date.weekday!)%7))
     }
 
-    static func today() -> FerryDay { fromDate(Date()) }
+    static func today() -> FerryDay { fromDate(LocalDate.now()) }
 
     static func intToDays(_ int: UInt8) -> FerryDays {
 //        FerryDays(sequence: EVERYDAY.compactMap { (int & $0.rawValue != 0) ? $0 : nil })

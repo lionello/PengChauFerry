@@ -14,7 +14,7 @@ class HongKongHolidayFetcher {
 
     static func fetch(completion: (Array<LocalDate>,Error?) -> Void) {
         if let data = JsonData.load(from: Bundle.main) {
-            let dates = data.holidays.map{ HolidayDao.formatter.date(from: $0)! }
+            let dates = data.holidays.map{ LocalDate.parse($0)! }
             completion(dates, nil)
         } else {
             completion([], ApiError.NoData)

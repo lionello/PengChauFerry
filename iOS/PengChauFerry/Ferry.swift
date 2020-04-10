@@ -18,7 +18,7 @@ struct Ferry: Decodable {
     let via: FerryPier?
 
     var endTime : LocalTime {
-        get { LocalTime(secs: time.secs + TimeInterval(dur * 60)) /*time.advanced(by: dur)*/ }
+        get { time.plus(minutes: dur) }
     }
 
     static let DUMMY = Ferry(time: LocalTime.now(), from: .PengChau, to: .Central, dur: 600, days: FerryDay.EVERYDAY, fare: "11.0", via: nil)

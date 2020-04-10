@@ -8,16 +8,6 @@
 
 import Foundation
 
-//fileprivate struct FerryX: Decodable {
-//    let time: String
-//    let from: FerryPier
-//    let to: FerryPier
-//    let dur: TimeInterval
-//    let days: FerryDays
-//    let fare: String
-//    let via: FerryPier?
-//}
-//
 struct JsonData: Decodable {
     var holidays: [String] = []
     var ferries: [Ferry] = []
