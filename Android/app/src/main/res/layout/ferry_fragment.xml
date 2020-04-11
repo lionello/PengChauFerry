@@ -57,7 +57,7 @@
                 android:id="@+id/spinner_from"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/support_simple_spinner_dropdown_item"
+                tools:listitem="@layout/spinner_item_selected"
                 android:spinnerMode="dialog" />
 
         </LinearLayout>

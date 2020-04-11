@@ -41,8 +41,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_time"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="12:34 - 12:45" />
 
                 <TextView
@@ -52,8 +50,6 @@
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:textColor="@android:color/holo_red_dark"
-                    app:layout_constraintStart_toEndOf="@+id/textView_time"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="in 5 minutes" />
 
                 <TextView
@@ -64,8 +60,6 @@
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:textColor="@android:color/holo_blue_dark"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="$12.3" />
 
             </LinearLayout>
