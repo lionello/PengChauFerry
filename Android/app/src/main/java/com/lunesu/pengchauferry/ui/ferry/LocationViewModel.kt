@@ -16,9 +16,6 @@ import androidx.lifecycle.MutableLiveData
 
 class LocationViewModel(application: Application): AndroidViewModel(application), LocationListener {
 
-    private fun hasPermission(permission: String) =
-        ContextCompat.checkSelfPermission(getApplication(), permission) == PackageManager.PERMISSION_GRANTED
-
     private val locationManager = getSystemService(application, LocationManager::class.java)
     private val _location = MutableLiveData<Location>()
 

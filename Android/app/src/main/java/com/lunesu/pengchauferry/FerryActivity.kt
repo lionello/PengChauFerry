@@ -4,11 +4,9 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Configuration
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -27,12 +25,10 @@ class FerryActivity : AppCompatActivity() {
 
     companion object {
         private const val MY_PERMISSION_REQUEST_CODE = 123
-        private const val LANGUAGE_PREF = "language"
     }
 
     private val viewModel by viewModels<FerryViewModel>()
     private val locationViewModel by viewModels<LocationViewModel>()
-    private val sharedPreferences get() = PreferenceManager.getDefaultSharedPreferences(this)
 
     private var shouldSwitchPier = true
     private var overrideResources: Resources? = null
@@ -47,14 +43,10 @@ class FerryActivity : AppCompatActivity() {
         return overrideResources!!
     }
 
-    private var languagePref: String?
-        get() = sharedPreferences.getString(LANGUAGE_PREF, null)
-        set(value) = sharedPreferences.edit().putString(LANGUAGE_PREF, value).apply()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        languagePref?.let {
+        Preferences(this).language?.let {
             Locale.setDefault(Locale(it))
         }
 
@@ -161,14 +153,12 @@ class FerryActivity : AppCompatActivity() {
                 true
             }
             R.id.app_bar_en -> {
-                Locale.setDefault(Locale("en"))
-                languagePref = "en"
+                Preferences(this).language = "en"
                 recreate()
                 true
             }
             R.id.app_bar_zh -> {
-                Locale.setDefault(Locale("zh"))
-                languagePref = "zh"
+                Preferences(this).language = "zh"
                 recreate()
                 true
             }

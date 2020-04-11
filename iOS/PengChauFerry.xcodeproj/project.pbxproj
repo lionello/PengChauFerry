@@ -36,6 +36,8 @@
 		DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A93B2414C63B00F38991 /* FerryDayTest.swift */; };
 		DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A93E2414C75900F38991 /* FerryPierTest.swift */; };
 		DD560EEE242EE9680022411D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD560EF0242EE9680022411D /* Localizable.strings */; };
+		DD6EEF1C24414D6900ADD3E6 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6EEF1B24414D6900ADD3E6 /* Preferences.swift */; };
+		DD6EEF1E2441549800ADD3E6 /* PreferencesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6EEF1D2441549800ADD3E6 /* PreferencesTest.swift */; };
 		DDB8A78224403F63000D77A8 /* LocalDateTimeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */; };
 		DDBE86E92415235900BA2C8E /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = DDBE86E82415235900BA2C8E /* db.json */; };
 		DDBE86EB2415250300BA2C8E /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE86EA2415250300BA2C8E /* JsonData.swift */; };
@@ -100,6 +102,8 @@
 		DD41A93E2414C75900F38991 /* FerryPierTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryPierTest.swift; sourceTree = "<group>"; };
 		DD560EEF242EE9680022411D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DD560EF2242EED810022411D /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DD6EEF1B24414D6900ADD3E6 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		DD6EEF1D2441549800ADD3E6 /* PreferencesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTest.swift; sourceTree = "<group>"; };
 		DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDateTimeTest.swift; sourceTree = "<group>"; };
 		DDBE86E82415235900BA2C8E /* db.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
 		DDBE86EA2415250300BA2C8E /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
@@ -172,14 +176,15 @@
 				DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */,
 				DDBE86EA2415250300BA2C8E /* JsonData.swift */,
 				DD41A9182414BE0D00F38991 /* LocalDateTime.swift */,
+				DD6EEF1B24414D6900ADD3E6 /* Preferences.swift */,
 				DD41A8DF2414BDC100F38991 /* SceneDelegate.swift */,
 				DD41A91A2414BE0E00F38991 /* SQLiteDatabase.swift */,
 				DD41A9142414BE0D00F38991 /* SQLiteOpenHelper.swift */,
 				DD41A8E32414BDC300F38991 /* Assets.xcassets */,
 				DD41A8E82414BDC300F38991 /* LaunchScreen.storyboard */,
+				DD560EF0242EE9680022411D /* Localizable.strings */,
 				DD41A8E52414BDC300F38991 /* Preview Content */,
 				DD41A90D2414BE0D00F38991 /* ui */,
-				DD560EF0242EE9680022411D /* Localizable.strings */,
 			);
 			path = PengChauFerry;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */,
 				DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */,
 				DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */,
+				DD6EEF1D2441549800ADD3E6 /* PreferencesTest.swift */,
 			);
 			path = PengChauFerryTests;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				DD41A9222414BE0E00F38991 /* FerryViewModel.swift in Sources */,
 				DD41A92E2414BE0E00F38991 /* FerryRepository.swift in Sources */,
 				DD41A92A2414BE0E00F38991 /* DummyFetcher.swift in Sources */,
+				DD6EEF1C24414D6900ADD3E6 /* Preferences.swift in Sources */,
 				DDBE86EB2415250300BA2C8E /* JsonData.swift in Sources */,
 				DD41A9202414BE0E00F38991 /* FerryRow.swift in Sources */,
 				DD41A9292414BE0E00F38991 /* LocalDateTime.swift in Sources */,
@@ -426,6 +433,7 @@
 				DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */,
 				DDB8A78224403F63000D77A8 /* LocalDateTimeTest.swift in Sources */,
 				DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */,
+				DD6EEF1E2441549800ADD3E6 /* PreferencesTest.swift in Sources */,
 				DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

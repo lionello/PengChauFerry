@@ -3,6 +3,7 @@ package com.lunesu.pengchauferry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -12,7 +13,7 @@ import org.junit.runner.RunWith
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class PreferencesTest {
     private val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
     @Test
@@ -21,6 +22,14 @@ class ExampleInstrumentedTest {
         assertEquals("com.lunesu.pengchauferry", appContext.packageName)
     }
 
+    @Test
+    fun testPreferences() {
+        Preferences(appContext).language = "en"
+        assertEquals("en", Preferences(appContext).language)
+
+        Preferences(appContext).language = null
+        assertNull(Preferences(appContext).language)
+    }
 
     /*@Test
     fun testClear() {

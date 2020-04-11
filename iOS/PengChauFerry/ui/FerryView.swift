@@ -14,13 +14,6 @@ struct FerryView: View {
     @ObservedObject var locationViewModel = LocationViewModel()
     @Environment(\.locale) var locale
 
-    private static let LANGUAGE_PREF = "language"
-
-    private static var languagePref: String? {
-        get { UserDefaults.standard.string(forKey: FerryView.LANGUAGE_PREF) }
-        set(value) { UserDefaults.standard.set(value, forKey: FerryView.LANGUAGE_PREF) }
-    }
-
     private var bundle: Bundle {
         let path = Bundle.main.path(forResource: languageCode, ofType: "lproj")!
         return Bundle(path: path) ?? Bundle.main
@@ -32,7 +25,7 @@ struct FerryView: View {
     @State private var walkingTime = 0
     @State private var selected: Ferry?
     @State private var shouldSwitchPier = true
-    @State private var languageCode: String? = FerryView.languagePref
+    @State private var languageCode: String? = Preferences().language
 
     static let WALKING_SPEED: Float = 0.018
 
@@ -83,7 +76,7 @@ struct FerryView: View {
                         Spacer()
                         Button(self.languageCode != "zh" ? "中" : "EN") {
                             let lang = (self.languageCode != "zh" ? "zh" : "en")
-                            FerryView.languagePref = lang
+                            Preferences().language = lang
                             self.languageCode = lang
                         }
                         .foregroundColor(.white)
