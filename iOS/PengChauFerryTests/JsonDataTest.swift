@@ -11,9 +11,8 @@ import XCTest
 
 class JsonDataTest: XCTestCase {
 
-    func testExample() {
-        let d = JsonData.load(from: Bundle(for: JsonDataTest.self))
-        XCTAssertNotNil(d)
+    func testLoad() {
+        XCTAssertNotNil(JsonData.load(from: Bundle(for: JsonDataTest.self)))
     }
 
 }

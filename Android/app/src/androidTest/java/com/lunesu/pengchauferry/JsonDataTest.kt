@@ -8,7 +8,7 @@ class JsonDataTest {
     private val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
     @Test
-    fun testExample() {
+    fun testLoad() {
         assertNotNull(JsonData.load(appContext))
     }
 }
