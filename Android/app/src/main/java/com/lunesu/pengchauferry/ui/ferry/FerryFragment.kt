@@ -136,7 +136,7 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         linearLayoutManager = LinearLayoutManager(view.context)
         recyclerView.layoutManager = linearLayoutManager
         spinnerFrom = view.findViewById(R.id.spinner_from)
-        val items = PIERS.map { Strings.localized(it, resources) }
+        val items = PIERS.map { resources.getString(Strings.PIERS_DUAL.getValue(it)) }
         ArrayAdapter(requireActivity(), R.layout.spinner_item_selected, R.id.text1, items).let {
 //            it.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
             spinnerFrom.adapter = it

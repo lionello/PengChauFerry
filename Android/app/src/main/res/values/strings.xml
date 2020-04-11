@@ -22,6 +22,15 @@
     <string name="ChiMaWan">Chi Ma Wan</string>
     <string name="HeiLingChau">Hei Ling Chau</string>
 
+    <string name="Central2" translatable="false">中環 Central</string>
+    <string name="PengChau2" translatable="false">坪洲 Peng Chau</string>
+    <string name="TrappistMonastery2" translatable="false">聖母神樂院 Trappist Monastery</string>
+    <string name="DiscoveryBay2" translatable="false">愉景灣稔樹灣 Discovery Bay</string>
+    <string name="MuiWo2" translatable="false">梅窩 Mui Wo</string>
+    <string name="CheungChau2" translatable="false">長洲 Cheung Chau</string>
+    <string name="ChiMaWan2" translatable="false">芝麻灣 Chi Ma Wan</string>
+    <string name="HeiLingChau2" translatable="false">喜靈洲 Hei Ling Chau</string>
+
     <string name="scheduled_time">Schedule</string>
     <string name="walking_time">Walking</string>
     <string name="ferry_time" translatable="false">%s - %s</string>

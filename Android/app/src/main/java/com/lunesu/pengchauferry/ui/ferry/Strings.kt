@@ -17,6 +17,17 @@ object Strings {
         FerryPier.HeiLingChau to R.string.HeiLingChau
     )
 
+    val PIERS_DUAL = mapOf(
+        FerryPier.Central to R.string.Central2,
+        FerryPier.PengChau to R.string.PengChau2,
+        FerryPier.TrappistMonastery to R.string.TrappistMonastery2,
+        FerryPier.DiscoveryBay to R.string.DiscoveryBay2,
+        FerryPier.MuiWo to R.string.MuiWo2,
+        FerryPier.CheungChau to R.string.CheungChau2,
+        FerryPier.ChiMaWan to R.string.ChiMaWan2,
+        FerryPier.HeiLingChau to R.string.HeiLingChau2
+    )
+
     val DAYS = mapOf(
         FerryDay.Monday to R.string.monday,
         FerryDay.Tuesday to R.string.tuesday,
