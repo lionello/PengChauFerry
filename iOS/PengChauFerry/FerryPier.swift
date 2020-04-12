@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum FerryPier: String, Codable {
+public enum FerryPier: String, Codable {
     case Central
     case PengChau
     case TrappistMonastery
@@ -50,7 +50,7 @@ enum FerryPier: String, Codable {
 }
 
 extension FerryPier: Identifiable {
-    var id: String {
+    public var id: String {
         get { self.rawValue }
     }
 }

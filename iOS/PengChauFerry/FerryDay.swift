@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct FerryDay: OptionSet, Codable {
-    let rawValue: UInt8
+public struct FerryDay: OptionSet, Codable {
+    public let rawValue: UInt8
+
+    public init(rawValue: UInt8) {
+        self.rawValue = rawValue
+    }
 
     static let Monday = FerryDay(rawValue: 1)
     static let Tuesday = FerryDay(rawValue: 2)
@@ -56,7 +60,7 @@ struct FerryDay: OptionSet, Codable {
 }
 
 extension FerryDay : Hashable {
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }
 }

@@ -10,8 +10,17 @@ import Foundation
 import Combine
 
 final class FerryViewModel: ObservableObject {
-    private let ferryRepository = FerryRepository()
-    private let holidayRepository = HolidayRepository()
+    private let ferryRepository : FerryRepository
+    private let holidayRepository : HolidayRepository
+
+    init(ferryRepository: FerryRepository, holidayRepository: HolidayRepository) {
+        self.ferryRepository = ferryRepository
+        self.holidayRepository = holidayRepository
+    }
+
+    convenience init() {
+        self.init(ferryRepository: FerryRepository(), holidayRepository: HolidayRepository())
+    }
 
     struct State {
         let ferries: Array<Ferry>
@@ -79,6 +88,16 @@ final class FerryViewModel: ObservableObject {
         if let it = state {
             updateState(from: it.from, dow: it.day, autoRefresh: true, filtered: false)
         }
+    }
+
+    func toggleHoliday() -> Bool {
+        let today = self.today
+        let isHoliday = getDay(date: today) == .Holiday
+        holidayRepository.setHoliday(day: today, isHoliday: !isHoliday)
+        if let it = state {
+            updateState(from: it.from, dow: getDay(date: today), autoRefresh: true, filtered: true)
+        }
+        return !isHoliday
     }
 
 }

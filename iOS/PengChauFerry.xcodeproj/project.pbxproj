@@ -13,7 +13,7 @@
 		DD41A8E42414BDC300F38991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41A8E32414BDC300F38991 /* Assets.xcassets */; };
 		DD41A8E72414BDC300F38991 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD41A8E62414BDC300F38991 /* Preview Assets.xcassets */; };
 		DD41A8EA2414BDC300F38991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD41A8E82414BDC300F38991 /* LaunchScreen.storyboard */; };
-		DD41A8F52414BDC300F38991 /* PengChauFerryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */; };
+		DD41A8F52414BDC300F38991 /* FerryViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8F42414BDC300F38991 /* FerryViewModelTest.swift */; };
 		DD41A9002414BDC300F38991 /* PengChauFerryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8FF2414BDC300F38991 /* PengChauFerryUITests.swift */; };
 		DD41A91F2414BE0E00F38991 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A90E2414BE0D00F38991 /* Strings.swift */; };
 		DD41A9202414BE0E00F38991 /* FerryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A90F2414BE0D00F38991 /* FerryRow.swift */; };
@@ -73,7 +73,7 @@
 		DD41A8E92414BDC300F38991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD41A8EB2414BDC300F38991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD41A8F02414BDC300F38991 /* PengChauFerryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PengChauFerryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengChauFerryTests.swift; sourceTree = "<group>"; };
+		DD41A8F42414BDC300F38991 /* FerryViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryViewModelTest.swift; sourceTree = "<group>"; };
 		DD41A8F62414BDC300F38991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD41A8FB2414BDC300F38991 /* PengChauFerryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PengChauFerryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD41A8FF2414BDC300F38991 /* PengChauFerryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PengChauFerryUITests.swift; sourceTree = "<group>"; };
@@ -203,9 +203,9 @@
 				DD41A8F62414BDC300F38991 /* Info.plist */,
 				DD41A93B2414C63B00F38991 /* FerryDayTest.swift */,
 				DD41A93E2414C75900F38991 /* FerryPierTest.swift */,
+				DD41A8F42414BDC300F38991 /* FerryViewModelTest.swift */,
 				DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */,
 				DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */,
-				DD41A8F42414BDC300F38991 /* PengChauFerryTests.swift */,
 				DD6EEF1D2441549800ADD3E6 /* PreferencesTest.swift */,
 			);
 			path = PengChauFerryTests;
@@ -429,7 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD41A8F52414BDC300F38991 /* PengChauFerryTests.swift in Sources */,
+				DD41A8F52414BDC300F38991 /* FerryViewModelTest.swift in Sources */,
 				DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */,
 				DDB8A78224403F63000D77A8 /* LocalDateTimeTest.swift in Sources */,
 				DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */,

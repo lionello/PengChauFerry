@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FerryRepository {
+open class FerryRepository {
     private let ferryDao = FerryDao()
 
     open func getFerries(from: FerryPier, dow: FerryDay) -> [Ferry] {

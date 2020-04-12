@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Ferry: Decodable {
+public struct Ferry: Decodable {
     let time: LocalTime
     let from: FerryPier
     let to: FerryPier
@@ -25,13 +25,13 @@ struct Ferry: Decodable {
 }
 
 extension Ferry: Identifiable {
-    var id : String {
+    public var id : String {
         get { "\(time.secs) \(from.rawValue) \(to.rawValue) \(days.rawValue)" } // fixme
     }
 }
 
 extension Ferry: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.time == rhs.time && lhs.from == rhs.from && lhs.to == rhs.to && lhs.days == rhs.days
     }
 }
