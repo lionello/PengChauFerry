@@ -32,7 +32,7 @@ final class FerryViewModel: ObservableObject {
     private(set) var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     private var _time: LocalDateTime {
-        get { LocalDateTime.now() }
+        LocalDateTime.now()
     }
 
     private func updateState(from: FerryPier, dow: FerryDay, autoRefresh: Bool, filtered: Bool) {
@@ -49,7 +49,7 @@ final class FerryViewModel: ObservableObject {
     }
 
     private var today: LocalDate {
-        get { _time.toLocalDate() }
+        _time.toLocalDate()
     }
 
     func getDay(date: LocalDate) -> FerryDay {

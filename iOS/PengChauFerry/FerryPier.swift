@@ -32,7 +32,7 @@ public enum FerryPier: String, Codable {
     ]
 
     var coordinate: Coordinate {
-        get { FerryPier.COORDS[self]! }
+        FerryPier.COORDS[self]!
     }
 
     static func findNearest(latitude: Double, longitude: Double, piers: [FerryPier] = ENUMS) -> FerryPier? {
@@ -50,7 +50,5 @@ public enum FerryPier: String, Codable {
 }
 
 extension FerryPier: Identifiable {
-    public var id: String {
-        get { self.rawValue }
-    }
+    public var id: String { self.rawValue }
 }

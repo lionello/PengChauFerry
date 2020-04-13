@@ -48,7 +48,7 @@ public struct FerryDay: OptionSet, Codable {
     }
 
     var count: Int {
-        get { rawValue.nonzeroBitCount }
+        rawValue.nonzeroBitCount
     }
 
     private static let STRINGS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Holiday"]
