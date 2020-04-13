@@ -11,16 +11,16 @@ import XCTest
 
 class FerryViewModelTest: XCTestCase {
 
-    class FR : FerryRepository {
+    class FR: FerryRepository {
         let ferry = Ferry(time: .MIDNIGHT, from: .Central, to: .PengChau, dur: 1, days: .MondayToSaturday, fare: "1.2", via: nil)
-        var ferries : [Ferry] = []
+        var ferries: [Ferry] = []
         override func getFerries(from: FerryPier, dow: FerryDay) -> [Ferry] {
             ferries.filter { $0.from == from && $0.days.contains(dow) }
         }
         override func refresh(completion: @escaping () -> Void) { ferries.append(Ferry.DUMMY); completion() }
     }
 
-    class HR : HolidayRepository {
+    class HR: HolidayRepository {
         var holidays = Set<LocalDate>()
         let newYear2020 = LocalDate.parse("2020-01-01")!
         override func getHoliday(day: LocalDate) -> Bool { holidays.contains(day) }

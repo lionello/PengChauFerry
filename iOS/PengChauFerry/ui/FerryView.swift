@@ -21,7 +21,7 @@ struct FerryView: View {
 
     @State private var showPicker = false
     @State private var loading = false
-    @State private var now : LocalTime = LocalTime.now()
+    @State private var now: LocalTime = LocalTime.now()
     @State private var walkingTime = 0
     @State private var selected: Ferry?
     @State private var shouldSwitchPier = true
@@ -67,7 +67,7 @@ struct FerryView: View {
         )
 
         return ZStack {
-            VStack(spacing:0) {
+            VStack(spacing: 0) {
                 VStack(alignment: .leading) {
                     HStack {
                         Text(self.title)
@@ -111,7 +111,7 @@ struct FerryView: View {
                     .background(Color("colorPrimary"))
                     .clipped()
                     .shadow(color: .black, radius: 10, x: 0, y: 1)
-                List{
+                List {
                     // Per item listRowBackground only works with ForEach
                     ForEach(viewModel.state?.ferries ?? []) { ferry in
                         FerryRow(ferry: ferry, mins: LocalTime.minutesBetween(self.now, ferry.time), selected: ferry == self.selected)
@@ -140,7 +140,7 @@ struct FerryView: View {
 
                 self.updateSelected(ferries: state?.ferries)
             }
-            .onReceive(locationViewModel.$location) { 
+            .onReceive(locationViewModel.$location) {
                 guard let it = $0 else { return }
                 if let from = self.viewModel.state?.from {
                     self.updateWalkingTime(from: it, to: from)

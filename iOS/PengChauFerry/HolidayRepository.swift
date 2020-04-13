@@ -17,7 +17,7 @@ open class HolidayRepository {
     }
 
     open func setHoliday(day: LocalDate, isHoliday: Bool) {
-        if (isHoliday) {
+        if isHoliday {
             holidayDao.insert(date: day)
         } else {
             holidayDao.delete(date: day)
@@ -29,7 +29,7 @@ open class HolidayRepository {
     }
 
     open func refresh(completion: () -> Void) {
-        HongKongHolidayFetcher.fetch() { holidays, _ in
+        HongKongHolidayFetcher.fetch { holidays, _ in
             if holidays.count >= 15 {
                 holidayDao.save(holidays: holidays + [BUDDHA])
             }
@@ -37,5 +37,4 @@ open class HolidayRepository {
         }
     }
 
-    
 }

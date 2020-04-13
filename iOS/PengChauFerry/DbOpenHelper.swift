@@ -9,8 +9,7 @@
 import Foundation
 import SQLite3
 
-
-class DBOpenHelper : SQLiteOpenHelper {
+class DBOpenHelper: SQLiteOpenHelper {
     init() {
         super.init(name: "ferry", version: DBOpenHelper.DATABASE_VERSION)
     }

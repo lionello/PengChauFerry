@@ -9,22 +9,22 @@
 import Foundation
 import SQLite3
 
-enum SQLException : Error {
+enum SQLException: Error {
     case error(Int32)
     case string(String)
 }
 
 class SQLiteDatabase {
-    fileprivate let name : String
+    fileprivate let name: String
 
-    fileprivate var dbPointer: OpaquePointer? = nil
+    fileprivate var dbPointer: OpaquePointer?
     fileprivate var _isReadOnly: Bool = false
 
-    public var isReadOnly : Bool {
+    public var isReadOnly: Bool {
         get { return self._isReadOnly }
     }
 
-    public var isOpen : Bool {
+    public var isOpen: Bool {
         get { return self.dbPointer != nil }
     }
 
@@ -86,11 +86,11 @@ class SQLiteDatabase {
         try Test(sqlite3_exec(dbPointer!, sql, nil, nil, nil))
     }
 
-    fileprivate var markedSuccessful : Bool?
+    fileprivate var markedSuccessful: Bool?
 
     fileprivate func throwIfNoTransaction() throws {
         if markedSuccessful == nil {
-            throw SQLException.string("Cannot perform this operation because there is no current transaction.");
+            throw SQLException.string("Cannot perform this operation because there is no current transaction.")
         }
     }
 
@@ -129,7 +129,7 @@ class SQLiteDatabase {
 //    }
 
     func executeForLong(_ queryStatementString: String) throws -> Int64 {
-        var queryStatement: OpaquePointer? = nil
+        var queryStatement: OpaquePointer?
 
         try Test(sqlite3_prepare_v2(dbPointer, queryStatementString, -1, &queryStatement, nil))
         defer {
@@ -151,7 +151,7 @@ class SQLiteDatabase {
         return -1
     }
 
-    public enum Conflict : Int {
+    public enum Conflict: Int {
         case None = 0
         case Rollback = 1
         case Abort = 2
@@ -160,7 +160,7 @@ class SQLiteDatabase {
         case Replace = 5
     }
 
-    public func insert(_ table: String, _ nullColumnHack: String?, values: [String:Any]) -> Int {
+    public func insert(_ table: String, _ nullColumnHack: String?, values: [String: Any]) -> Int {
         do {
             return try insertWithOnConflict(table, nullColumnHack, initialValues: values, conflict: .None)
         } catch {
@@ -169,7 +169,7 @@ class SQLiteDatabase {
         }
     }
 
-    public func insertOrThrow(_ table: String, _ nullColumnHack: String?, initialValues: [String:Any]) throws -> Int {
+    public func insertOrThrow(_ table: String, _ nullColumnHack: String?, initialValues: [String: Any]) throws -> Int {
         return try insertWithOnConflict(table, nullColumnHack, initialValues: initialValues, conflict: .None)
     }
 
@@ -188,10 +188,9 @@ class SQLiteDatabase {
         "", " OR ROLLBACK ", " OR ABORT ", " OR FAIL ", " OR IGNORE ", " OR REPLACE "
     ]
 
-
-    public func insertWithOnConflict(_ table: String, _ nullColumnHack: String?, initialValues: [String:Any], conflict: Conflict) throws -> Int {
+    public func insertWithOnConflict(_ table: String, _ nullColumnHack: String?, initialValues: [String: Any], conflict: Conflict) throws -> Int {
         let conflict_value = SQLiteDatabase.CONFLICT_VALUES[conflict.rawValue]
-        let sql : String
+        let sql: String
         if initialValues.count > 0 {
             let columns = initialValues.keys.joined(separator: ",")
             // TODO: use bound args
@@ -200,7 +199,7 @@ class SQLiteDatabase {
         } else {
             sql = "INSERT \(conflict_value) INTO \(table) (\(nullColumnHack!)) VALUES(NULL)"
         }
-        return try Int(executeForLastInsertedRowId(sql));
+        return try Int(executeForLastInsertedRowId(sql))
     }
 
     func executeForLastInsertedRowId(_ sql: String) throws -> Int64 {
@@ -208,4 +207,3 @@ class SQLiteDatabase {
         return try executeForLong("SELECT last_insert_rowid()")
     }
 }
-

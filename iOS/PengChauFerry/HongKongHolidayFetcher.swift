@@ -12,9 +12,9 @@ class HongKongHolidayFetcher {
     static let YEAR = 2020
     private static let url = "https://www.gov.hk/en/about/abouthk/holiday/\(YEAR).htm"
 
-    static func fetch(completion: (Array<LocalDate>,Error?) -> Void) {
+    static func fetch(completion: ([LocalDate], Error?) -> Void) {
         if let data = JsonData.load(from: Bundle.main) {
-            let dates = data.holidays.map{ LocalDate.parse($0)! }
+            let dates = data.holidays.map { LocalDate.parse($0)! }
             completion(dates, nil)
         } else {
             completion([], ApiError.NoData)

@@ -9,7 +9,7 @@
 import Foundation
 
 class SQLiteOpenHelper {
-    private var database: SQLiteDatabase? = nil
+    private var database: SQLiteDatabase?
 
     private let name: String
     private let newVersion: Int
@@ -28,7 +28,7 @@ class SQLiteOpenHelper {
     }
 
     func close() throws {
-        if (self.database?.isOpen == true) {
+        if self.database?.isOpen == true {
             try self.database!.close()
             self.database = nil
         }
@@ -46,27 +46,27 @@ class SQLiteOpenHelper {
         // nop; override
     }
 
-    public var writableDatabase : SQLiteDatabase {
+    public var writableDatabase: SQLiteDatabase {
         get { return try! getDatabaseLocked(writable: true) }
     }
 
-    public var readableDatabase : SQLiteDatabase {
+    public var readableDatabase: SQLiteDatabase {
         get { return try! getDatabaseLocked(writable: false) }
     }
 
     private func getDatabaseLocked(writable: Bool) throws -> SQLiteDatabase {
-        if (self.database != nil) {
-            if (!self.database!.isOpen) {
+        if self.database != nil {
+            if !self.database!.isOpen {
                 self.database = nil
-            } else if (!writable || !self.database!.isReadOnly) {
+            } else if !writable || !self.database!.isReadOnly {
                 return self.database!
             }
         }
 
-        let db : SQLiteDatabase
-        if (self.database != nil) {
+        let db: SQLiteDatabase
+        if self.database != nil {
             db = self.database!
-            if (writable && db.isReadOnly) {
+            if writable && db.isReadOnly {
                 try db.reopenReadWrite()
             }
         } else {
@@ -75,25 +75,25 @@ class SQLiteOpenHelper {
         }
 
         let version = try db.getVersion()
-        if (version != self.newVersion) {
-            if (db.isReadOnly) {
+        if version != self.newVersion {
+            if db.isReadOnly {
                 throw SQLException.string("Can't upgrade read-only database from version \(version) to \(newVersion): \(name)")
             }
 
-            if (version > 0 && version < minimumSupportedVersion) {
+            if version > 0 && version < minimumSupportedVersion {
                 try db.close()
-                if (try SQLiteDatabase.deleteDatabase(path: self.name)) {
+                if try SQLiteDatabase.deleteDatabase(path: self.name) {
                     return try getDatabaseLocked(writable: writable)
                 }
             } else {
-                try db.beginTransaction();
+                try db.beginTransaction()
                 defer {
                     try? db.endTransaction()
                 }
-                if (version == 0) {
+                if version == 0 {
                     try onCreate(db)
                 } else {
-                    if (version > newVersion) {
+                    if version > newVersion {
                         try onDowngrade(db, version, newVersion)
                     } else {
                         try onUpgrade(db, version, newVersion)

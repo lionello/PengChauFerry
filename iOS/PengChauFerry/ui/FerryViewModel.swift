@@ -10,8 +10,8 @@ import Foundation
 import Combine
 
 final class FerryViewModel: ObservableObject {
-    private let ferryRepository : FerryRepository
-    private let holidayRepository : HolidayRepository
+    private let ferryRepository: FerryRepository
+    private let holidayRepository: HolidayRepository
 
     init(ferryRepository: FerryRepository, holidayRepository: HolidayRepository) {
         self.ferryRepository = ferryRepository
@@ -23,7 +23,7 @@ final class FerryViewModel: ObservableObject {
     }
 
     struct State {
-        let ferries: Array<Ferry>
+        let ferries: [Ferry]
         let from: FerryPier
         let day: FerryDay
     }
@@ -37,7 +37,7 @@ final class FerryViewModel: ObservableObject {
 
     private func updateState(from: FerryPier, dow: FerryDay, autoRefresh: Bool, filtered: Bool) {
         var ferries = ferryRepository.getFerries(from: from, dow: dow)
-        if (autoRefresh && (ferries.isEmpty || holidayRepository.shouldRefresh())) {
+        if autoRefresh && (ferries.isEmpty || holidayRepository.shouldRefresh()) {
             refreshAndUpdate(from: from)
         } else {
             if filtered {

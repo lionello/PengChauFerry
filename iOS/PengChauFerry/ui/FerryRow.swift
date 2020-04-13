@@ -41,7 +41,7 @@ struct FerryRow: View {
         return df
     }()
 
-    static let COLORS: [FerryPier:Color] = [
+    static let COLORS: [FerryPier: Color] = [
         .Central: Color("colorHKKF"),
         .TrappistMonastery: Color("colorKaito"),
         .DiscoveryBay: Color("colorKaito"),
@@ -92,5 +92,3 @@ struct FerryRow_Previews: PreviewProvider {
         .previewLayout(.fixed(width: 300, height: 70))
     }
 }
-
-

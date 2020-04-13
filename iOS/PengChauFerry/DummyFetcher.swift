@@ -14,7 +14,7 @@ enum ApiError: Error {
 
 class DummyFetcher {
 
-    static func fetch(completion: (Array<Ferry>,Error?) -> Void) {
+    static func fetch(completion: ([Ferry], Error?) -> Void) {
         if let data = JsonData.load(from: Bundle.main) {
             completion(data.ferries, nil)
         } else {

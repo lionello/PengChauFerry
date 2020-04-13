@@ -36,4 +36,3 @@ extension Coordinate {
         return Coordinate.haversine(lat1: lat, lon1: long, lat2: latitude, lon2: longitude)
     }
 }
-

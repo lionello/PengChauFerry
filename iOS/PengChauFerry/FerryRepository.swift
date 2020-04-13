@@ -17,7 +17,7 @@ open class FerryRepository {
 
     open func refresh(completion: @escaping () -> Void) {
         let group = DispatchGroup()
-        
+
         group.enter()
         DummyFetcher.fetch { ferries, _ in
             if ferries.count > 80 {
@@ -47,6 +47,5 @@ open class FerryRepository {
             completion()
         }
     }
-
 
 }

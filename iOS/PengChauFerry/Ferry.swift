@@ -17,7 +17,7 @@ public struct Ferry: Decodable {
     let fare: String
     let via: FerryPier?
 
-    var endTime : LocalTime {
+    var endTime: LocalTime {
         get { time.plus(minutes: dur) }
     }
 
@@ -25,7 +25,7 @@ public struct Ferry: Decodable {
 }
 
 extension Ferry: Identifiable {
-    public var id : String {
+    public var id: String {
         get { "\(time.secs) \(from.rawValue) \(to.rawValue) \(days.rawValue)" } // fixme
     }
 }

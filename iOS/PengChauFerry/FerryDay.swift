@@ -59,7 +59,7 @@ public struct FerryDay: OptionSet, Codable {
     }
 }
 
-extension FerryDay : Hashable {
+extension FerryDay: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }

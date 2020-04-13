@@ -27,7 +27,7 @@ class HolidayDao {
         return set.contains(day)
     }
 
-    func save(holidays: Array<LocalDate>) {
+    func save(holidays: [LocalDate]) {
         holidays.forEach {
             insert(date: $0)
         }

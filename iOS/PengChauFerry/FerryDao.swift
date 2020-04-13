@@ -9,13 +9,13 @@
 import Foundation
 
 class FerryDao {
-    var map: [FerryPier:[Ferry]] = [:]
+    var map: [FerryPier: [Ferry]] = [:]
 
     private func query(from: FerryPier) -> [Ferry] {
         map[from] ?? []
     }
 
-    func save(result: Array<Ferry>, piers: FerryPier...) {
+    func save(result: [Ferry], piers: FerryPier...) {
 //        db.writableDatabase.beginTransaction()
 //        try {
         delete(piers: piers)
@@ -30,7 +30,7 @@ class FerryDao {
 
     private func delete(piers: [FerryPier]) {
         piers.forEach { from in
-            map[from] = query(from: from).filter{ !piers.contains($0.to) }
+            map[from] = query(from: from).filter { !piers.contains($0.to) }
         }
     }
 
@@ -63,10 +63,10 @@ class FerryDao {
 //        )
     }
 
-    func query(from: FerryPier, dow: FerryDay) -> Array<Ferry> {
+    func query(from: FerryPier, dow: FerryDay) -> [Ferry] {
         return query(from: from)
-            .filter{ $0.days.contains(dow) }
-            .sorted{ $0.time < $1.time }
+            .filter { $0.days.contains(dow) }
+            .sorted { $0.time < $1.time }
     }
 
 }

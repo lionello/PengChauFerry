@@ -20,7 +20,7 @@ public enum FerryPier: String, Codable {
 
     static let ENUMS = [Central, PengChau, TrappistMonastery, DiscoveryBay, MuiWo, CheungChau, ChiMaWan, HeiLingChau]
 
-    static let COORDS: [FerryPier:Coordinate] = [
+    static let COORDS: [FerryPier: Coordinate] = [
         .Central: Coordinate(latitude: 22.2871, longitude: 114.1602),
         .PengChau: Coordinate(latitude: 22.2846, longitude: 114.0379),
         .TrappistMonastery: Coordinate(latitude: 22.2819, longitude: 114.0225),
