@@ -50,5 +50,4 @@ class HolidayRepositoryTest {
         repo.setHoliday(newYear2020, false)
         assertFalse(repo.getHoliday(newYear2020))
     }
-
 }

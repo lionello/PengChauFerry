@@ -37,5 +37,4 @@ class HolidayDao(private val db: DbOpenHelper) {
         val day = date.toString()
         db.writableDatabase.delete(DbOpenHelper.HOLIDAYS, "date=?", arrayOf(day))
     }
-
 }

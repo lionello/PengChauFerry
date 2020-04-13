@@ -12,14 +12,14 @@ object Utils {
     val isEmulator = Build.FINGERPRINT?.contains("generic") != false
 
     @Throws(RuntimeException::class)
-    fun <T>atLeast(list: List<T>, size: Int): List<T> {
+    fun <T> atLeast(list: List<T>, size: Int): List<T> {
         if (list.size < size) throw RuntimeException("Expected $size entries but got ${list.size}")
         return list
     }
 
-    suspend fun <T>retry(max: Int, millis: Long, f: suspend () -> T): T {
+    suspend fun <T> retry(max: Int, millis: Long, f: suspend () -> T): T {
         var retries = 1
-        while(true) {
+        while (true) {
             try {
                 return f()
             } catch (e: Exception) {
@@ -33,5 +33,4 @@ object Utils {
     suspend fun retryJsoupGet(url: String): Document {
         return retry(2, 1000L) { Jsoup.connect(url).timeout(5000).get() }
     }
-
 }

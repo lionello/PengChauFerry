@@ -2,24 +2,22 @@ package com.lunesu.pengchauferry.ui.ferry
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.pm.PackageManager
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class LocationViewModel(application: Application): AndroidViewModel(application), LocationListener {
+class LocationViewModel(application: Application) : AndroidViewModel(application), LocationListener {
 
     private val locationManager = getSystemService(application, LocationManager::class.java)
     private val _location = MutableLiveData<Location>()
 
-    val location : LiveData<Location> get() = _location
+    val location: LiveData<Location> get() = _location
 
     init {
         refresh()
@@ -34,7 +32,7 @@ class LocationViewModel(application: Application): AndroidViewModel(application)
         locationManager?.removeUpdates(this)
     }
 
-    private val _accuracy : Float get() = _location.value?.accuracy ?: Float.MAX_VALUE
+    private val _accuracy: Float get() = _location.value?.accuracy ?: Float.MAX_VALUE
 
     @SuppressLint("MissingPermission")
     fun refresh() {

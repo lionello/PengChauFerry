@@ -76,7 +76,11 @@ class FerryActivity : AppCompatActivity() {
         })
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         if (requestCode == MY_PERMISSION_REQUEST_CODE) {
             if (grantResults.contains(PackageManager.PERMISSION_GRANTED)) {
                 locationViewModel.refresh()
@@ -165,5 +169,4 @@ class FerryActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

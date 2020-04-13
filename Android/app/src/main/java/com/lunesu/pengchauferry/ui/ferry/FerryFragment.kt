@@ -16,11 +16,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.lunesu.pengchauferry.Ferry
 import com.lunesu.pengchauferry.FerryPier
 import com.lunesu.pengchauferry.R
+import kotlin.math.ceil
 import org.joda.time.LocalTime
 import org.joda.time.Minutes
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
-import kotlin.math.ceil
 
 class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -37,8 +37,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
     }
 
-    private val viewModel by viewModels<FerryViewModel>({requireActivity()})
-    private val locationViewModel by viewModels<LocationViewModel>({requireActivity()})
+    private val viewModel by viewModels<FerryViewModel>({ requireActivity() })
+    private val locationViewModel by viewModels<LocationViewModel>({ requireActivity() })
     private var adapter: FerryRecyclerViewAdapter? = null
     private var walkingTime = 0
 
@@ -48,7 +48,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.ferry_fragment, container, false)
@@ -83,7 +84,6 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //                val itemHeightPx = 150
 //                linearLayoutManager.scrollToPositionWithOffset(pos, itemHeightPx)
             }
-
         })
 
         viewModel.time.observe(viewLifecycleOwner, Observer {
@@ -223,5 +223,4 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         viewModel.switchPier(PIERS[position])
     }
-
 }

@@ -24,10 +24,9 @@ class FerryRepositoryTest {
     }
 
     @Test
-    fun testRefresh() = runBlocking{
+    fun testRefresh() = runBlocking {
         val repo = FerryRepository(db)
         repo.refresh()
         assertNotEquals(0, repo.getFerries(FerryPier.PengChau, FerryDay.Monday).size)
     }
-
 }

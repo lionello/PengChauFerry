@@ -30,5 +30,4 @@ enum class FerryPier {
             return piers.minBy { it.coordinate.distance(latitude, longitude) }
         }
     }
-
 }

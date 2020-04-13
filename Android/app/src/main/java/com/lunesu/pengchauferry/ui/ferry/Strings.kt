@@ -39,9 +39,9 @@ object Strings {
         FerryDay.Holiday to R.string.holiday
     )
 
-    fun localized(pier: FerryPier, resources: Resources) : String =
+    fun localized(pier: FerryPier, resources: Resources): String =
         resources.getString(PIERS.getValue(pier))
 
-    fun localized(day: FerryDay, resources: Resources) : String =
+    fun localized(day: FerryDay, resources: Resources): String =
         resources.getString(DAYS.getValue(day))
 }

@@ -56,8 +56,7 @@ object PengChauToCentralFetcher {
                         )
                     )
                 }
-            }//.flatten()
+            } // .flatten()
         ferryTimes
     }
-
 }

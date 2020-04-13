@@ -13,5 +13,4 @@ class Preferences(context: Context) {
     var language: String?
         get() = shared.getString(LANGUAGE_PREF, null)
         set(value) = shared.edit().putString(LANGUAGE_PREF, value).apply()
-
 }

@@ -56,5 +56,4 @@ open class FerryRepository(db: DbOpenHelper) {
         )
         Unit
     }
-
 }

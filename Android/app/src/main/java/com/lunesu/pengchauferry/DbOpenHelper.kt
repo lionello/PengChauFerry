@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DbOpenHelper(context: Context?): SQLiteOpenHelper(context, if (context == null) null else DB_NAME, null, DB_VERSION) {
+class DbOpenHelper(context: Context?) : SQLiteOpenHelper(context, if (context == null) null else DB_NAME, null, DB_VERSION) {
 
     companion object {
         const val TIMES = "times"
@@ -44,5 +44,4 @@ class DbOpenHelper(context: Context?): SQLiteOpenHelper(context, if (context == 
             9 -> db?.execSQL("ALTER TABLE $TIMES ADD COLUMN via TEXT;")
         }
     }
-
 }

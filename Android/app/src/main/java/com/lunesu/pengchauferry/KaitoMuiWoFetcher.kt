@@ -1,12 +1,12 @@
 package com.lunesu.pengchauferry
 
+import java.lang.IllegalArgumentException
+import java.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.joda.time.Duration
 import org.joda.time.LocalTime
 import org.joda.time.format.DateTimeFormatterBuilder
-import java.lang.IllegalArgumentException
-import java.util.*
 
 object KaitoMuiWoFetcher {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/service_details/"
@@ -55,5 +55,4 @@ object KaitoMuiWoFetcher {
             }
         ferryTimes
     }
-
 }

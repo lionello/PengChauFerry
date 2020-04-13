@@ -22,7 +22,7 @@ class FerryDao(private val db: DbOpenHelper) {
     }
 
     fun delete(vararg piers: FerryPier) {
-        val parameters = piers.mapIndexed { i, _ -> i+1 }.joinToString { "?$it" }
+        val parameters = piers.mapIndexed { i, _ -> i + 1 }.joinToString { "?$it" }
         val whereArgs = piers.map { it.name }.toTypedArray()
         db.writableDatabase.delete(
             DbOpenHelper.TIMES,
@@ -78,5 +78,4 @@ class FerryDao(private val db: DbOpenHelper) {
             list
         }
     }
-
 }

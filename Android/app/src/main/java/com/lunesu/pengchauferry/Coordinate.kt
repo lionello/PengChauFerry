@@ -29,5 +29,4 @@ data class Coordinate(val latitude: Double, val longitude: Double) {
 //        }
         return haversine(lat, long, latitude, longitude)
     }
-
 }

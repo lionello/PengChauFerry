@@ -14,7 +14,11 @@ import kotlinx.coroutines.launch
 import org.joda.time.LocalDate
 import org.joda.time.LocalDateTime
 
-class FerryViewModel(application: Application, private val ferryRepository: FerryRepository, private val holidayRepository: HolidayRepository) : AndroidViewModel(application) {
+class FerryViewModel(
+    application: Application,
+    private val ferryRepository: FerryRepository,
+    private val holidayRepository: HolidayRepository
+) : AndroidViewModel(application) {
 
     private var db: DbOpenHelper? = null
 
@@ -38,7 +42,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
                 LocalDateTime.now()
     }
 
-    private val countDownTimer = object: CountDownTimer(Long.MAX_VALUE, 1000) {
+    private val countDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             _time.value = now()
         }
@@ -51,8 +55,8 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
     private val _state = MutableLiveData<State>() // TODO: could be lazyMap
     private val _time = MutableLiveData(now())
 
-    val state : LiveData<State> get() = _state
-    val time : LiveData<LocalDateTime> get() = _time
+    val state: LiveData<State> get() = _state
+    val time: LiveData<LocalDateTime> get() = _time
 
     private fun updateState(from: FerryPier, dow: FerryDay, autoRefresh: Boolean, filtered: Boolean) {
         var ferries = ferryRepository.getFerries(from, dow)
@@ -71,7 +75,7 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
         }
     }
 
-    private val today : LocalDate get() = _time.value!!.toLocalDate()
+    private val today: LocalDate get() = _time.value!!.toLocalDate()
 
     fun getDay(date: LocalDate) =
         if (holidayRepository.getHoliday(date)) FerryDay.Holiday else FerryDay.fromDate(date)
@@ -119,5 +123,4 @@ class FerryViewModel(application: Application, private val ferryRepository: Ferr
             updateState(it.from, it.day, true, false)
         }
     }
-
 }

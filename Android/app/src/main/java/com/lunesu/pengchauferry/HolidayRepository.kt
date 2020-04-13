@@ -30,5 +30,4 @@ open class HolidayRepository(db: DbOpenHelper) {
             holidayDao.save(Utils.atLeast(HongKongHolidayFetcher.fetch(), 15) + BUDDHA)
         }
     }
-
 }

@@ -44,5 +44,4 @@ class UtilsTest {
     fun testRetryJsoupGetFail() = runBlockingTest {
         Utils.retryJsoupGet("asf")
     }
-
 }
