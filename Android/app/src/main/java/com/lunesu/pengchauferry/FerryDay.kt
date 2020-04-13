@@ -28,7 +28,7 @@ enum class FerryDay(val flag: Int) {
             EnumSet.copyOf(ENUMS.mapNotNull { if ((int and it.flag) != 0) it else null })
 
         fun daysToInt(days: FerryDays) = days.sumBy { it.flag }
-   }
+    }
 }
 
 typealias FerryDays = EnumSet<FerryDay>
