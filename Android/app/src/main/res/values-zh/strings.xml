@@ -11,7 +11,7 @@
     <string name="sunday">星期日</string>
     <string name="holiday">假日</string>
     <string name="wrong_location">您好像在%s</string>
-    <string name="nextTime">有%d分鐘</string>
+    <string name="nextTime">仲有%d分鐘</string>
 
     <string name="Central">中環</string>
     <string name="PengChau">坪洲</string>

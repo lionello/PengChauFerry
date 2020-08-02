@@ -5,7 +5,7 @@
   Created by Lionello Lunesu on 28/3/2020.
   Copyright © 2020 Lionello Lunesu. All rights reserved.
 */
-"in %lld mins" = "有%lld分鐘";
+"in %lld mins" = "仲有%lld分鐘";
 "起點 DEPART FROM" = "起點";
 "~%lld mins" = "~%lld分鐘";
 "to %@ via %@" = "往%@ 經%@";
