@@ -69,4 +69,10 @@ class FerryDao {
             .sorted { $0.time < $1.time }
     }
 
+    func get(from: FerryPier, to: FerryPier, dow: FerryDay, time: LocalTime) -> Ferry? {
+        return query(from: from).first {
+            $0.to == to && $0.time == time && $0.days.contains(dow)
+        }
+    }
+
 }

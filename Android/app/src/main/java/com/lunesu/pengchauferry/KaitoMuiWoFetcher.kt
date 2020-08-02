@@ -11,6 +11,7 @@ import org.joda.time.format.DateTimeFormatterBuilder
 object KaitoMuiWoFetcher {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/service_details/"
 
+    // TODO: fetch prices from web page as well
     private const val fareSat = "12.0"
     private const val fareSun = "15.0"
     private val duration = Duration.standardMinutes(20)

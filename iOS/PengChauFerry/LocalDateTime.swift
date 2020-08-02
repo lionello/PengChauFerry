@@ -112,7 +112,7 @@ extension TimeZone {
     static let UTC = TimeZone(secondsFromGMT: 0)!
 }
 
-typealias LocalDateTime = Date
+public typealias LocalDateTime = Date
 
 extension LocalDateTime {
     static func now() -> LocalDateTime { LocalDateTime() }

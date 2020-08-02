@@ -23,7 +23,7 @@ open class FerryRepository {
         let group = DispatchGroup()
 
         group.enter()
-        DummyFetcher.fetch { ferries, _ in
+        JsonFetcher.fetch { ferries, _ in
             if ferries.count > 80 {
                 ferryDao.save(result: ferries, piers: .Central, .PengChau, .HeiLingChau, .DiscoveryBay, .TrappistMonastery, .MuiWo, .CheungChau, .ChiMaWan)
             }

@@ -5,6 +5,8 @@ import org.joda.time.Duration
 import org.joda.time.LocalTime
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -59,5 +61,16 @@ class FerryDaoTest {
         val dao = FerryDao(db)
         dao.save(listOf(ferry), ferry.from, ferry.to)
         assertEquals(listOf(ferry), dao.query(FerryPier.MuiWo, FerryDay.Monday))
+    }
+
+    @Test
+    fun testGet() {
+        val dao = FerryDao(db)
+        dao.insert(ferry)
+        assertEquals(ferry, dao.get(ferry.from, ferry.to, FerryDay.Monday, LocalTime.MIDNIGHT))
+        assertNull(dao.get(ferry.from, ferry.to, FerryDay.Sunday, LocalTime.MIDNIGHT))
+        assertNull(dao.get(ferry.from, ferry.from, FerryDay.Monday, LocalTime.MIDNIGHT))
+        assertNull(dao.get(ferry.from, ferry.from, FerryDay.Monday, LocalTime(11,11)))
+        assertNull(dao.get(ferry.to, ferry.to, FerryDay.Monday, LocalTime.MIDNIGHT))
     }
 }

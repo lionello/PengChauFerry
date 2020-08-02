@@ -10,7 +10,8 @@ import org.joda.time.format.DateTimeFormatterBuilder
 object KaitoFetcher {
     private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/kaito_services_map/service_details/index.html"
 
-    private const val fare = "6.5"
+    // TODO: fetch prices from web page as well (although currently it has the wrong price)
+    private const val fare = "7.5"
     private val durationSlow = Duration.standardMinutes(20)
     private val durationFast = Duration.standardMinutes(10)
     private val saturday = EnumSet.of(FerryDay.Saturday)
@@ -18,6 +19,8 @@ object KaitoFetcher {
 
     suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
         val document = Utils.retryJsoupGet(url)
+
+        // Price xpath: *[@id="content"]/table[31]/tbody/tr[2]/td[2]/p/text()[1]
 
         val ferryTimes = mutableListOf<Ferry>()
         document

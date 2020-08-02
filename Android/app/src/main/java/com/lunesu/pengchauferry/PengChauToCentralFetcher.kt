@@ -8,6 +8,7 @@ import org.joda.time.LocalTime
 object PengChauToCentralFetcher {
     private const val url = "http://hkkf.com.hk/index.php?op=timetable&page=pengchau&style=en"
 
+    // TODO: fetch prices from web page as well
     private const val fareSlowWD = "15.9"
     private const val fareSlowPH = "22.8"
     private const val fareFastWD = "29.6"

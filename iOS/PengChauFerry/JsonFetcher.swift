@@ -1,5 +1,5 @@
 //
-//  DummyFetcher.swift
+//  JsonFetcher.swift
 //  PengChauFerry
 //
 //  Created by Lionello Lunesu on 7/3/2020.
@@ -12,7 +12,7 @@ enum ApiError: Error {
     case NoData
 }
 
-class DummyFetcher {
+class JsonFetcher {
 
     static func fetch(completion: ([Ferry], ApiError?) -> Void) {
         if let data = JsonData.load(from: Bundle.main) {

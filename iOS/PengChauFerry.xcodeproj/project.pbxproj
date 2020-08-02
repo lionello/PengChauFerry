@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD22AC0124D683E500B525E7 /* FerryDaoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD22AC0024D683E500B525E7 /* FerryDaoTest.swift */; };
 		DD358B0F241CCA31003C8A42 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */; };
 		DD41A8DE2414BDC100F38991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8DD2414BDC100F38991 /* AppDelegate.swift */; };
 		DD41A8E02414BDC100F38991 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8DF2414BDC100F38991 /* SceneDelegate.swift */; };
@@ -26,7 +27,7 @@
 		DD41A9272414BE0E00F38991 /* HongKongHolidayFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */; };
 		DD41A9282414BE0E00F38991 /* HolidayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9172414BE0D00F38991 /* HolidayRepository.swift */; };
 		DD41A9292414BE0E00F38991 /* LocalDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9182414BE0D00F38991 /* LocalDateTime.swift */; };
-		DD41A92A2414BE0E00F38991 /* DummyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9192414BE0D00F38991 /* DummyFetcher.swift */; };
+		DD41A92A2414BE0E00F38991 /* JsonFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A9192414BE0D00F38991 /* JsonFetcher.swift */; };
 		DD41A92B2414BE0E00F38991 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91A2414BE0E00F38991 /* SQLiteDatabase.swift */; };
 		DD41A92C2414BE0E00F38991 /* FerryPier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91B2414BE0E00F38991 /* FerryPier.swift */; };
 		DD41A92D2414BE0E00F38991 /* HolidayDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A91C2414BE0E00F38991 /* HolidayDao.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD22AC0024D683E500B525E7 /* FerryDaoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryDaoTest.swift; sourceTree = "<group>"; };
 		DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		DD41A8DA2414BDC100F38991 /* PengChauFerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PengChauFerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD41A8DD2414BDC100F38991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +91,7 @@
 		DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HongKongHolidayFetcher.swift; sourceTree = "<group>"; };
 		DD41A9172414BE0D00F38991 /* HolidayRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolidayRepository.swift; sourceTree = "<group>"; };
 		DD41A9182414BE0D00F38991 /* LocalDateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDateTime.swift; sourceTree = "<group>"; };
-		DD41A9192414BE0D00F38991 /* DummyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyFetcher.swift; sourceTree = "<group>"; };
+		DD41A9192414BE0D00F38991 /* JsonFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonFetcher.swift; sourceTree = "<group>"; };
 		DD41A91A2414BE0E00F38991 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		DD41A91B2414BE0E00F38991 /* FerryPier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FerryPier.swift; sourceTree = "<group>"; };
 		DD41A91C2414BE0E00F38991 /* HolidayDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolidayDao.swift; sourceTree = "<group>"; };
@@ -165,7 +167,6 @@
 				DD41A8DD2414BDC100F38991 /* AppDelegate.swift */,
 				DD41A9392414C16200F38991 /* Coordinate.swift */,
 				DD41A9152414BE0D00F38991 /* DbOpenHelper.swift */,
-				DD41A9192414BE0D00F38991 /* DummyFetcher.swift */,
 				DD41A9132414BE0D00F38991 /* Ferry.swift */,
 				DD41A91E2414BE0E00F38991 /* FerryDao.swift */,
 				DD41A9122414BE0D00F38991 /* FerryDay.swift */,
@@ -175,6 +176,7 @@
 				DD41A9172414BE0D00F38991 /* HolidayRepository.swift */,
 				DD41A9162414BE0D00F38991 /* HongKongHolidayFetcher.swift */,
 				DDBE86EA2415250300BA2C8E /* JsonData.swift */,
+				DD41A9192414BE0D00F38991 /* JsonFetcher.swift */,
 				DD41A9182414BE0D00F38991 /* LocalDateTime.swift */,
 				DD6EEF1B24414D6900ADD3E6 /* Preferences.swift */,
 				DD41A8DF2414BDC100F38991 /* SceneDelegate.swift */,
@@ -200,10 +202,11 @@
 		DD41A8F32414BDC300F38991 /* PengChauFerryTests */ = {
 			isa = PBXGroup;
 			children = (
-				DD41A8F62414BDC300F38991 /* Info.plist */,
+				DD22AC0024D683E500B525E7 /* FerryDaoTest.swift */,
 				DD41A93B2414C63B00F38991 /* FerryDayTest.swift */,
 				DD41A93E2414C75900F38991 /* FerryPierTest.swift */,
 				DD41A8F42414BDC300F38991 /* FerryViewModelTest.swift */,
+				DD41A8F62414BDC300F38991 /* Info.plist */,
 				DDBE86EE241530BD00BA2C8E /* JsonDataTest.swift */,
 				DDB8A78124403F63000D77A8 /* LocalDateTimeTest.swift */,
 				DD6EEF1D2441549800ADD3E6 /* PreferencesTest.swift */,
@@ -415,7 +418,7 @@
 				DD41A91F2414BE0E00F38991 /* Strings.swift in Sources */,
 				DD41A9222414BE0E00F38991 /* FerryViewModel.swift in Sources */,
 				DD41A92E2414BE0E00F38991 /* FerryRepository.swift in Sources */,
-				DD41A92A2414BE0E00F38991 /* DummyFetcher.swift in Sources */,
+				DD41A92A2414BE0E00F38991 /* JsonFetcher.swift in Sources */,
 				DD6EEF1C24414D6900ADD3E6 /* Preferences.swift in Sources */,
 				DDBE86EB2415250300BA2C8E /* JsonData.swift in Sources */,
 				DD41A9202414BE0E00F38991 /* FerryRow.swift in Sources */,
@@ -432,6 +435,7 @@
 				DD41A8F52414BDC300F38991 /* FerryViewModelTest.swift in Sources */,
 				DDBE86EF241530BD00BA2C8E /* JsonDataTest.swift in Sources */,
 				DDB8A78224403F63000D77A8 /* LocalDateTimeTest.swift in Sources */,
+				DD22AC0124D683E500B525E7 /* FerryDaoTest.swift in Sources */,
 				DD41A93C2414C63B00F38991 /* FerryDayTest.swift in Sources */,
 				DD6EEF1E2441549800ADD3E6 /* PreferencesTest.swift in Sources */,
 				DD41A93F2414C75900F38991 /* FerryPierTest.swift in Sources */,
@@ -603,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"PengChauFerry/Preview Content\"";
 				DEVELOPMENT_TEAM = FE3JVHBHV2;
 				ENABLE_PREVIEWS = YES;
@@ -616,7 +620,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -629,7 +633,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"PengChauFerry/Preview Content\"";
 				DEVELOPMENT_TEAM = FE3JVHBHV2;
 				ENABLE_PREVIEWS = YES;
@@ -642,7 +646,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lunesu.PengChauFerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -1,12 +1,34 @@
 package com.lunesu.pengchauferry
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.database.sqlite.SQLiteCursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.core.database.getStringOrNull
 import org.joda.time.Duration
 import org.joda.time.LocalTime
 
 class FerryDao(private val db: DbOpenHelper) {
+
+    companion object {
+        private fun ferry(from: FerryPier, it: Cursor): Ferry {
+            val time = it.getString(0)
+            val to = it.getString(1)
+            val dur = it.getLong(2)
+            val days = it.getInt(3)
+            val fare = it.getString(4) ?: ""
+            val via = it.getStringOrNull(5)
+            return Ferry(
+                LocalTime.parse(time),
+                from,
+                FerryPier.valueOf(to),
+                Duration.standardMinutes(dur),
+                FerryDay.intToDays(days),
+                fare,
+                if (via != null) FerryPier.valueOf(via) else null
+            )
+        }
+    }
 
     fun save(result: List<Ferry>, vararg piers: FerryPier) {
         db.writableDatabase.beginTransaction()
@@ -46,6 +68,20 @@ class FerryDao(private val db: DbOpenHelper) {
         )
     }
 
+    fun get(from: FerryPier, to: FerryPier, dow: FerryDay, time: LocalTime): Ferry? {
+        return db.readableDatabase.query(
+            DbOpenHelper.TIMES,
+            arrayOf("time", "`to`", "durationMin", "days", "fare", "via"),
+            "`from`=? and (days & ?) and time=? and `to`=?",
+            arrayOf(from.name, dow.flag.toString(), time.toString(), to.name),
+            null,
+            null,
+            null
+        ).use {
+            if (it.moveToNext()) ferry(from, it) else null
+        }
+    }
+
     fun query(from: FerryPier, dow: FerryDay): List<Ferry> {
         return db.readableDatabase.query(
             DbOpenHelper.TIMES,
@@ -58,22 +94,7 @@ class FerryDao(private val db: DbOpenHelper) {
         ).use {
             val list = mutableListOf<Ferry>()
             while (it.moveToNext()) {
-                val time = it.getString(0)
-                val to = it.getString(1)
-                val dur = it.getLong(2)
-                val days = it.getInt(3)
-                val fare = it.getString(4) ?: ""
-                val via = it.getStringOrNull(5)
-                val ferryTime = Ferry(
-                    LocalTime.parse(time),
-                    from,
-                    FerryPier.valueOf(to),
-                    Duration.standardMinutes(dur),
-                    FerryDay.intToDays(days),
-                    fare,
-                    if (via != null) FerryPier.valueOf(via) else null
-                )
-                list.add(ferryTime)
+                list.add(ferry(from, it))
             }
             list
         }

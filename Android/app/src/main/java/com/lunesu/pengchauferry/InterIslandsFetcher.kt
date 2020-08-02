@@ -8,6 +8,7 @@ import org.joda.time.LocalTime
 object InterIslandsFetcher {
     private const val url = "http://www.nwff.com.hk/route/get_route.php?id=2e2c0154-902a-4c11-9405-f7743f6e6d2e&route_id=0&submenu_num=3"
 
+    // TODO: fetch prices from web page as well
     private const val fare = "13.4"
     private val durPengChauMuiWo: Duration = Duration.standardMinutes(20)
 //        val durMuiWoChiMaWan = Duration.standardMinutes(15) TODO: support other piers too
