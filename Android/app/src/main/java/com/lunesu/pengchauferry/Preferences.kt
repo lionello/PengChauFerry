@@ -10,6 +10,7 @@ class Preferences(context: Context) {
         private const val LAST_REFRESH_PREF = "lastRefresh"
     }
 
+    // Note: shared will be null during unit testing
     private val shared = context.getSharedPreferences(SHAREDPREF_NAME, Context.MODE_PRIVATE)
 
     var language: String?
@@ -18,6 +19,6 @@ class Preferences(context: Context) {
 
     var lastRefresh: LocalDateTime?
         get() = shared.getString(LAST_REFRESH_PREF, null)?.let { LocalDateTime.parse(it) }
-        set(value) = shared.edit().putString(LAST_REFRESH_PREF, value?.toString()).apply()
+        set(value) { shared?.run { edit().putString(LAST_REFRESH_PREF, value?.toString()).apply() } }
 
 }

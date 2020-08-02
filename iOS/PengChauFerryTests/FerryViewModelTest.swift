@@ -44,4 +44,10 @@ class FerryViewModelTest: XCTestCase {
         cancel.cancel()
     }
 
+    func testShouldRefresh() {
+        let vm = FerryViewModel(ferryRepository: FR(), holidayRepository: HR())
+        XCTAssertTrue(vm.shouldRefresh(lastRefresh: nil))
+        XCTAssertFalse(vm.shouldRefresh(lastRefresh: LocalDateTime.now()))
+    }
+
 }

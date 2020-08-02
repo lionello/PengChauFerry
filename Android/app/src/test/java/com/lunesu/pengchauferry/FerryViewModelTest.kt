@@ -115,4 +115,16 @@ class FerryViewModelTest {
         vm.switchPier(ferryRepository.ferry.from)
         assertNotNull(state)
     }
+
+    @Test
+    fun testShouldRefresh() {
+        val vm = FerryViewModel(
+            Application(),
+            ferryRepository,
+            holidayRepository
+        )
+        assertTrue(vm.shouldRefresh(null))
+        assertFalse(vm.shouldRefresh(LocalDateTime.now()))
+    }
+
 }

@@ -11,6 +11,10 @@ open class FerryRepository(db: DbOpenHelper) {
         return ferryDao.query(from, dow)
     }
 
+    open fun shouldRefresh(): Boolean {
+        return false
+    }
+
     open suspend fun refresh() = coroutineScope {
         awaitAll(
             async {

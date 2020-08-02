@@ -35,9 +35,19 @@ final class FerryViewModel: ObservableObject {
         LocalDateTime.now()
     }
 
+    internal func shouldRefresh(lastRefresh: LocalDateTime?) -> Bool {
+        lastRefresh == nil || (today.day == 1 && lastRefresh?.toLocalDate() != today)
+    }
+
+    private func shouldRefresh() -> Bool {
+        holidayRepository.shouldRefresh()
+            || ferryRepository.shouldRefresh()
+            || shouldRefresh(lastRefresh: Preferences().lastRefresh)
+    }
+
     private func updateState(from: FerryPier, dow: FerryDay, autoRefresh: Bool, filtered: Bool) {
         var ferries = ferryRepository.getFerries(from: from, dow: dow)
-        if autoRefresh && (ferries.isEmpty || holidayRepository.shouldRefresh()) {
+        if autoRefresh && (ferries.isEmpty || shouldRefresh()) {
             refreshAndUpdate(from: from)
         } else {
             if filtered {
@@ -74,6 +84,7 @@ final class FerryViewModel: ObservableObject {
         }
 
         group.notify(queue: .main) {
+            Preferences().lastRefresh = .now()
             if let it = from {
                 self.updateState(from: it, dow: self.getDay(date: self.today), autoRefresh: false, filtered: true)
             }

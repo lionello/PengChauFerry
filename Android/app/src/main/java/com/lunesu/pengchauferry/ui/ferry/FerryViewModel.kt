@@ -58,9 +58,17 @@ class FerryViewModel(
     val state: LiveData<State> get() = _state
     val time: LiveData<LocalDateTime> get() = _time
 
+    fun shouldRefresh(lastRefresh: LocalDateTime?): Boolean =
+        lastRefresh == null || (today.dayOfMonth == 1 && lastRefresh.toLocalDate() != today)
+
+    private fun shouldRefresh() : Boolean =
+        holidayRepository.shouldRefresh()
+            || ferryRepository.shouldRefresh()
+            || shouldRefresh(Preferences(getApplication()).lastRefresh)
+
     private fun updateState(from: FerryPier, dow: FerryDay, autoRefresh: Boolean, filtered: Boolean) {
         var ferries = ferryRepository.getFerries(from, dow)
-        if (autoRefresh && (ferries.isEmpty() || holidayRepository.shouldRefresh())) {
+        if (autoRefresh && (ferries.isEmpty() || shouldRefresh())) {
             refreshAndUpdate(from)
         } else {
             if (filtered) {
@@ -109,6 +117,7 @@ class FerryViewModel(
             async { holidayRepository.refresh() },
             async { ferryRepository.refresh() }
         )
+        Preferences(getApplication()).lastRefresh = _time.value
         from?.let {
             updateState(it, getDay(today), false, true)
         }

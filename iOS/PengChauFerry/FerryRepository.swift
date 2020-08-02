@@ -15,6 +15,10 @@ open class FerryRepository {
         return ferryDao.query(from: from, dow: dow)
     }
 
+    open func shouldRefresh() -> Bool {
+        return false
+    }
+
     open func refresh(completion: @escaping () -> Void) {
         let group = DispatchGroup()
 
@@ -22,13 +26,20 @@ open class FerryRepository {
         DummyFetcher.fetch { ferries, _ in
             if ferries.count > 80 {
                 ferryDao.save(result: ferries, piers: .Central, .PengChau, .HeiLingChau, .DiscoveryBay, .TrappistMonastery, .MuiWo, .CheungChau, .ChiMaWan)
-//                ferryDao.save(result: ferries, piers: .Central, .PengChau, .HeiLingChau)
             }
             group.leave()
         }
 
 //        group.enter()
-//        DummyFetcher.fetch { ferries, _ in
+//        PengChauToCentralFetcher.fetch { ferries, _ in
+//            if ferries.count > 80 {
+//                ferryDao.save(result: ferries, piers: .Central, .PengChau, .HeiLingChau)
+//            }
+//            group.leave()
+//        }
+
+//        group.enter()
+//        KaitoFetcher.fetch { ferries, _ in
 //            if ferries.count > 50 {
 //                ferryDao.save(result: ferries, piers: .PengChau, .DiscoveryBay, .TrappistMonastery)
 //            }
@@ -36,7 +47,7 @@ open class FerryRepository {
 //        }
 
 //        group.enter()
-//        DummyFetcher.fetch { ferries, _ in
+//        InterIslandsFetcher.fetch { ferries, _ in
 //            if ferries.count > 10 {
 //                ferryDao.save(result: ferries, piers: .PengChau, .MuiWo, .CheungChau, .ChiMaWan)
 //            }
