@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.6.67
 # min_api: 21
-# pg_map_id: 1498d17
+# pg_map_id: deb3c91
 # common_typos_disable
 $$ServiceLoaderMethods -> a:
     java.util.Iterator $load0() -> a
@@ -13491,6 +13491,7 @@ androidx.interpolator.view.animation.LookupTableInterpolator -> f.l.a.a.d:
     float mStepSize -> b
     float[] mValues -> a
 androidx.lifecycle.AndroidViewModel -> f.m.a:
+    android.app.Application mApplication -> c
 androidx.lifecycle.ClassesInfoCache -> f.m.b:
     java.util.Map mCallbackMap -> a
     java.util.Map mHasLifecycleMethods -> b
@@ -24872,42 +24873,39 @@ com.lunesu.pengchauferry.FerryActivity -> com.lunesu.pengchauferry.FerryActivity
     com.lunesu.pengchauferry.ui.ferry.FerryViewModel access$getViewModel$p(com.lunesu.pengchauferry.FerryActivity) -> a
     com.lunesu.pengchauferry.ui.ferry.LocationViewModel getLocationViewModel() -> j
     com.lunesu.pengchauferry.ui.ferry.FerryViewModel getViewModel() -> k
-    1:1:android.content.SharedPreferences getSharedPreferences():0:0 -> onCreate
-    1:1:java.lang.String getLanguagePref():0 -> onCreate
+    1:1:java.lang.String com.lunesu.pengchauferry.Preferences.getLanguage():0:0 -> onCreate
     1:1:void onCreate(android.os.Bundle):0 -> onCreate
-    2:2:java.lang.String getLanguagePref():0:0 -> onCreate
-    2:2:void onCreate(android.os.Bundle):0 -> onCreate
-    3:3:void onCreate(android.os.Bundle):0:0 -> onCreate
-    4:4:androidx.fragment.app.FragmentManager androidx.fragment.app.FragmentActivity.getSupportFragmentManager():0:0 -> onCreate
+    2:2:void onCreate(android.os.Bundle):0:0 -> onCreate
+    3:3:androidx.fragment.app.FragmentManager androidx.fragment.app.FragmentActivity.getSupportFragmentManager():0:0 -> onCreate
+    3:3:void onCreate(android.os.Bundle):0 -> onCreate
+    4:4:androidx.fragment.app.FragmentManager androidx.fragment.app.FragmentController.getSupportFragmentManager():0:0 -> onCreate
+    4:4:androidx.fragment.app.FragmentManager androidx.fragment.app.FragmentActivity.getSupportFragmentManager():0 -> onCreate
     4:4:void onCreate(android.os.Bundle):0 -> onCreate
-    5:5:androidx.fragment.app.FragmentManager androidx.fragment.app.FragmentController.getSupportFragmentManager():0:0 -> onCreate
-    5:5:androidx.fragment.app.FragmentManager androidx.fragment.app.FragmentActivity.getSupportFragmentManager():0 -> onCreate
+    5:5:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentManager.beginTransaction():0:0 -> onCreate
     5:5:void onCreate(android.os.Bundle):0 -> onCreate
-    6:6:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentManager.beginTransaction():0:0 -> onCreate
-    6:6:void onCreate(android.os.Bundle):0 -> onCreate
-    7:7:void onCreate(android.os.Bundle):0:0 -> onCreate
-    8:8:com.lunesu.pengchauferry.ui.ferry.FerryFragment com.lunesu.pengchauferry.ui.ferry.FerryFragment$Companion.newInstance():0:0 -> onCreate
+    6:6:void onCreate(android.os.Bundle):0:0 -> onCreate
+    7:7:com.lunesu.pengchauferry.ui.ferry.FerryFragment com.lunesu.pengchauferry.ui.ferry.FerryFragment$Companion.newInstance():0:0 -> onCreate
+    7:7:void onCreate(android.os.Bundle):0 -> onCreate
+    8:8:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.replace(int,androidx.fragment.app.Fragment,java.lang.String):0:0 -> onCreate
+    8:8:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.replace(int,androidx.fragment.app.Fragment):0 -> onCreate
     8:8:void onCreate(android.os.Bundle):0 -> onCreate
-    9:9:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.replace(int,androidx.fragment.app.Fragment,java.lang.String):0:0 -> onCreate
-    9:9:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.replace(int,androidx.fragment.app.Fragment):0 -> onCreate
+    9:9:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.disallowAddToBackStack():0:0 -> onCreate
+    9:9:void androidx.fragment.app.BackStackRecord.commitNow():0 -> onCreate
     9:9:void onCreate(android.os.Bundle):0 -> onCreate
-    10:10:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.disallowAddToBackStack():0:0 -> onCreate
-    10:10:void androidx.fragment.app.BackStackRecord.commitNow():0 -> onCreate
+    10:10:void androidx.fragment.app.BackStackRecord.commitNow():0:0 -> onCreate
     10:10:void onCreate(android.os.Bundle):0 -> onCreate
-    11:11:void androidx.fragment.app.BackStackRecord.commitNow():0:0 -> onCreate
+    11:11:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.disallowAddToBackStack():0:0 -> onCreate
+    11:11:void androidx.fragment.app.BackStackRecord.commitNow():0 -> onCreate
     11:11:void onCreate(android.os.Bundle):0 -> onCreate
-    12:12:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentTransaction.disallowAddToBackStack():0:0 -> onCreate
-    12:12:void androidx.fragment.app.BackStackRecord.commitNow():0 -> onCreate
+    12:12:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentManager.beginTransaction():0:0 -> onCreate
     12:12:void onCreate(android.os.Bundle):0 -> onCreate
-    13:13:androidx.fragment.app.FragmentTransaction androidx.fragment.app.FragmentManager.beginTransaction():0:0 -> onCreate
-    13:13:void onCreate(android.os.Bundle):0 -> onCreate
-    14:14:void onCreate(android.os.Bundle):0:0 -> onCreate
-    15:15:androidx.lifecycle.LiveData com.lunesu.pengchauferry.ui.ferry.FerryViewModel.getState():0:0 -> onCreate
-    15:15:void onCreate(android.os.Bundle):0 -> onCreate
-    16:16:void onCreate(android.os.Bundle):0:0 -> onCreate
-    17:17:androidx.lifecycle.LiveData com.lunesu.pengchauferry.ui.ferry.LocationViewModel.getLocation():0:0 -> onCreate
-    17:17:void onCreate(android.os.Bundle):0 -> onCreate
-    18:18:void onCreate(android.os.Bundle):0:0 -> onCreate
+    13:13:void onCreate(android.os.Bundle):0:0 -> onCreate
+    14:14:androidx.lifecycle.LiveData com.lunesu.pengchauferry.ui.ferry.FerryViewModel.getState():0:0 -> onCreate
+    14:14:void onCreate(android.os.Bundle):0 -> onCreate
+    15:15:void onCreate(android.os.Bundle):0:0 -> onCreate
+    16:16:androidx.lifecycle.LiveData com.lunesu.pengchauferry.ui.ferry.LocationViewModel.getLocation():0:0 -> onCreate
+    16:16:void onCreate(android.os.Bundle):0 -> onCreate
+    17:17:void onCreate(android.os.Bundle):0:0 -> onCreate
     1:1:boolean com.lunesu.pengchauferry.ui.ferry.FerryViewModel.toggleHoliday():0:0 -> onOptionsItemSelected
     1:1:boolean onOptionsItemSelected(android.view.MenuItem):0 -> onOptionsItemSelected
     2:2:void com.lunesu.pengchauferry.HolidayRepository.setHoliday(org.joda.time.LocalDate,boolean):0:0 -> onOptionsItemSelected
@@ -24941,12 +24939,12 @@ com.lunesu.pengchauferry.FerryActivity -> com.lunesu.pengchauferry.FerryActivity
     13:13:void com.lunesu.pengchauferry.ui.ferry.FerryViewModel.refresh():0:0 -> onOptionsItemSelected
     13:13:boolean onOptionsItemSelected(android.view.MenuItem):0 -> onOptionsItemSelected
     14:14:boolean onOptionsItemSelected(android.view.MenuItem):0:0 -> onOptionsItemSelected
-    15:15:android.content.SharedPreferences getSharedPreferences():0:0 -> onOptionsItemSelected
-    15:15:void setLanguagePref(java.lang.String):0 -> onOptionsItemSelected
+    15:15:void com.lunesu.pengchauferry.Preferences.setLanguage(java.lang.String):0:0 -> onOptionsItemSelected
     15:15:boolean onOptionsItemSelected(android.view.MenuItem):0 -> onOptionsItemSelected
-    16:16:void setLanguagePref(java.lang.String):0:0 -> onOptionsItemSelected
-    16:16:boolean onOptionsItemSelected(android.view.MenuItem):0 -> onOptionsItemSelected
-    17:17:boolean onOptionsItemSelected(android.view.MenuItem):0:0 -> onOptionsItemSelected
+    16:16:boolean onOptionsItemSelected(android.view.MenuItem):0:0 -> onOptionsItemSelected
+    17:17:void com.lunesu.pengchauferry.Preferences.setLanguage(java.lang.String):0:0 -> onOptionsItemSelected
+    17:17:boolean onOptionsItemSelected(android.view.MenuItem):0 -> onOptionsItemSelected
+    18:18:boolean onOptionsItemSelected(android.view.MenuItem):0:0 -> onOptionsItemSelected
     1:1:androidx.lifecycle.LiveData com.lunesu.pengchauferry.ui.ferry.FerryViewModel.getState():0:0 -> onPrepareOptionsMenu
     1:1:boolean onPrepareOptionsMenu(android.view.Menu):0 -> onPrepareOptionsMenu
     2:2:boolean onPrepareOptionsMenu(android.view.Menu):0:0 -> onPrepareOptionsMenu
@@ -25027,6 +25025,7 @@ com.lunesu.pengchauferry.FerryActivity$onCreate$3 -> com.lunesu.pengchauferry.Fe
     16:16:void onChanged(java.lang.Object):0 -> a
 com.lunesu.pengchauferry.FerryDao -> g.c.a.d:
     com.lunesu.pengchauferry.DbOpenHelper db -> a
+    com.lunesu.pengchauferry.FerryDao$Companion Companion -> b
     1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> <init>
     1:1:void <init>(com.lunesu.pengchauferry.DbOpenHelper):0 -> <init>
     1:1:java.lang.String kotlin.collections.CollectionsKt___CollectionsKt.joinToString(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):0:0 -> a
@@ -25104,6 +25103,35 @@ com.lunesu.pengchauferry.FerryDao -> g.c.a.d:
     30:30:void insert(com.lunesu.pengchauferry.Ferry):0 -> a
     31:31:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
     31:31:void save(java.util.List,com.lunesu.pengchauferry.FerryPier[]):0 -> a
+com.lunesu.pengchauferry.FerryDao$Companion -> g.c.a.d$a:
+    1:1:void <init>():0:0 -> <init>
+    1:1:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):0 -> <init>
+    1:1:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0:0 -> a
+    1:1:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    2:2:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay.access$getENUMS$cp():0:0 -> a
+    2:2:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay$Companion.getENUMS():0 -> a
+    2:2:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0 -> a
+    2:2:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    2:2:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    3:3:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0:0 -> a
+    3:3:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    3:3:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    4:4:int com.lunesu.pengchauferry.FerryDay.getFlag():0:0 -> a
+    4:4:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0 -> a
+    4:4:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    4:4:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    5:5:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0:0 -> a
+    5:5:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    5:5:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    6:6:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0:0 -> a
+    6:6:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    7:7:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay.access$getENUMS$cp():0:0 -> a
+    7:7:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay$Companion.getENUMS():0 -> a
+    7:7:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0 -> a
+    7:7:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    7:7:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
+    8:8:com.lunesu.pengchauferry.Ferry ferry(com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0:0 -> a
+    8:8:com.lunesu.pengchauferry.Ferry access$ferry(com.lunesu.pengchauferry.FerryDao$Companion,com.lunesu.pengchauferry.FerryPier,android.database.Cursor):0 -> a
 com.lunesu.pengchauferry.FerryDay -> g.c.a.e:
     com.lunesu.pengchauferry.FerryDay[] ENUMS -> o
     com.lunesu.pengchauferry.FerryDay Monday -> f
@@ -25559,7 +25587,11 @@ com.lunesu.pengchauferry.PengChauToCentralFetcher$fetch$2 -> g.c.a.t:
     20:20:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.getSundayAndHolidays():0 -> d
     20:20:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
     21:21:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
-com.lunesu.pengchauferry.Utils -> g.c.a.v:
+com.lunesu.pengchauferry.Preferences -> g.c.a.v:
+    android.content.SharedPreferences shared -> a
+    1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> <init>
+    1:1:void <init>(android.content.Context):0 -> <init>
+com.lunesu.pengchauferry.Utils -> g.c.a.w:
     com.lunesu.pengchauferry.Utils INSTANCE -> a
     1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
     1:1:java.util.List atLeast(java.util.List,int):0 -> a
@@ -25588,7 +25620,7 @@ com.lunesu.pengchauferry.Utils -> g.c.a.v:
     11:11:java.lang.Object kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED():0:0 -> a
     11:11:java.lang.Object retryJsoupGet(java.lang.String,kotlin.coroutines.Continuation):0 -> a
     12:12:java.lang.Object retryJsoupGet(java.lang.String,kotlin.coroutines.Continuation):0:0 -> a
-com.lunesu.pengchauferry.Utils$retry$1 -> g.c.a.v$a:
+com.lunesu.pengchauferry.Utils$retry$1 -> g.c.a.w$a:
     int I$1 -> n
     java.lang.Object L$0 -> k
     java.lang.Object result -> h
@@ -25598,14 +25630,14 @@ com.lunesu.pengchauferry.Utils$retry$1 -> g.c.a.v$a:
     java.lang.Object L$1 -> l
     long J$0 -> o
     java.lang.Object invokeSuspend(java.lang.Object) -> d
-com.lunesu.pengchauferry.Utils$retryJsoupGet$1 -> g.c.a.v$b:
+com.lunesu.pengchauferry.Utils$retryJsoupGet$1 -> g.c.a.w$b:
     java.lang.Object L$0 -> k
     java.lang.Object result -> h
     com.lunesu.pengchauferry.Utils this$0 -> j
     int label -> i
     java.lang.Object L$1 -> l
     java.lang.Object invokeSuspend(java.lang.Object) -> d
-com.lunesu.pengchauferry.Utils$retryJsoupGet$2 -> g.c.a.v$c:
+com.lunesu.pengchauferry.Utils$retryJsoupGet$2 -> g.c.a.w$c:
     java.lang.String $url -> i
     1:1:kotlin.coroutines.Continuation create(kotlin.coroutines.Continuation):0:0 -> b
     1:1:java.lang.Object invoke(java.lang.Object):0 -> b
@@ -25771,8 +25803,11 @@ com.lunesu.pengchauferry.ui.ferry.FerryFragment -> com.lunesu.pengchauferry.ui.f
     33:33:void androidx.recyclerview.widget.LinearLayoutManager.<init>(android.content.Context):0:0 -> a
     33:33:void onViewCreated(android.view.View,android.os.Bundle):0 -> a
     34:34:void onViewCreated(android.view.View,android.os.Bundle):0:0 -> a
-    35:35:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
+    35:35:java.util.Map com.lunesu.pengchauferry.ui.ferry.Strings.getPIERS_DUAL():0:0 -> a
     35:35:void onViewCreated(android.view.View,android.os.Bundle):0 -> a
+    36:36:void onViewCreated(android.view.View,android.os.Bundle):0:0 -> a
+    37:37:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
+    37:37:void onViewCreated(android.view.View,android.os.Bundle):0 -> a
     1:1:androidx.lifecycle.LiveData com.lunesu.pengchauferry.ui.ferry.FerryViewModel.getState():0:0 -> d
     1:1:void onSaveInstanceState(android.os.Bundle):0 -> d
     2:2:void onSaveInstanceState(android.os.Bundle):0:0 -> d
@@ -26119,7 +26154,7 @@ com.lunesu.pengchauferry.ui.ferry.FerryFragment$onViewCreated$1 -> com.lunesu.pe
     7:7:void onRefresh():0:0 -> a
     8:8:androidx.swiperefreshlayout.widget.SwipeRefreshLayout com.lunesu.pengchauferry.ui.ferry.FerryFragment.access$getSwipeRefreshLayout$p(com.lunesu.pengchauferry.ui.ferry.FerryFragment):0:0 -> a
     8:8:void onRefresh():0 -> a
-com.lunesu.pengchauferry.ui.ferry.FerryRow -> g.c.a.w.a.a:
+com.lunesu.pengchauferry.ui.ferry.FerryRow -> g.c.a.x.a.a:
     android.widget.TextView textViewDest -> u
     android.widget.TextView textViewTime -> t
     android.widget.TextView textViewFare -> w
@@ -26128,12 +26163,12 @@ com.lunesu.pengchauferry.ui.ferry.FerryRow -> g.c.a.w.a.a:
     1:1:void <init>(android.view.View):0 -> <init>
     android.content.Context getContext() -> q
 com.lunesu.pengchauferry.ui.ferry.FerryViewModel -> com.lunesu.pengchauferry.ui.ferry.FerryViewModel:
-    com.lunesu.pengchauferry.DbOpenHelper db -> c
-    com.lunesu.pengchauferry.HolidayRepository holidayRepository -> h
-    com.lunesu.pengchauferry.ui.ferry.FerryViewModel$countDownTimer$1 countDownTimer -> d
-    com.lunesu.pengchauferry.FerryRepository ferryRepository -> g
-    androidx.lifecycle.MutableLiveData _state -> e
-    androidx.lifecycle.MutableLiveData _time -> f
+    com.lunesu.pengchauferry.DbOpenHelper db -> d
+    com.lunesu.pengchauferry.ui.ferry.FerryViewModel$countDownTimer$1 countDownTimer -> e
+    com.lunesu.pengchauferry.FerryRepository ferryRepository -> h
+    com.lunesu.pengchauferry.HolidayRepository holidayRepository -> i
+    androidx.lifecycle.MutableLiveData _state -> f
+    androidx.lifecycle.MutableLiveData _time -> g
     1:1:void <init>(android.app.Application,com.lunesu.pengchauferry.DbOpenHelper):0:0 -> <init>
     1:1:void <init>(android.app.Application):0 -> <init>
     2:2:void <init>(android.app.Application,com.lunesu.pengchauferry.FerryRepository,com.lunesu.pengchauferry.HolidayRepository):0:0 -> <init>
@@ -26143,7 +26178,6 @@ com.lunesu.pengchauferry.ui.ferry.FerryViewModel -> com.lunesu.pengchauferry.ui.
     3:3:void <init>(android.app.Application):0 -> <init>
     4:4:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> <init>
     4:4:void <init>(android.app.Application):0 -> <init>
-    org.joda.time.LocalDate access$getToday$p(com.lunesu.pengchauferry.ui.ferry.FerryViewModel) -> a
     1:1:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay.access$getENUMS$cp():0:0 -> a
     1:1:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay$Companion.getENUMS():0 -> a
     1:1:com.lunesu.pengchauferry.FerryDay com.lunesu.pengchauferry.FerryDay$Companion.fromDate(org.joda.time.LocalDate):0 -> a
@@ -26212,64 +26246,74 @@ com.lunesu.pengchauferry.ui.ferry.FerryViewModel -> com.lunesu.pengchauferry.ui.
     20:20:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0:0 -> a
     20:20:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
     20:20:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    21:21:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay.access$getENUMS$cp():0:0 -> a
-    21:21:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay$Companion.getENUMS():0 -> a
-    21:21:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0 -> a
-    21:21:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
-    21:21:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
-    21:21:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    22:22:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0:0 -> a
-    22:22:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
-    22:22:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    21:21:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> a
+    22:22:boolean shouldRefresh():0:0 -> a
     22:22:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    23:23:int com.lunesu.pengchauferry.FerryDay.getFlag():0:0 -> a
-    23:23:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0 -> a
-    23:23:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
-    23:23:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    23:23:boolean com.lunesu.pengchauferry.HolidayRepository.shouldRefresh():0:0 -> a
+    23:23:boolean shouldRefresh():0 -> a
     23:23:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    24:24:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0:0 -> a
-    24:24:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
-    24:24:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    24:24:boolean shouldRefresh():0:0 -> a
     24:24:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    25:25:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0:0 -> a
-    25:25:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    25:25:android.app.Application androidx.lifecycle.AndroidViewModel.getApplication():0:0 -> a
+    25:25:boolean shouldRefresh():0 -> a
     25:25:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    26:26:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay.access$getENUMS$cp():0:0 -> a
-    26:26:com.lunesu.pengchauferry.FerryDay[] com.lunesu.pengchauferry.FerryDay$Companion.getENUMS():0 -> a
-    26:26:java.util.EnumSet com.lunesu.pengchauferry.FerryDay$Companion.intToDays(int):0 -> a
-    26:26:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
-    26:26:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    26:26:boolean shouldRefresh():0:0 -> a
     26:26:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    27:27:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0:0 -> a
-    27:27:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    27:27:org.joda.time.LocalDateTime com.lunesu.pengchauferry.Preferences.getLastRefresh():0:0 -> a
+    27:27:boolean shouldRefresh():0 -> a
     27:27:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    28:28:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> a
-    29:29:boolean com.lunesu.pengchauferry.HolidayRepository.shouldRefresh():0:0 -> a
+    28:28:org.joda.time.format.DateTimeFormatter org.joda.time.format.ISODateTimeFormat$Constants.access$1000():0:0 -> a
+    28:28:org.joda.time.format.DateTimeFormatter org.joda.time.format.ISODateTimeFormat.localDateOptionalTimeParser():0 -> a
+    28:28:org.joda.time.LocalDateTime org.joda.time.LocalDateTime.parse(java.lang.String):0 -> a
+    28:28:org.joda.time.LocalDateTime com.lunesu.pengchauferry.Preferences.getLastRefresh():0 -> a
+    28:28:boolean shouldRefresh():0 -> a
+    28:28:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    29:29:org.joda.time.LocalDateTime org.joda.time.LocalDateTime.parse(java.lang.String,org.joda.time.format.DateTimeFormatter):0:0 -> a
+    29:29:org.joda.time.LocalDateTime org.joda.time.LocalDateTime.parse(java.lang.String):0 -> a
+    29:29:org.joda.time.LocalDateTime com.lunesu.pengchauferry.Preferences.getLastRefresh():0 -> a
+    29:29:boolean shouldRefresh():0 -> a
     29:29:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    30:30:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> a
-    31:31:org.joda.time.LocalTime com.lunesu.pengchauferry.Ferry.getTime():0:0 -> a
+    30:30:boolean shouldRefresh(org.joda.time.LocalDateTime):0:0 -> a
+    30:30:boolean shouldRefresh():0 -> a
+    30:30:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    31:31:org.joda.time.Chronology org.joda.time.LocalDate.getChronology():0:0 -> a
+    31:31:int org.joda.time.LocalDate.getDayOfMonth():0 -> a
+    31:31:boolean shouldRefresh(org.joda.time.LocalDateTime):0 -> a
+    31:31:boolean shouldRefresh():0 -> a
     31:31:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    32:32:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> a
-    33:33:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0:0 -> a
-    33:33:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    32:32:int org.joda.time.LocalDate.getDayOfMonth():0:0 -> a
+    32:32:boolean shouldRefresh(org.joda.time.LocalDateTime):0 -> a
+    32:32:boolean shouldRefresh():0 -> a
+    32:32:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    33:33:long org.joda.time.LocalDate.getLocalMillis():0:0 -> a
+    33:33:int org.joda.time.LocalDate.getDayOfMonth():0 -> a
+    33:33:boolean shouldRefresh(org.joda.time.LocalDateTime):0 -> a
+    33:33:boolean shouldRefresh():0 -> a
     33:33:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
-    34:34:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
-    34:34:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    34:34:int org.joda.time.LocalDate.getDayOfMonth():0:0 -> a
+    34:34:boolean shouldRefresh(org.joda.time.LocalDateTime):0 -> a
+    34:34:boolean shouldRefresh():0 -> a
     34:34:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    35:35:boolean shouldRefresh(org.joda.time.LocalDateTime):0:0 -> a
+    35:35:boolean shouldRefresh():0 -> a
+    35:35:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    36:36:boolean com.lunesu.pengchauferry.FerryRepository.shouldRefresh():0:0 -> a
+    36:36:boolean shouldRefresh():0 -> a
+    36:36:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    37:37:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> a
+    38:38:org.joda.time.LocalTime com.lunesu.pengchauferry.Ferry.getTime():0:0 -> a
+    38:38:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    39:39:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> a
+    40:40:java.util.List com.lunesu.pengchauferry.FerryDao.query(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0:0 -> a
+    40:40:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    40:40:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
+    41:41:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
+    41:41:java.util.List com.lunesu.pengchauferry.FerryRepository.getFerries(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> a
+    41:41:void updateState(com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0 -> a
     void onCleared() -> b
     1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> b
     1:1:void switchPier(com.lunesu.pengchauferry.FerryPier):0 -> b
-    1:1:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0:0 -> c
-    1:1:org.joda.time.LocalDate getToday():0 -> c
-    2:2:long org.joda.time.LocalDateTime.getLocalMillis():0:0 -> c
-    2:2:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0 -> c
-    2:2:org.joda.time.LocalDate getToday():0 -> c
-    3:3:org.joda.time.Chronology org.joda.time.LocalDateTime.getChronology():0:0 -> c
-    3:3:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0 -> c
-    3:3:org.joda.time.LocalDate getToday():0 -> c
-    4:4:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0:0 -> c
-    4:4:org.joda.time.LocalDate getToday():0 -> c
-    5:5:org.joda.time.LocalDate getToday():0:0 -> c
+    org.joda.time.LocalDate getToday() -> c
     1:1:org.joda.time.LocalDateTime org.joda.time.LocalDateTime.now():0:0 -> d
     1:1:org.joda.time.LocalDateTime com.lunesu.pengchauferry.ui.ferry.FerryViewModel$Companion.now():0 -> d
     2:2:void org.joda.time.LocalDateTime.<init>():0:0 -> d
@@ -26282,7 +26326,7 @@ com.lunesu.pengchauferry.ui.ferry.FerryViewModel$State -> com.lunesu.pengchaufer
     com.lunesu.pengchauferry.FerryPier from -> b
     1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> <init>
     1:1:void <init>(java.util.List,com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay):0 -> <init>
-com.lunesu.pengchauferry.ui.ferry.FerryViewModel$countDownTimer$1 -> g.c.a.w.a.b:
+com.lunesu.pengchauferry.ui.ferry.FerryViewModel$countDownTimer$1 -> g.c.a.x.a.b:
     com.lunesu.pengchauferry.ui.ferry.FerryViewModel this$0 -> a
     1:1:androidx.lifecycle.MutableLiveData com.lunesu.pengchauferry.ui.ferry.FerryViewModel.access$get_time$p(com.lunesu.pengchauferry.ui.ferry.FerryViewModel):0:0 -> onTick
     1:1:void onTick(long):0 -> onTick
@@ -26299,9 +26343,21 @@ com.lunesu.pengchauferry.ui.ferry.FerryViewModel$refreshAndUpdate$1 -> com.lunes
     1:1:java.lang.Object kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED():0:0 -> d
     1:1:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
     2:2:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
-    3:3:void com.lunesu.pengchauferry.ui.ferry.FerryViewModel.access$updateState(com.lunesu.pengchauferry.ui.ferry.FerryViewModel,com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> d
+    3:3:android.app.Application androidx.lifecycle.AndroidViewModel.getApplication():0:0 -> d
     3:3:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
     4:4:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
+    5:5:androidx.lifecycle.MutableLiveData com.lunesu.pengchauferry.ui.ferry.FerryViewModel.access$get_time$p(com.lunesu.pengchauferry.ui.ferry.FerryViewModel):0:0 -> d
+    5:5:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
+    6:6:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
+    7:7:void com.lunesu.pengchauferry.Preferences.setLastRefresh(org.joda.time.LocalDateTime):0:0 -> d
+    7:7:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
+    8:8:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
+    9:9:org.joda.time.LocalDate com.lunesu.pengchauferry.ui.ferry.FerryViewModel.access$getToday$p(com.lunesu.pengchauferry.ui.ferry.FerryViewModel):0:0 -> d
+    9:9:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
+    10:10:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
+    11:11:void com.lunesu.pengchauferry.ui.ferry.FerryViewModel.access$updateState(com.lunesu.pengchauferry.ui.ferry.FerryViewModel,com.lunesu.pengchauferry.FerryPier,com.lunesu.pengchauferry.FerryDay,boolean,boolean):0:0 -> d
+    11:11:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
+    12:12:java.lang.Object invokeSuspend(java.lang.Object):0:0 -> d
 com.lunesu.pengchauferry.ui.ferry.FerryViewModel$refreshAndUpdate$1$1 -> com.lunesu.pengchauferry.ui.ferry.FerryViewModel$b$a:
     java.lang.Object L$0 -> j
     int label -> k
@@ -26354,9 +26410,9 @@ com.lunesu.pengchauferry.ui.ferry.FerryViewModel$refreshAndUpdate$1$2 -> com.lun
     10:10:java.lang.Object com.lunesu.pengchauferry.FerryRepository.refresh$suspendImpl(com.lunesu.pengchauferry.FerryRepository,kotlin.coroutines.Continuation):0:0 -> d
     10:10:java.lang.Object com.lunesu.pengchauferry.FerryRepository.refresh(kotlin.coroutines.Continuation):0 -> d
     10:10:java.lang.Object invokeSuspend(java.lang.Object):0 -> d
-com.lunesu.pengchauferry.ui.ferry.LocationViewModel -> g.c.a.w.a.c:
-    android.location.LocationManager locationManager -> c
-    androidx.lifecycle.MutableLiveData _location -> d
+com.lunesu.pengchauferry.ui.ferry.LocationViewModel -> g.c.a.x.a.c:
+    android.location.LocationManager locationManager -> d
+    androidx.lifecycle.MutableLiveData _location -> e
     1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> <init>
     1:1:void <init>(android.app.Application):0 -> <init>
     void onCleared() -> b
@@ -26373,10 +26429,11 @@ com.lunesu.pengchauferry.ui.ferry.LocationViewModel -> g.c.a.w.a.c:
     2:2:float get_accuracy():0 -> onLocationChanged
     2:2:void onLocationChanged(android.location.Location):0 -> onLocationChanged
     3:3:void onLocationChanged(android.location.Location):0:0 -> onLocationChanged
-com.lunesu.pengchauferry.ui.ferry.Strings -> g.c.a.w.a.d:
+com.lunesu.pengchauferry.ui.ferry.Strings -> g.c.a.x.a.d:
     java.util.Map PIERS -> a
-    java.util.Map DAYS -> b
-    com.lunesu.pengchauferry.ui.ferry.Strings INSTANCE -> c
+    java.util.Map PIERS_DUAL -> b
+    java.util.Map DAYS -> c
+    com.lunesu.pengchauferry.ui.ferry.Strings INSTANCE -> d
     1:1:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
     1:1:void <clinit>():0 -> <clinit>
     2:2:void <clinit>():0:0 -> <clinit>
@@ -26425,6 +26482,30 @@ com.lunesu.pengchauferry.ui.ferry.Strings -> g.c.a.w.a.d:
     31:31:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
     31:31:void <clinit>():0 -> <clinit>
     32:32:void <clinit>():0:0 -> <clinit>
+    33:33:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    33:33:void <clinit>():0 -> <clinit>
+    34:34:void <clinit>():0:0 -> <clinit>
+    35:35:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    35:35:void <clinit>():0 -> <clinit>
+    36:36:void <clinit>():0:0 -> <clinit>
+    37:37:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    37:37:void <clinit>():0 -> <clinit>
+    38:38:void <clinit>():0:0 -> <clinit>
+    39:39:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    39:39:void <clinit>():0 -> <clinit>
+    40:40:void <clinit>():0:0 -> <clinit>
+    41:41:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    41:41:void <clinit>():0 -> <clinit>
+    42:42:void <clinit>():0:0 -> <clinit>
+    43:43:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    43:43:void <clinit>():0 -> <clinit>
+    44:44:void <clinit>():0:0 -> <clinit>
+    45:45:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    45:45:void <clinit>():0 -> <clinit>
+    46:46:void <clinit>():0:0 -> <clinit>
+    47:47:kotlin.Pair kotlin.TuplesKt.to(java.lang.Object,java.lang.Object):0:0 -> <clinit>
+    47:47:void <clinit>():0 -> <clinit>
+    48:48:void <clinit>():0:0 -> <clinit>
     1:1:void kotlin.jvm.internal.Intrinsics.checkParameterIsNotNull(java.lang.Object,java.lang.String):0:0 -> a
     1:1:java.lang.String localized(com.lunesu.pengchauferry.FerryPier,android.content.res.Resources):0 -> a
 kotlin.Function -> h.a:
@@ -30113,20 +30194,6 @@ org.joda.time.LocalDate -> i.a.a.n:
     8:8:boolean isSupported(org.joda.time.DateTimeFieldType):0:0 -> a
     9:9:org.joda.time.LocalDate org.joda.time.format.DateTimeFormatter.parseLocalDate(java.lang.String):0:0 -> a
     9:9:org.joda.time.LocalDate parse(java.lang.String,org.joda.time.format.DateTimeFormatter):0 -> a
-    10:10:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0:0 -> a
-    10:10:org.joda.time.LocalDate org.joda.time.format.DateTimeFormatter.parseLocalDate(java.lang.String):0 -> a
-    10:10:org.joda.time.LocalDate parse(java.lang.String,org.joda.time.format.DateTimeFormatter):0 -> a
-    11:11:long org.joda.time.LocalDateTime.getLocalMillis():0:0 -> a
-    11:11:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0 -> a
-    11:11:org.joda.time.LocalDate org.joda.time.format.DateTimeFormatter.parseLocalDate(java.lang.String):0 -> a
-    11:11:org.joda.time.LocalDate parse(java.lang.String,org.joda.time.format.DateTimeFormatter):0 -> a
-    12:12:org.joda.time.Chronology org.joda.time.LocalDateTime.getChronology():0:0 -> a
-    12:12:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0 -> a
-    12:12:org.joda.time.LocalDate org.joda.time.format.DateTimeFormatter.parseLocalDate(java.lang.String):0 -> a
-    12:12:org.joda.time.LocalDate parse(java.lang.String,org.joda.time.format.DateTimeFormatter):0 -> a
-    13:13:org.joda.time.LocalDate org.joda.time.LocalDateTime.toLocalDate():0:0 -> a
-    13:13:org.joda.time.LocalDate org.joda.time.format.DateTimeFormatter.parseLocalDate(java.lang.String):0 -> a
-    13:13:org.joda.time.LocalDate parse(java.lang.String,org.joda.time.format.DateTimeFormatter):0 -> a
     1:1:org.joda.time.Chronology getChronology():0:0 -> b
     1:1:int get(org.joda.time.DateTimeFieldType):0 -> b
     2:2:int get(org.joda.time.DateTimeFieldType):0:0 -> b
@@ -30185,10 +30252,15 @@ org.joda.time.LocalDateTime -> i.a.a.o:
     13:13:int getValue(int):0 -> b
     14:14:int getValue(int):0:0 -> b
     15:15:long getLocalMillis():0:0 -> b
-    15:15:org.joda.time.LocalTime toLocalTime():0 -> b
+    15:15:org.joda.time.LocalDate toLocalDate():0 -> b
     16:16:org.joda.time.Chronology getChronology():0:0 -> b
-    16:16:org.joda.time.LocalTime toLocalTime():0 -> b
-    17:17:org.joda.time.LocalTime toLocalTime():0:0 -> b
+    16:16:org.joda.time.LocalDate toLocalDate():0 -> b
+    17:17:org.joda.time.LocalDate toLocalDate():0:0 -> b
+    1:1:long getLocalMillis():0:0 -> c
+    1:1:org.joda.time.LocalTime toLocalTime():0 -> c
+    2:2:org.joda.time.Chronology getChronology():0:0 -> c
+    2:2:org.joda.time.LocalTime toLocalTime():0 -> c
+    3:3:org.joda.time.LocalTime toLocalTime():0:0 -> c
     1:1:int compareTo(org.joda.time.ReadablePartial):0:0 -> compareTo
     1:1:int compareTo(java.lang.Object):0 -> compareTo
     1:1:org.joda.time.format.DateTimeFormatter org.joda.time.format.ISODateTimeFormat$Constants.access$1500():0:0 -> toString
