@@ -53,9 +53,10 @@ class OnlineFetchTest {
         }
     }
 
+    // Bug: latest IDEA no longer allows manual runs of ignored tests https://youtrack.jetbrains.com/issue/IDEA-210546
     @Test
     @Ignore("Run this manually to export JSON")
-    fun testDump() {
+    fun testDumpJson() {
         runBlocking {
             val f = PengChauToCentralFetcher.fetch() +
                     InterIslandsFetcher.fetch() +
