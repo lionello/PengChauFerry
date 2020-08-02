@@ -2,6 +2,7 @@ package com.lunesu.pengchauferry
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import org.joda.time.LocalDateTime
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -23,12 +24,23 @@ class PreferencesTest {
     }
 
     @Test
-    fun testPreferences() {
-        Preferences(appContext).language = "en"
-        assertEquals("en", Preferences(appContext).language)
+    fun testLanguage() {
+        val lang = "en"
+        Preferences(appContext).language = lang
+        assertEquals(lang, Preferences(appContext).language)
 
         Preferences(appContext).language = null
         assertNull(Preferences(appContext).language)
+    }
+
+    @Test
+    fun testLastRefresh() {
+        val now = LocalDateTime(42)
+        Preferences(appContext).lastRefresh = now
+        assertEquals(now, Preferences(appContext).lastRefresh)
+
+        Preferences(appContext).lastRefresh = null
+        assertNull(Preferences(appContext).lastRefresh)
     }
 
     /*@Test

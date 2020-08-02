@@ -12,12 +12,22 @@ import XCTest
 
 class PreferencesTest: XCTestCase {
 
-    func testPreferences() {
-        Preferences().language = "en"
-        XCTAssertEqual("en", Preferences().language)
+    func testLanguage() {
+        let lang = "en"
+        Preferences().language = lang
+        XCTAssertEqual(lang, Preferences().language)
 
         Preferences().language = nil
         XCTAssertNil(Preferences().language)
+    }
+
+    func testLastRefresh() {
+        let now = LocalDateTime(timeIntervalSince1970: 42.0)
+        Preferences().lastRefresh = now
+        XCTAssertEqual(now, Preferences().lastRefresh)
+
+        Preferences().lastRefresh = nil
+        XCTAssertNil(Preferences().lastRefresh)
     }
 
 }
