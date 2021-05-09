@@ -2,8 +2,7 @@ package com.lunesu.pengchauferry
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
@@ -43,5 +42,12 @@ class UtilsTest {
     @Test(expected = IllegalArgumentException::class)
     fun testRetryJsoupGetFail() = runBlockingTest {
         Utils.retryJsoupGet("asf")
+    }
+
+    @Test
+    fun testIsInvalidChar() {
+        assertTrue(Utils.isInvalidChar('}'))
+        assertFalse(Utils.isInvalidChar('0'))
+        assertFalse(Utils.isInvalidChar(':'))
     }
 }
