@@ -6,7 +6,7 @@ import org.joda.time.LocalDate
 import org.joda.time.format.DateTimeFormatterBuilder
 
 object HongKongHolidayFetcher {
-    const val YEAR = 2020
+    const val YEAR = 2021
     private const val url = "https://www.gov.hk/en/about/abouthk/holiday/$YEAR.htm"
 
     private val formatter = DateTimeFormatterBuilder().appendPattern("dd MMMM").toFormatter()

@@ -9,10 +9,10 @@ object PengChauToCentralFetcher {
     private const val url = "http://hkkf.com.hk/index.php?op=timetable&page=pengchau&style=en"
 
     // TODO: fetch prices from web page as well
-    private const val fareSlowWD = "15.9"
-    private const val fareSlowPH = "22.8"
-    private const val fareFastWD = "29.6"
-    private const val fareFastPH = "43.5"
+    private const val fareSlowWD = "16.6"
+    private const val fareSlowPH = "23.9"
+    private const val fareFastWD = "31.0"
+    private const val fareFastPH = "45.6"
     private val durationFast = Duration.standardMinutes(27)
     private val durationSlow = Duration.standardMinutes(40)
 
@@ -31,7 +31,7 @@ object PengChauToCentralFetcher {
                 }
                 modifiers.addAll(div.textNodes().map { text -> text.text() })
 
-                val times = tr.child(1).textNodes().map { text -> text.text().trim() }
+                val times = tr.child(1).textNodes().map { text -> text.text().trim(Utils::isInvalidChar) }
 
                 val from = if ((i and 2) == 0) FerryPier.Central else FerryPier.PengChau
                 val to = if (from == FerryPier.Central) FerryPier.PengChau else FerryPier.Central

@@ -33,4 +33,6 @@ object Utils {
     suspend fun retryJsoupGet(url: String): Document {
         return retry(2, 1000L) { Jsoup.connect(url).timeout(5000).get() }
     }
+
+    fun isInvalidChar(ch: Char): Boolean = !ch.isDigit() && ch != ':'
 }
