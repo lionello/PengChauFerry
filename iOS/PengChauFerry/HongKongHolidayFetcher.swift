@@ -9,7 +9,7 @@
 import Foundation
 
 class HongKongHolidayFetcher {
-    static let YEAR = 2020
+    static let YEAR = 2021
     private static let url = "https://www.gov.hk/en/about/abouthk/holiday/\(YEAR).htm"
 
     static func fetch(completion: ([LocalDate], Error?) -> Void) {

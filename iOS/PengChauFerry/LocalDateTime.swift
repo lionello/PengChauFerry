@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias Duration = TimeInterval
+
 struct LocalTime {
     let secs: TimeInterval
 
@@ -37,12 +39,12 @@ struct LocalTime {
         secondsBetween(t1, t2) / 60
     }
 
-    func plus(seconds: Int) -> LocalTime {
-        LocalTime(secs: self.secs + Double(seconds))
+    func plus(seconds: Duration) -> LocalTime {
+        LocalTime(secs: self.secs + seconds)
     }
 
     func plus(minutes: Int) -> LocalTime {
-        plus(seconds: minutes * 60)
+        plus(seconds: Double(minutes) * 60.0)
     }
 
     func toString(_ df: DateFormatter) -> String {
@@ -94,6 +96,7 @@ extension LocalDate {
     fileprivate static let formatter: ISO8601DateFormatter = {
         let dtf = ISO8601DateFormatter()
         dtf.formatOptions = [ .withFullDate ]
+        dtf.timeZone = .autoupdatingCurrent
         return dtf
     }()
 
@@ -117,18 +120,21 @@ public typealias LocalDateTime = Date
 extension LocalDateTime {
     static func now() -> LocalDateTime { LocalDateTime() }
 
+    fileprivate func toDateComponents() -> DateComponents {
+        Calendar.autoupdatingCurrent.dateComponents(in: .autoupdatingCurrent, from: self)
+    }
+
     func toLocalDate() -> LocalDate {
-        var dc = Calendar.autoupdatingCurrent.dateComponents(in: .autoupdatingCurrent, from: self)
+        var dc = toDateComponents()
         dc.hour = nil
         dc.minute = nil
         dc.second = nil
         dc.nanosecond = nil
-        dc.timeZone = .UTC
         return dc
     }
 
     func toLocalTime() -> LocalTime {
-        let dc = Calendar.autoupdatingCurrent.dateComponents(in: .autoupdatingCurrent, from: self)
+        let dc = toDateComponents()
         return LocalTime(secs: Double((dc.hour! * 60 + dc.minute!) * 60 + dc.second!) + Double(dc.nanosecond!) * 1e-9)
     }
 

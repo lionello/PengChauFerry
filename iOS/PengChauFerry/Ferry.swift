@@ -12,13 +12,13 @@ public struct Ferry: Decodable {
     let time: LocalTime
     let from: FerryPier
     let to: FerryPier
-    let dur: Int
+    let dur: Duration
     let days: FerryDays
     let fare: String
     let via: FerryPier?
 
     var endTime: LocalTime {
-        get { time.plus(minutes: dur) }
+        get { time.plus(seconds: dur) }
     }
 
     static let DUMMY = Ferry(time: LocalTime.now(), from: .PengChau, to: .Central, dur: 600, days: FerryDay.EVERYDAY, fare: "11.0", via: nil)

@@ -20,6 +20,9 @@ class LocalDateTimeTest: XCTestCase {
 
     func testLocalDate() throws {
         let ld = LocalDate.parse("2020-04-10")
+        XCTAssertEqual(2020, ld?.year)
+        XCTAssertEqual(04, ld?.month)
+        XCTAssertEqual(10, ld?.day)
         XCTAssertEqual("2020-04-10", ld?.toString())
     }
 
