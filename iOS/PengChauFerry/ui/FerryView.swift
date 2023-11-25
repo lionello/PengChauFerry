@@ -27,6 +27,14 @@ struct FerryView: View {
     @State private var shouldSwitchPier = true
     @State private var languageCode: String? = Preferences().language
 
+    private static var pickerStyle: some PickerStyle {
+        if #available(iOS 14.0, *) {
+            return WheelPickerStyle()
+        } else {
+            return DefaultPickerStyle()
+        }
+    }
+
     static let WALKING_SPEED: Float = 0.018
 
     static let PIERS: [FerryPier] = [
@@ -36,12 +44,16 @@ struct FerryView: View {
         .MuiWo
     ]
 
-    private var title: LocalizedStringKey {
+    private var localizedDay: String {
         if let day = viewModel.state?.day {
-            return "Peng Chau Ferries (\(Strings.localized(day, bundle)))"
+            return Strings.localized(day, bundle)
         } else {
-            return "Peng Chau Ferries"
+            return ""
         }
+    }
+
+    private var title: LocalizedStringKey {
+        return "Peng Chau Ferries"
     }
 
     private func updateSelected(ferries: [Ferry]?) {
@@ -71,16 +83,16 @@ struct FerryView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text(self.title)
-                            .foregroundColor(.white)
                             .font(.headline)
                         Spacer()
+                        Text(localizedDay)
                         Button(self.languageCode != "zh" ? "中" : "EN") {
                             let lang = (self.languageCode != "zh" ? "zh" : "en")
                             Preferences().language = lang
                             self.languageCode = lang
                         }
-                        .foregroundColor(.white)
                     }
+                    .foregroundColor(.white)
 
                     HStack(alignment: .bottom) {
                         Image("boat_white")
@@ -108,7 +120,7 @@ struct FerryView: View {
                     .cornerRadius(7)
                 }//VStack
                     .padding()
-                    .background(Color("colorPrimary"))
+                    .background(Color("colorPrimary")) // to remove shadows
                     .clipped()
                     .shadow(color: .black, radius: 10, x: 0, y: 1)
                 List {
@@ -127,6 +139,7 @@ struct FerryView: View {
                 }
             }//VStack
             .background(Color("colorPrimary"))
+            .edgesIgnoringSafeArea(.bottom)
             .overlay(self.showPicker ? Color.black.opacity(0.5) : nil)
             .onTapGesture {
                 self.showPicker = false
@@ -167,6 +180,7 @@ struct FerryView: View {
 //                    }
                 }//Picker
                 .labelsHidden()
+                .pickerStyle(FerryView.pickerStyle)
                 .background(Color.white)
                 .onTapGesture {
                     self.showPicker = false
