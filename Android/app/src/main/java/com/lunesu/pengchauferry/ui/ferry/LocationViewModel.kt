@@ -54,7 +54,7 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    override fun onLocationChanged(location: Location?) {
+    override fun onLocationChanged(location: Location) {
         if (location != null) {
             // Stop the periodic updates if the new accuracy is the same or worse
             if (_accuracy <= location.accuracy) {
@@ -65,6 +65,6 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
     }
 
     override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-    override fun onProviderEnabled(provider: String?) {}
-    override fun onProviderDisabled(provider: String?) {}
+    override fun onProviderEnabled(provider: String) {}
+    override fun onProviderDisabled(provider: String) {}
 }

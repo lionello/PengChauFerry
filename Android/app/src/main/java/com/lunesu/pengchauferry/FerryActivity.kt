@@ -126,8 +126,8 @@ class FerryActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
 //            R.id.app_bar_flip -> {
 //                val fromPier = viewModel.state.value?.from
 //                val autoPier = FerryPier.Central // TODO detect from location

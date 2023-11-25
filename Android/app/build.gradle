@@ -26,11 +26,11 @@ android {
             v2SigningEnabled true
         }
     }
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.lunesu.pengchauferry"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 9
         versionName "1.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
