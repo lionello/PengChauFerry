@@ -1,5 +1,5 @@
 //
-//  DBOpenHelper.swift
+//  SQLiteDatabase.swift
 //  PengChauFerry
 //
 //  Created by Lionello Lunesu on 23/2/2019.

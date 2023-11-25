@@ -12,7 +12,12 @@ import XCTest
 class JsonDataTest: XCTestCase {
 
     func testLoad() {
-        XCTAssertNotNil(JsonData.load(from: Bundle(for: JsonDataTest.self)))
+        let data = JsonData.load(from: Bundle(for: JsonDataTest.self))
+        XCTAssertNotNil(data)
+
+        XCTAssertNotEqual(0, data?.holidays.count)
+        XCTAssertNotEqual(0, data?.ferries.count)
+        XCTAssert(data!.ferries[0].dur >= 600) // at least 10 minutes
     }
 
 }

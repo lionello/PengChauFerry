@@ -18,7 +18,14 @@ struct JsonData: Decodable {
             return nil
         }
 
-        return try? JSONDecoder().decode(JsonData.self, from: data)
+        var jsonData = try? JSONDecoder().decode(JsonData.self, from: data)
+        // The JSON file has the duration in minutes, but our Duration type is in seconds; convert it now
+        if let ferries = jsonData?.ferries {
+            jsonData!.ferries = ferries.map { f in
+                Ferry(time: f.time, from: f.from, to: f.to, dur: f.dur*60, days: f.days, fare: f.fare, via: f.via)
+            }
+        }
+        return jsonData
     }
 
 }
