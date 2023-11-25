@@ -1,10 +1,10 @@
 package com.lunesu.pengchauferry
 
 enum class FerryPier {
-    Central,
-    PengChau,
+    Central, // TODO: which pier?
+    PengChau, // TODO: which pier?
     TrappistMonastery,
-    DiscoveryBay,
+    DiscoveryBay, // TODO: which pier?
     MuiWo,
     CheungChau,
     ChiMaWan,
