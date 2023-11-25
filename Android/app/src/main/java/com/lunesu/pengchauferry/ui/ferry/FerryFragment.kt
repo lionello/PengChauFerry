@@ -57,8 +57,8 @@ class FerryFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun updateSelected(ferries: List<Ferry>?, now: LocalTime) {
         if (ferries != null) {
-            val now = now.plusMinutes(walkingTime)
-            var pos = ferries.indexOfFirst { it.time > now }
+            val then = now.plusMinutes(walkingTime)
+            var pos = ferries.indexOfFirst { it.time > then }
             if (pos == -1) pos = ferries.lastIndex
             adapter?.selected = pos
         }
