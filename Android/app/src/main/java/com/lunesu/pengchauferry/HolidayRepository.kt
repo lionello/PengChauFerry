@@ -4,7 +4,7 @@ import org.joda.time.LocalDate
 
 open class HolidayRepository(db: DbOpenHelper) {
     companion object {
-        private val BUDDHA = LocalDate(HongKongHolidayFetcher.YEAR, 4, 30)
+        private val BUDDHA = LocalDate(Constants.YEAR, 4, 30)
     }
 
     private val holidayDao = HolidayDao(db)

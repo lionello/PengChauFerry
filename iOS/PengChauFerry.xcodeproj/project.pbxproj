@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0EFEF82B02053400B29BA0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0EFEF72B02053400B29BA0 /* Constants.swift */; };
 		DD22AC0124D683E500B525E7 /* FerryDaoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD22AC0024D683E500B525E7 /* FerryDaoTest.swift */; };
 		DD358B0F241CCA31003C8A42 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */; };
 		DD41A8DE2414BDC100F38991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD41A8DD2414BDC100F38991 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD0EFEF72B02053400B29BA0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DD22AC0024D683E500B525E7 /* FerryDaoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FerryDaoTest.swift; sourceTree = "<group>"; };
 		DD358B0E241CCA31003C8A42 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		DD41A8DA2414BDC100F38991 /* PengChauFerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PengChauFerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +167,7 @@
 				DDBE86E82415235900BA2C8E /* db.json */,
 				DD41A8EB2414BDC300F38991 /* Info.plist */,
 				DD41A8DD2414BDC100F38991 /* AppDelegate.swift */,
+				DD0EFEF72B02053400B29BA0 /* Constants.swift */,
 				DD41A9392414C16200F38991 /* Coordinate.swift */,
 				DD41A9152414BE0D00F38991 /* DbOpenHelper.swift */,
 				DD41A9132414BE0D00F38991 /* Ferry.swift */,
@@ -401,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD0EFEF82B02053400B29BA0 /* Constants.swift in Sources */,
 				DD41A9262414BE0E00F38991 /* DbOpenHelper.swift in Sources */,
 				DD41A9272414BE0E00F38991 /* HongKongHolidayFetcher.swift in Sources */,
 				DD41A9242414BE0E00F38991 /* Ferry.swift in Sources */,

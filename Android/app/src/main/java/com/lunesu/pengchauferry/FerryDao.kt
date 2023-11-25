@@ -19,7 +19,7 @@ class FerryDao(private val db: DbOpenHelper) {
             val fare = it.getString(4) ?: ""
             val via = it.getStringOrNull(5)
             return Ferry(
-                LocalTime.parse(time),
+                Utils.parseTime(time)!!.first,
                 from,
                 FerryPier.valueOf(to),
                 Duration.standardMinutes(dur),

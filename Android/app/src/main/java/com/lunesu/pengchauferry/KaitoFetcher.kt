@@ -4,22 +4,22 @@ import java.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.joda.time.Duration
-import org.joda.time.LocalTime
-import org.joda.time.format.DateTimeFormatterBuilder
+import org.jsoup.nodes.Document
 
 object KaitoFetcher {
-    private const val url = "https://www.td.gov.hk/en/transport_in_hong_kong/public_transport/ferries/kaito_services_map/service_details/index.html"
-
     // TODO: fetch prices from web page as well (although currently it has the wrong price)
     private const val fare = "7.5"
+    private const val fareSpecialDeparture = "38.0"
     private val durationSlow = Duration.standardMinutes(20)
     private val durationFast = Duration.standardMinutes(10)
     private val saturday = EnumSet.of(FerryDay.Saturday)
-    private val formatter = DateTimeFormatterBuilder().appendPattern("h.mm a").toFormatter()
 
     suspend fun fetch(): List<Ferry> = withContext(Dispatchers.IO) {
-        val document = Utils.retryJsoupGet(url)
+        val document = Utils.retryJsoupGet(Constants.ferryServiceUrl)
+        parse(document)
+    }
 
+    fun parse(document: Document): List<Ferry> {
         // Price xpath: *[@id="content"]/table[31]/tbody/tr[2]/td[2]/p/text()[1]
 
         val ferryTimes = mutableListOf<Ferry>()
@@ -48,8 +48,8 @@ object KaitoFetcher {
                         val text = it.text()
                         val viaTrappistMonastery = text.contains('*')
                         val saturdaysOnly = text.contains('+')
-                        val time =
-                            LocalTime.parse(text.trim('*', '+', '.').replace(".m", "m"), formatter)
+                        val specialDeparture = text.contains('#')
+                        val time = Utils.parseTime(text)!!.first
                         ferryTimes.add(
                             Ferry(
                                 time,
@@ -57,13 +57,13 @@ object KaitoFetcher {
                                 to,
                                 if (viaTrappistMonastery) durationSlow else durationFast,
                                 if (saturdaysOnly) saturday else days,
-                                fare,
+                                if (specialDeparture) fareSpecialDeparture else fare,
                                 if (viaTrappistMonastery) FerryPier.TrappistMonastery else null
                             )
                         )
                     }
                 }
             }
-        ferryTimes
+        return ferryTimes
     }
 }
